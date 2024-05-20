@@ -1,10 +1,15 @@
-export default function App() {
+/* eslint-disable no-unused-vars */
+import React from 'react';
+import Navbar from './components/Navbar';
+import Banner from './components/Banner';
+
+function App() {
   return (
-    <body>
-      <nav className="bg-blue-600">
-        <h1 className="text-black">Perpustakaan Umum</h1>
-        <p className="text-black">Pamekasan</p>
-      </nav>
-    </body>
+    <div>
+      <Navbar />
+      <Banner />
+    </div>
   );
 }
+
+export default App;
