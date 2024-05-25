@@ -5,7 +5,7 @@ import { faSearch, faBookmark, faBook, faUserPlus, faSignInAlt } from '@fortawes
 
 export default function Navbar() {
   return (
-    <nav className="bg-gray-800 p-4">
+    <nav className="bg-gray-600 p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center ">
           <FontAwesomeIcon icon={faBook} className="h-10 w-10 text-white" />
