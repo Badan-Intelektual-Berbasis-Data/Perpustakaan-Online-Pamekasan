@@ -1,47 +1,48 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faHistory, faChild, faBrain, faUser, faFlask, faPenFancy, faCogs } from '@fortawesome/free-solid-svg-icons';
+import Slider from 'react-slick';
 
 export default function Kategori() {
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    arrows: false,
+  };
+
+  const categories = [
+    { icon: faBook, label: 'Fiksi' },
+    { icon: faHistory, label: 'Sejarah' },
+    { icon: faChild, label: 'Anak-Anak' },
+    { icon: faBrain, label: 'Sains' },
+    { icon: faUser, label: 'Biografi' },
+    { icon: faFlask, label: 'Teknologi' },
+    { icon: faPenFancy, label: 'Sastra' },
+    { icon: faCogs, label: 'Non-Fiksi' },
+  ];
+
   return (
-    <div className="bg-gray-100 py-10">
-      <div className="container mx-auto">
+    <div className="bg-gray-100 py-10 px-80">
+      <div className="container">
         <h3 className="text-2xl font-bold text-center mb-6">Kategori Buku</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
-          <div className="bg-white p-4 rounded-lg shadow-md flex items-center space-x-2">
-            <FontAwesomeIcon icon={faBook} className="h-6 w-6 text-gray-600" />
-            <h4 className="text-lg font-semibold mb-2">Fiksi</h4>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md flex items-center space-x-2">
-            <FontAwesomeIcon icon={faHistory} className="h-6 w-6 text-gray-600" />
-            <h4 className="text-lg font-semibold mb-2">Sejarah</h4>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md flex items-center space-x-2">
-            <FontAwesomeIcon icon={faChild} className="h-6 w-6 text-gray-600" />
-            <h4 className="text-lg font-semibold mb-2">Anak-Anak</h4>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md flex items-center space-x-2">
-            <FontAwesomeIcon icon={faBrain} className="h-6 w-6 text-gray-600" />
-            <h4 className="text-lg font-semibold mb-2">Sains</h4>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md flex items-center space-x-2">
-            <FontAwesomeIcon icon={faUser} className="h-6 w-6 text-gray-600" />
-            <h4 className="text-lg font-semibold mb-2">Biografi</h4>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md flex items-center space-x-2">
-            <FontAwesomeIcon icon={faFlask} className="h-6 w-6 text-gray-600" />
-            <h4 className="text-lg font-semibold mb-2">Teknologi</h4>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md flex items-center space-x-2">
-            <FontAwesomeIcon icon={faPenFancy} className="h-6 w-6 text-gray-600" />
-            <h4 className="text-lg font-semibold mb-2">Sastra</h4>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md flex items-center space-x-2">
-            <FontAwesomeIcon icon={faCogs} className="h-6 w-6 text-gray-600" />
-            <h4 className="text-lg font-semibold mb-2">Non-Fiksi</h4>
-          </div>
-        </div>
+        <Slider {...settings}>
+          {categories.map((category, index) => (
+            <div key={index} className="flex justify-center">
+              <div className="bg-white px-2 py-1 rounded-lg shadow-md flex items-center space-x-2" style={{ width: '160px', margin: '0 5px' }}>
+                <FontAwesomeIcon icon={category.icon} className="h-5 w-5 text-gray-600" />
+                <h4 className="text-sm font-semibold mb-1 text-center">{category.label}</h4>
+              </div>
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );
