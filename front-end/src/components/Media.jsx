@@ -40,7 +40,7 @@ export default function Media() {
             <div className="flex justify-around">
               <img src="https://dinkes.pamekasankab.go.id/storage/users/logo.jpeg" alt="Partner 1" className="w-24 h-24 object-cover rounded-md" />
               <img src="https://i0.wp.com/www.uim.ac.id/uimv2/wp-content/uploads/2020/10/Ico.png?fit=200%2C200&ssl=1" alt="Partner 2" className="w-24 h-24 object-cover rounded-md" />
-              <img src="https://via.placeholder.com/100" alt="Partner 3" className="w-24 h-24 object-cover rounded-md" />
+              <img src="/Bibd.jpg" alt="Partner 3" className="w-24 h-24 object-cover rounded-md" />
             </div>
           </div>
         </div>

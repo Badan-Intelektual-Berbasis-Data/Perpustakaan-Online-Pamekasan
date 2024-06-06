@@ -3,7 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 
-export default function LanjutBaca() {
+export default function DaftarBuku() {
   const lanjutBaca = [
     { title: 'Judul Buku 1', author: 'Penulis 1', image: '/Buku1.jpg' },
     { title: 'Judul Buku 2', author: 'Penulis 2', image: '/Buku1.jpg' },
@@ -14,12 +14,10 @@ export default function LanjutBaca() {
     { title: 'Judul Buku 7', author: 'Penulis 7', image: '/Buku1.jpg' },
   ];
 
-
-
   return (
     <div className="bg-gray-200">
       <div className="container">
-        <h3 className="text-2xl font-bold text-left mb-6 ml-6 mr-6">daftar buku</h3>
+        <h3 className="text-2xl font-bold text-left mb-6 ml-6 mr-6">Daftar Buku</h3>
         <div className="grid grid-cols-2 md:grid-cols-7 gap-4">
           {lanjutBaca.map((book, index) => (
             <div key={index} className="relative bg-white p-2 rounded-lg shadow-md ml-4 mb-4">

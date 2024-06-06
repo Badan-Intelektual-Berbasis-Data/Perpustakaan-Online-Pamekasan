@@ -6,28 +6,25 @@ import Kategori from './items/Kategori';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import BaruRilis from './items/BaruRilis';
-import LanjutBaca from './items/LanjutBaca';
+import DaftarBuku from './items/DaftarBuku';
 import Terpopuler from './items/Terpopuler';
 import Kontak from './components/Kontak';
 import Media from './components/Media';
 import Footer from './components/Footer';
 
 function App() {
-
-
   // const [data, sestData] = useState([])
 
-
   useEffect(() => {
-    async function getData(){
+    async function getData() {
       await fetch('http://127.0.0.1:8000/api/products/catagories/')
         .then((res) => res.json())
-        .then((data) => console.log(data))
-    } 
+        .then((data) => console.log(data));
+    }
 
-    getData()
-    console.log("called")
-  })
+    getData();
+    console.log('called');
+  });
 
   return (
     <div>
@@ -35,7 +32,7 @@ function App() {
       <Banner />
       <Kategori />
       <BaruRilis />
-      <LanjutBaca />
+      <DaftarBuku />
       <Terpopuler />
       <Kontak />
       <Media />
