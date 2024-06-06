@@ -40,14 +40,14 @@ const SimpleSlider = () => {
         <div className="bg-green-600 text-white py-40 h-[400px]">
           <div className="container mx-auto text-center">
             <h2 className="text-4xl font-bold mb-2">Rajin pangkal pandai</h2>
-            <p>malas pangkal bodoh</p>
+            <p>Malas pangkal bodoh</p>
             <button className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-200">Jelajahi Sekarang</button>
           </div>
         </div>
         <div className="bg-blue-700 text-white py-40 h-[400px]">
           <div className="container mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-2">membaca adalah jendela dunia</h2>
-            <p>untuk keindahan dunia</p>
+            <h2 className="text-4xl font-bold mb-2">Membaca adalah jendela dunia</h2>
+            <p>Untuk Keindahan Dunia</p>
             <button className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-200">Jelajahi Sekarang</button>
           </div>
         </div>
