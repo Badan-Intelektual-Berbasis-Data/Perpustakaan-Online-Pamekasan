@@ -5,7 +5,7 @@ export default function Kontak() {
   return (
     <div className="bg-gray-100 py-10">
       <div className="container mx-auto px-4">
-        <h3 className="text-2xl font-bold text-left mb-6">Kunjungi dan Hubungi</h3>
+        <h3 className="text-2xl font-bold text-left mb-6">Kunjungi</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white p-4 rounded-lg shadow-md">
             <iframe
@@ -19,7 +19,7 @@ export default function Kontak() {
             ></iframe>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-md">
-            <h4 className="text-xl font-semibold mb-4">Kirim Pesan</h4>
+            <h4 className="text-xl font-semibold mb-4">Kritik dan saran</h4>
             <form>
               <div className="mb-4">
                 <input type="email" id="email" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100" placeholder="Masukkan Email Anda" />
