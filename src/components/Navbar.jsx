@@ -10,7 +10,7 @@ export default function Navbar() {
         <div className="flex items-center ">
           <FontAwesomeIcon icon={faBook} className="h-10 w-10 text-white" />
           <div>
-            <h1 className="text-white text-xl">Perpustakaan Umum</h1>
+            <h1 className="text-white text-xl font-bold">Perpustakaan Umum</h1>
             <span className="text-gray-400 text-sm">Pamekasan</span>
           </div>
           <div className="flex space-x-4 ml-6">
