@@ -32,22 +32,22 @@ const SimpleSlider = () => {
       <Slider {...settings}>
         <div className="bg-gray-500 text-white py-40 h-[400px]">
           <div className="container mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-2">Setiap buku yang kita baca adalah anak tangga yang membawa kita lebih tinggi dalam pemahaman dan wawasan hidup</h2>
-            <p className="text-lg mb-4">Temukan buku favorit Anda dan banyak lagi.</p>
+            <h2 className="text-4xl font-bold mb-2">Buku Teknologi</h2>
+            <p className="text-lg mb-4">Temukan buku favorit Anda dan banyak lagi</p>
             <button className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-200">Jelajahi Sekarang</button>
           </div>
         </div>
         <div className="bg-green-600 text-white py-40 h-[400px]">
           <div className="container mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-2">Rajin pangkal pandai</h2>
-            <p>Malas pangkal bodoh</p>
+            <h2 className="text-4xl font-bold mb-2">Buku Ekonomi</h2>
+            <p>Temukan buku favorit Anda dan banyak lagi</p>
             <button className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-200">Jelajahi Sekarang</button>
           </div>
         </div>
         <div className="bg-blue-700 text-white py-40 h-[400px]">
           <div className="container mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-2">Membaca adalah jendela dunia</h2>
-            <p>Untuk Keindahan Dunia</p>
+            <h2 className="text-4xl font-bold mb-2">Buku Fiksi</h2>
+            <p>Temukan buku favorit Anda dan banyak lagi</p>
             <button className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-200">Jelajahi Sekarang</button>
           </div>
         </div>

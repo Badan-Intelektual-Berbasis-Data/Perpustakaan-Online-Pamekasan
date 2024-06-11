@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -21,9 +22,11 @@ export default function BaruRilis() {
         <div className="grid grid-cols-2 md:grid-cols-7 gap-4">
           {baruRilis.map((book, index) => (
             <div key={index} className="relative bg-white p-2 rounded-lg shadow-md ml-4 mb-4">
-              <img src={book.image} className="w-full h-32 object-cover mb-2" alt={book.title} />
-              <h4 className="text-lg font-semibold mb-1">{book.title}</h4>
-              <p className="text-sm text-gray-600">{book.author}</p>
+              <Link to={`/detail/${encodeURIComponent(book.title)}`}>
+                <img src={book.image} className="w-full h-32 object-cover mb-2" alt={book.title} />
+                <h4 className="text-lg font-semibold mb-1">{book.title}</h4>
+                <p className="text-sm text-gray-600">{book.author}</p>
+              </Link>
               <FontAwesomeIcon icon={faBookmark} className="absolute bottom-2 right-2 text-gray-400" />
             </div>
           ))}

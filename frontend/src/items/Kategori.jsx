@@ -16,6 +16,14 @@ export default function Kategori() {
     autoplaySpeed: 3000,
     pauseOnHover: true,
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+    ],
   };
 
   const categories = [
@@ -30,8 +38,8 @@ export default function Kategori() {
   ];
 
   return (
-    <div className="bg-gray-100 py-10 px-80">
-      <div className="container">
+    <div className="bg-gray-100 py-10 px-4 lg:px-80">
+      <div className="container mx-auto">
         <h3 className="text-2xl font-bold text-center mb-6">Kategori Buku</h3>
         <Slider {...settings}>
           {categories.map((category, index) => (
