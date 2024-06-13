@@ -4,22 +4,24 @@ from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
 from rest_framework.views import APIView
 from .models import (
-    Author,
-    Book
+    Authors,
+    Books,
+    Categories
 )
 from .serializers import (
     AuthorSerializer,
-    BooksSerializer
+    BooksSerializer,
+    CategoriesSerializer
 )
 
 
 class AuthorsView(GenericAPIView):
-    queryset = Author.objects.all()
+    queryset = Authors.objects.all()
     serializer_class = AuthorSerializer
 
     def get(self, _):
 
-        query_data = AuthorSerializer(Author.objects.all(), many=True)
+        query_data = AuthorSerializer(Authors.objects.all(), many=True)
 
         return Response(query_data.data)
 
@@ -35,8 +37,30 @@ class AuthorsView(GenericAPIView):
             return Response({'messege' : 'Pengarang baru telah ditambahkan'})
 
 
+class CategoriesView(GenericAPIView):
+    queryset = Categories.objects.all()
+    serializer_class = CategoriesSerializer
+
+
+    def get(self, _):
+
+        query_data = CategoriesSerializer(Categories.objects.all(), many=True)
+
+        return Response(query_data.data)
+    
+
+    def post(self, req):
+        
+        data = CategoriesSerializer(data=req.POST)
+
+        if data.is_valid(raise_exception=True):
+            data.save()
+
+            return Response({'messege' : 'Kategori baru telah ditambahkan'})
+        
+
 class BooksView(GenericAPIView):
-    queryset = Book.objects.all()
+    queryset = Books.objects.all()
     serializer_class = BooksSerializer
 
 
@@ -52,19 +76,19 @@ class BooksView(GenericAPIView):
         
 
     def get(self, _):
-        query_data = BooksSerializer(Book.objects.all().order_by('title'), many=True)
+        query_data = BooksSerializer(Books.objects.all().order_by('title'), many=True)
 
         return Response(query_data.data)
     
 
 class BookDetail(GenericAPIView):
-    queryset = Book.objects.all()
+    queryset = Books.objects.all()
     serializer_class = BooksSerializer
 
 
     def get(self, _, book_id):
 
-        query_data = BooksSerializer(Book.objects.filter(id=book_id), many=True)
+        query_data = BooksSerializer(Books.objects.filter(id=book_id), many=True)
 
         if len(query_data.data) == 0:
             return Response({}, status=status.HTTP_404_NOT_FOUND)
@@ -75,7 +99,7 @@ class BookDetail(GenericAPIView):
 
     def put(self, request, book_id):
 
-        instance = Book.objects.filter(id=book_id)
+        instance = Books.objects.filter(id=book_id)
         
         # Cleaning data
 
