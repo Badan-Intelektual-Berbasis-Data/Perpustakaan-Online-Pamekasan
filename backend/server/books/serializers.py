@@ -20,5 +20,4 @@ class BooksSerializer(ModelSerializer):
         model = Book
         fields = '__all__'
         depth = 1
-
-    
+        partial = True

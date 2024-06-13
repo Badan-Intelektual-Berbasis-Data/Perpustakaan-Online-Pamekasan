@@ -2,6 +2,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
+from rest_framework.views import APIView
 from .models import (
     Author,
     Book
@@ -55,4 +56,33 @@ class BooksView(GenericAPIView):
 
         return Response(query_data.data)
     
+
+class BookDetail(GenericAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BooksSerializer
+
+
+    def get(self, _, book_id):
+
+        query_data = BooksSerializer(Book.objects.filter(id=book_id), many=True)
+
+        if len(query_data.data) == 0:
+            return Response({}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response(query_data.data[0])
+
+
+
+    def put(self, request, book_id):
+
+        instance = Book.objects.filter(id=book_id)
+        
+        # Cleaning data
+
+
+        clean_data = BooksSerializer(data=request.data, partial=True)
+
+        if clean_data.is_valid(raise_exception=True):
+            clean_data.save()
+            return Response({"messege" : f"Book dengan id {book_id}, berhasil di update"}, status=status.HTTP_204_NO_CONTENT)
 
