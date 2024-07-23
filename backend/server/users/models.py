@@ -5,9 +5,8 @@ from django.contrib.auth.models import (
     BaseUserManager
 )
 from django.utils.translation import gettext_lazy as _
-from books.models import (
-    Books
-)
+from books.models import Book
+
 
 
 class UserManager(BaseUserManager):
@@ -61,7 +60,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Loans(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    book_id = models.ForeignKey(Books, on_delete=models.CASCADE)
+    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
     return_date = models.DateTimeField()
     return_status = models.BooleanField(default=True)
     loan_created = models.DateTimeField(editable=False, auto_now_add=True)
