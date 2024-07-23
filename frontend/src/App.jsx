@@ -15,16 +15,16 @@ import Footer from './components/Footer';
 import DetailBuku from './components/DetailBuku';
 
 function App() {
-  useEffect(() => {
-    async function getData() {
-      await fetch('http://127.0.0.1:8000/api/products/catagories/')
-        .then((res) => res.json())
-        .then((data) => console.log(data));
-    }
+  // useEffect(() => {
+  //   async function getData() {
+  //     await fetch('http://127.0.0.1:8000/api/products/catagories/')
+  //       .then((res) => res.json())
+  //       .then((data) => console.log(data));
+  //   }
 
-    getData();
-    console.log('called');
-  }, []);
+  //   getData();
+  //   console.log('called');
+  // }, []);
 
   return (
     <Router>
