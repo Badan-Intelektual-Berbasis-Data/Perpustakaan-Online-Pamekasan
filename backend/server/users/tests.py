@@ -20,13 +20,18 @@ class UserTest(TestCase):
         )
 
         model.set_password(self.password)
+        model.save()
 
 
-    def check_pasword_hashed(self):
+    def test_password_check(self):
         self.assertTrue(get_user_model().objects.get(name="Alvin Setya Pranata").check_password(self.password))
 
 
-    def check_user_exists(self):
+    def test_hashed_correctly(self):
+        self.assertNotEqual(get_user_model().objects.get(name="Alvin Setya Pranata").password, self.password)
+
+
+    def test_user_exists(self):
         self.assertTrue(get_user_model().objects.get(name="Alvin Setya Pranata"))
 
 

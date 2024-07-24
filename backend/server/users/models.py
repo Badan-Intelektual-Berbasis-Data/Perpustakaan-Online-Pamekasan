@@ -5,7 +5,6 @@ from django.contrib.auth.models import (
     BaseUserManager
 )
 from django.utils.translation import gettext_lazy as _
-from books.models import Book
 
 
 
@@ -39,7 +38,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255, unique=True)
     age = models.IntegerField()
     email = models.EmailField(unique=True)
-    phone = models.IntegerField()
+    phone = models.BigIntegerField()
     address = models.CharField(max_length=300)
     is_admin = models.BooleanField(default=False)
     date_registered = models.DateTimeField(auto_now_add=True, editable=False)
@@ -55,12 +54,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "name"
  
     REQUIRED_FIELDS = ["age", "email", "phone", "address"]
-
-
-
-class Loans(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
-    return_date = models.DateTimeField()
-    return_status = models.BooleanField(default=True)
-    loan_created = models.DateTimeField(editable=False, auto_now_add=True)
