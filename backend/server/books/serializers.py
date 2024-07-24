@@ -45,7 +45,6 @@ class BookDisplaySerializer(ModelSerializer):
 class BooksSerializer(ModelSerializer):
 
     title_id = PrimaryKeyRelatedField(queryset=BookDisplay.objects.all())
-    author_id = PrimaryKeyRelatedField(queryset=Authors.objects.all())
     publisher_id = PrimaryKeyRelatedField(queryset=Publisher.objects.all())
     languange_id = PrimaryKeyRelatedField(queryset=Languange.objects.all())
     

@@ -45,7 +45,6 @@ class BookDisplay(models.Model):
 class Book(models.Model):
     title_id = models.ForeignKey(BookDisplay, on_delete=models.CASCADE)
     publisher_id = models.ForeignKey(Publisher, on_delete=models.CASCADE)
-    author_id = models.ForeignKey(Authors, on_delete=models.CASCADE)
     languange_id = models.ForeignKey(Languange, on_delete=models.CASCADE)
     classification_number = models.PositiveBigIntegerField()
     call_number = models.CharField(max_length=30, default='')
