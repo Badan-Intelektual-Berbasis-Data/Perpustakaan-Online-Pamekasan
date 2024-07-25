@@ -1,17 +1,16 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faHome } from '@fortawesome/free-solid-svg-icons'; // tambahkan faHome untuk ikon Kunjungan
+import { faBars, faTimes, faHome, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 export default function Kunjungan() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [idAnggota, setIdAnggota] = useState('');
   const [institusi, setInstitusi] = useState('');
 
-  const handleLogin = () => {
-    // Logic untuk memproses login dengan ID Anggota dan Institusi
+  const handleLogin = (e) => {
+    e.preventDefault();
     console.log('Login dengan ID Anggota:', idAnggota, 'dan Institusi:', institusi);
-    // Di sini bisa diterapkan logika autentikasi atau navigasi setelah login
   };
 
   return (
@@ -48,6 +47,12 @@ export default function Kunjungan() {
               Masuk
             </button>
           </form>
+          <div className="mt-6 text-center">
+            <Link to="/" className="bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition-colors">
+              <FontAwesomeIcon icon={faArrowLeft} className="h-5 w-5 inline-block mr-2" />
+              Kembali ke Beranda
+            </Link>
+          </div>
         </div>
       </div>
     </div>
