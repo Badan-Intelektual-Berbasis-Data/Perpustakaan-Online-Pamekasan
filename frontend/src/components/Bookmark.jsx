@@ -7,21 +7,21 @@ export default function Bookmark() {
   const bookmarks = [
     {
       id: 1,
-      title: 'Buku 1',
+      title: 'Judul Buku 1',
       description: 'Deskripsi',
-      image: 'https://via.placeholder.com/150',
+      image: './public/Buku1.jpg',
     },
     {
       id: 2,
-      title: 'Buku 2',
+      title: 'Judul Buku 2',
       description: 'Deskripsi',
-      image: 'https://via.placeholder.com/150',
+      image: './public/Buku1.jpg',
     },
     {
       id: 3,
-      title: 'Buku 3',
+      title: 'Judul Buku 3',
       description: 'Deskripsi',
-      image: 'https://via.placeholder.com/150',
+      image: './public/Buku1.jpg',
     },
   ];
 
@@ -42,7 +42,7 @@ export default function Bookmark() {
                 <h4 className="text-xl font-semibold mb-2 text-gray-800">{bookmark.title}</h4>
                 <p className="text-gray-700 mb-4">{bookmark.description}</p>
                 <button onClick={() => handleRemoveBookmark(bookmark.id)} className="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
-                  Remove Bookmark
+                  Hapus Bookmark
                 </button>
               </div>
             ))}
