@@ -39,7 +39,9 @@ export default function Navbar() {
           <Link to="/cari">
             <FontAwesomeIcon icon={faSearch} className="h-5 w-5 text-gray-300 hover:text-white" />
           </Link>
-          <FontAwesomeIcon icon={faBookmark} className="h-5 w-5 text-gray-300 hover:text-white" />
+          <Link to="/simpan">
+            <FontAwesomeIcon icon={faBookmark} className="h-5 w-5 text-gray-300 hover:text-white" />
+          </Link>
           <Link to="/akun">
             <button className="bg-red-500 text-white p-2 rounded flex items-center">
               <FontAwesomeIcon icon={faUserPlus} className="h-5 w-5" />
@@ -78,7 +80,9 @@ export default function Navbar() {
             <Link to="/cari">
               <FontAwesomeIcon icon={faSearch} className="h-5 w-5 text-gray-300 hover:text-white" />
             </Link>
-            <FontAwesomeIcon icon={faBookmark} className="h-5 w-5 text-gray-300 hover:text-white" />
+            <Link to="/simpan">
+              <FontAwesomeIcon icon={faBookmark} className="h-5 w-5 text-gray-300 hover:text-white" />
+            </Link>
             <Link to="/akun">
               <button className="bg-red-500 text-white p-2 rounded flex items-center">
                 <FontAwesomeIcon icon={faUserPlus} className="h-5 w-5" />

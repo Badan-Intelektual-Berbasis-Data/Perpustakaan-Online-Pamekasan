@@ -17,6 +17,7 @@ import Akun from './components/Akun';
 import Login from './components/Login';
 import Daftar from './components/Daftar';
 import LupaPassword from './components/LupaPassword';
+import Bookmark from './components/Bookmark';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <Route path="/kunjungan" element={<Kunjungan />} />
         <Route path="/detail/:title" element={<DetailBuku />} />
         <Route path="/cari" element={<Cari />} />
+        <Route path="/simpan" element={<Bookmark />} />
         <Route path="/akun" element={<Akun />} />
         <Route path="/login" element={<Login />} />
         <Route path="/daftar" element={<Daftar />} />
