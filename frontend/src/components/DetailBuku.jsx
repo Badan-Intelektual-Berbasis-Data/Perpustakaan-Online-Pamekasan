@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import Navbar from './Navbar';
 import StarRatings from 'react-star-ratings';
+import Footer from './Footer';
 
 const bukuDetail = {
   'Judul Buku 1': {
@@ -168,6 +169,7 @@ const DetailBuku = () => {
       ) : (
         <div className="text-center text-lg font-semibold mt-10">Buku tidak ditemukan</div>
       )}
+      <Footer />
     </div>
   );
 };
