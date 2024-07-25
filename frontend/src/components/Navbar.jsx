@@ -40,9 +40,16 @@ export default function Navbar() {
             <FontAwesomeIcon icon={faSearch} className="h-5 w-5 text-gray-300 hover:text-white" />
           </Link>
           <FontAwesomeIcon icon={faBookmark} className="h-5 w-5 text-gray-300 hover:text-white" />
-          <button className="bg-red-500 text-white p-2 rounded flex items-center">
-            <FontAwesomeIcon icon={faUserPlus} className="h-5 w-5" />
-          </button>
+          <Link to="/akun">
+            <button className="bg-red-500 text-white p-2 rounded flex items-center">
+              <FontAwesomeIcon icon={faUserPlus} className="h-5 w-5" />
+            </button>
+          </Link>
+          <Link to="/login">
+            <button className="bg-blue-500 text-white p-2 rounded flex items-center">
+              <FontAwesomeIcon icon={faSignInAlt} className="h-5 w-5" />
+            </button>
+          </Link>
         </div>
         <div className="md:hidden flex items-center">
           <button onClick={() => setMenuOpen(!menuOpen)} className="text-white">
@@ -72,9 +79,16 @@ export default function Navbar() {
               <FontAwesomeIcon icon={faSearch} className="h-5 w-5 text-gray-300 hover:text-white" />
             </Link>
             <FontAwesomeIcon icon={faBookmark} className="h-5 w-5 text-gray-300 hover:text-white" />
-            <button className="bg-red-500 text-white p-2 rounded flex items-center">
-              <FontAwesomeIcon icon={faUserPlus} className="h-5 w-5" />
-            </button>
+            <Link to="/akun">
+              <button className="bg-red-500 text-white p-2 rounded flex items-center">
+                <FontAwesomeIcon icon={faUserPlus} className="h-5 w-5" />
+              </button>
+            </Link>
+            <Link to="/login">
+              <button className="bg-blue-500 text-white p-2 rounded flex items-center">
+                <FontAwesomeIcon icon={faSignInAlt} className="h-5 w-5" />
+              </button>
+            </Link>
           </div>
         </div>
       )}

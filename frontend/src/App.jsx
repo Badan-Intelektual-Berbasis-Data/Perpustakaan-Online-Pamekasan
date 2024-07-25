@@ -13,6 +13,10 @@ import Footer from './components/Footer';
 import DetailBuku from './components/DetailBuku';
 import Cari from './components/Cari';
 import Kunjungan from './components/Kunjungan';
+import Akun from './components/Akun';
+import Login from './components/Login';
+import Daftar from './components/Daftar';
+import LupaPassword from './components/LupaPassword';
 
 function App() {
   return (
@@ -37,6 +41,10 @@ function App() {
         <Route path="/kunjungan" element={<Kunjungan />} />
         <Route path="/detail/:title" element={<DetailBuku />} />
         <Route path="/cari" element={<Cari />} />
+        <Route path="/akun" element={<Akun />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/daftar" element={<Daftar />} />
+        <Route path="/lupa-password" element={<LupaPassword />} />
       </Routes>
     </Router>
   );
