@@ -23,9 +23,9 @@ export default function Akun() {
       <div className="py-10">
         <h3 className="text-3xl font-bold text-center mb-8 text-gray-800">Profile Pengguna</h3>
         <div className="container mx-auto px-4">
-          <div className="max-w-fit mx-auto">
-            <div className="bg-white p-5 rounded-lg shadow-lg flex items-start">
-              <img src="https://via.placeholder.com/120" alt="User" className="w-40 h-40 rounded-full border-4 border-gray-500 mr-6" />
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white p-5 rounded-lg shadow-lg flex flex-col md:flex-row items-start">
+              <img src="https://via.placeholder.com/120" alt="User" className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-gray-500 mb-4 md:mb-0 md:mr-6 mx-auto md:mx-0" />
               <div className="flex-1">
                 <h4 className="text-2xl font-semibold mb-4 text-gray-800">{userProfile.username}</h4>
                 <p className="text-gray-700 mb-2">
@@ -55,13 +55,13 @@ export default function Akun() {
                 <p className="text-gray-700 mb-2">
                   <strong>Nomor Handphone:</strong> {userProfile.phone}
                 </p>
+                <div className="mt-8 text-right">
+                  <h4 className="text-lg font-semibold mb-2 text-gray-800">Pengaturan Akun</h4>
+                  <button className="bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Ubah Informasi</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="mt-8 text-center">
-          <h4 className="text-lg font-semibold mb-4 text-gray-800">Pengaturan Akun</h4>
-          <button className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Ubah Informasi</button>
         </div>
       </div>
       <Footer />
