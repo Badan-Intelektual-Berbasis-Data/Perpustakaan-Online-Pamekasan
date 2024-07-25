@@ -17,7 +17,7 @@ export default function DaftarBuku() {
   return (
     <div className="bg-white">
       <div className="container">
-        <h3 className="text-2xl font-bold text-left mb-6 ml-6 mr-6">Yuk Baca Buku!!</h3>
+        <h3 className="text-2xl font-bold text-left mb-6 ml-6 mr-6">Yuk Pinjam Buku!!</h3>
         <div className="grid grid-cols-2 md:grid-cols-7 gap-4">
           {lanjutBaca.map((book, index) => (
             <div key={index} className="relative bg-white p-2 rounded-lg shadow-md ml-4 mb-4">
