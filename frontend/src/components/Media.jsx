@@ -26,6 +26,11 @@ export default function Media() {
                   Pustakawan
                 </a>
               </li>
+              <li className="mb-2">
+                <a href="/anggota" className="hover:underline">
+                  Area Anggota
+                </a>
+              </li>
             </ul>
           </div>
           <div>

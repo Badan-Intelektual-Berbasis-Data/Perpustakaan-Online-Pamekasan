@@ -22,6 +22,7 @@ import Bantuan from './components/Bantuan';
 import Informasi from './components/Informasi';
 import Berita from './components/Berita';
 import Pustakawan from './components/Pustakawan';
+import Anggota from './components/Anggota';
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
         <Route path="/daftar" element={<Daftar />} />
         <Route path="/lupa-password" element={<LupaPassword />} />
         <Route path="/pustakawan" element={<Pustakawan />} />
+        <Route path="/anggota" element={<Anggota />} />
       </Routes>
     </Router>
   );

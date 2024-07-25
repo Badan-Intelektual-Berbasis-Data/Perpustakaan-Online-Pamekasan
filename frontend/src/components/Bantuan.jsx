@@ -1,4 +1,3 @@
-// Bantuan.jsx
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import Navbar from './Navbar';
@@ -7,12 +6,16 @@ import Footer from './Footer';
 const Bantuan = () => {
   const faqs = [
     {
-      question: 'Bagaimana cara mendaftar?',
-      answer: "Anda dapat mendaftar dengan mengklik tombol 'Daftar' di halaman beranda dan mengikuti instruksi yang ada.",
+      question: 'Bagaimana cara Login?',
+      answer: "Anda dapat login dengan mengklik tombol 'Login' di halaman beranda dan mengikuti instruksi yang ada.",
     },
     {
-      question: 'Apa yang harus dilakukan jika lupa kata sandi?',
-      answer: "Klik 'Lupa Kata Sandi?' pada halaman masuk dan ikuti instruksi untuk mereset kata sandi Anda.",
+      question: 'Bagaimana cara Mendaftar?',
+      answer: "Anda dapat klik login dahulu, kemudian di bawah ada Belum Punya Aku? Klik'Daftar'.",
+    },
+    {
+      question: 'Apa yang harus dilakukan jika lupa Password?',
+      answer: "Klik 'Lupa Password?' pada halaman masuk dan ikuti instruksi untuk mereset kata sandi Anda.",
     },
     {
       question: 'Bagaimana cara menghubungi dukungan pelanggan?',
@@ -52,6 +55,18 @@ const Bantuan = () => {
               </p>
               <p className="text-gray-700">
                 <strong>Telepon:</strong> +62 821-9756-9330
+              </p>
+            </div>
+            <div className="mt-8">
+              <h2 className="text-2xl font-semibold mb-4 text-gray-800">Panduan Penggunaan</h2>
+              <p className="text-gray-600 mb-4">
+                Ada 2 metode pencarian yang tersedia di katalog perpustakaan. Yang pertama adalah PENCARIAN SEDERHANA, yaitu metode pencarian yang paling sederhana di katalog, Anda hanya perlu memasukkan kata kunci apa saja, baik itu yang
+                terkandung dalam judul dokumen, nama penulis, atau subjek. Anda bisa memasukkan lebih dari satu kata kunci dalam metode Pencarian Sederhana dan ini akan memperluas hasil pencarian Anda.
+              </p>
+              <p className="text-gray-600 mb-4">
+                PENCARIAN LANJUTAN memungkinkan Anda untuk menentukan kata kunci di bidang yang lebih spesifik. Jika Anda ingin kata kunci Anda hanya terkandung di bidang judul, maka ketik kata kunci Anda di bidang Judul dan sistem akan
+                mencari hanya di bidang Judul, tidak di bidang lain. Bidang Lokasi memungkinkan Anda mempersempit hasil pencarian berdasarkan lokasi tertentu, sehingga hanya koleksi yang ada di lokasi yang dipilih yang akan diambil oleh
+                sistem.
               </p>
             </div>
           </div>

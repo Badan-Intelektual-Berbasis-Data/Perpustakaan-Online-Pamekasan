@@ -43,7 +43,7 @@ export default function Kategori() {
   return (
     <div className="bg-gray-100 py-10 px-4 lg:px-80 relative">
       <div className="container mx-auto">
-        <h3 className="text-2xl font-bold text-center mb-6">Kategori Buku</h3>
+        <h3 className="text-2xl font-bold text-center mb-6">Pilih Kategori Yang Menarik Bagi Anda</h3>
         <div className="relative">
           <Slider {...settings} ref={sliderRef}>
             {categories.map((category, index) => (
