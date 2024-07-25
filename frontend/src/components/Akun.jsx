@@ -22,16 +22,18 @@ export default function Akun() {
       <Navbar />
       <div className="py-10 min-h-screen">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white p-5 rounded-lg shadow-lg flex flex-col md:flex-row items-start">
-              <img src="https://via.placeholder.com/120" alt="User" className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-gray-500 mb-4 md:mb-0 md:mr-6 mx-auto md:mx-0" />
-              <div className="flex-1">
-                <h4 className="text-2xl font-semibold mb-4 text-gray-800">{userProfile.username}</h4>
-                <p className="text-gray-700 mb-2">
-                  <strong>Email:</strong> {userProfile.email}
-                </p>
-                <p className="text-gray-500 mb-2">
-                  <strong>Tanggal Bergabung:</strong> {userProfile.joinDate}
+          <h3 className="text-3xl font-bold text-center mb-8 text-gray-800">Profile Pengguna</h3>
+          <div className="bg-blue-500 p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+           <div className='flex'> 
+            <div className="pl-5">
+              <img src="https://via.placeholder.com/100" alt="User" className="w-44 h-44 rounded-full border-4 border-indigo-500" />
+              
+            </div>
+            
+            <div className="pt-15 pl-40">
+              <div className="">
+              <p className="text-gray-700 mb-2">
+                  <strong>NAMA:</strong> {userProfile.username}
                 </p>
                 <p className="text-gray-700 mb-2">
                   <strong>NIK:</strong> {userProfile.nik}
@@ -61,8 +63,14 @@ export default function Akun() {
                 </div>
               </div>
             </div>
+            </div>
+            
           </div>
         </div>
+        <div className="mt-6 ml-48">
+              <h4 className="text-lg font-semibold mb-2 text-gray-800">Pengaturan Akun</h4>
+              <button className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Ubah Informasi</button>
+            </div>
       </div>
       <Footer/>
     </div>
