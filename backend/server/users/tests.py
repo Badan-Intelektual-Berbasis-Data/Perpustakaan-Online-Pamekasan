@@ -11,10 +11,11 @@ class UserTest(TestCase):
         self.password = "hello worlds"
 
         model = get_user_model().objects.create(
-            name="Alvin Setya Pranata",
+            name="Sakura Haruka",
             age=12,
-            email="comand.alvin@gmail.com",
-            phone=0x085334277450,
+            nik=123012302130123012,
+            email="harukasa@gmail.com",
+            phone=62346263636126,
             address="Jalan. Jalan",
             is_admin=True
         )
@@ -24,14 +25,14 @@ class UserTest(TestCase):
 
 
     def test_password_check(self):
-        self.assertTrue(get_user_model().objects.get(name="Alvin Setya Pranata").check_password(self.password))
+        self.assertTrue(get_user_model().objects.get(name="Sakura Haruka").check_password(self.password))
 
 
     def test_hashed_correctly(self):
-        self.assertNotEqual(get_user_model().objects.get(name="Alvin Setya Pranata").password, self.password)
+        self.assertNotEqual(get_user_model().objects.get(name="Sakura Haruka").password, self.password)
 
 
     def test_user_exists(self):
-        self.assertTrue(get_user_model().objects.get(name="Alvin Setya Pranata"))
+        self.assertTrue(get_user_model().objects.get(name="Sakura Haruka"))
 
 

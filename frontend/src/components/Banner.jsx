@@ -7,7 +7,7 @@ import perpusImage1 from '../assets/Perpus.jpg';
 import perpusImage2 from '../assets/Perpus.jpg';
 import perpusImage3 from '../assets/Perpus.jpg';
 
-const SimpleSlider = () => {
+const Banner = () => {
   const settings = {
     dots: true,
     infinite: true,
@@ -58,4 +58,4 @@ const SimpleSlider = () => {
   );
 };
 
-export default SimpleSlider;
+export default Banner;
