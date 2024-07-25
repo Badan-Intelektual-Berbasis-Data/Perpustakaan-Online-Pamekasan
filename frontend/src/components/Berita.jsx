@@ -47,7 +47,7 @@ const Berita = () => {
                 <p className="text-gray-600 mb-4">{berita.summary}</p>
                 <p className="text-gray-500 text-sm mb-4">{berita.date}</p>
                 <a href={berita.link} className="text-blue-500 hover:underline">
-                  Baca Selengkapnyaaa
+                  Baca Selengkapnya
                 </a>
               </div>
             ))}

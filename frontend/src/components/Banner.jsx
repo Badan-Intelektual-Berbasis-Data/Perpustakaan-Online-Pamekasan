@@ -1,19 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import Slider from 'react-slick';
-import gedung from '../assets/gedung.jpg'
-
-
-// CustomArrows.js
-export const NextArrow = (props) => {
-  const { className, style, onClick } = props;
-  return <div className={`${className} py-10`} style={{ ...style, display: 'block', right: 10 }} onClick={onClick} />;
-};
-
-export const PrevArrow = (props) => {
-  const { className, style, onClick } = props;
-  return <div className={`${className} py-10`} style={{ ...style, display: 'block', left: 10, zIndex: 1 }} onClick={onClick} />;
-};
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import perpusImage1 from '../assets/Perpus.jpg';
+import perpusImage2 from '../assets/Perpus.jpg';
+import perpusImage3 from '../assets/Perpus.jpg';
 
 const SimpleSlider = () => {
   const settings = {
