@@ -20,8 +20,7 @@ export default function Akun() {
   return (
     <div className="bg-gray-100 min-h-screen">
       <Navbar />
-      <div className="py-10">
-        <h3 className="text-3xl font-bold text-center mb-8 text-gray-800">Profile Pengguna</h3>
+      <div className="py-10 min-h-screen">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white p-5 rounded-lg shadow-lg flex flex-col md:flex-row items-start">
@@ -65,7 +64,7 @@ export default function Akun() {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer/>
     </div>
   );
 }
