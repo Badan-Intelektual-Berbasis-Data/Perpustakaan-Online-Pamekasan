@@ -1,11 +1,27 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import Slider from 'react-slick';
+<<<<<<< HEAD
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import perpusImage1 from '../assets/Perpus.jpg';
 import perpusImage2 from '../assets/Perpus.jpg';
 import perpusImage3 from '../assets/Perpus.jpg';
+=======
+import gedung from '../assets/gedung.jpg'
+
+
+// CustomArrows.js
+export const NextArrow = (props) => {
+  const { className, style, onClick } = props;
+  return <div className={`${className} py-10`} style={{ ...style, display: 'block', right: 10 }} onClick={onClick} />;
+};
+
+export const PrevArrow = (props) => {
+  const { className, style, onClick } = props;
+  return <div className={`${className} py-10`} style={{ ...style, display: 'block', left: 10, zIndex: 1 }} onClick={onClick} />;
+};
+>>>>>>> 7313bf4 (rebase)
 
 const SimpleSlider = () => {
   const settings = {
@@ -20,6 +36,7 @@ const SimpleSlider = () => {
   };
 
   return (
+<<<<<<< HEAD
     <Slider {...settings}>
       <div className="relative h-[400px]">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${perpusImage1})` }}>
@@ -29,6 +46,16 @@ const SimpleSlider = () => {
               <p className="text-lg mb-4">Temukan buku favorit Anda dan banyak lagi</p>
               <button className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-200">Jelajahi Sekarang</button>
             </div>
+=======
+    <div>
+      <Slider {...settings}>
+        <div className="bg-gray-500 text-white py-40 h-[400px]">
+          <div className="container mx-auto text-center">
+            <h2 className="text-4xl font-bold mb-2">Buku Teknologi</h2>
+            <p className="text-lg mb-4">Temukan buku favorit Anda dan banyak lagi</p>
+            <button className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-200">Jelajahi Sekarang</button>
+          <img src={gedung} className='w-max h-max justify-center' alt='gedung'/>
+>>>>>>> 7313bf4 (rebase)
           </div>
         </div>
       </div>
