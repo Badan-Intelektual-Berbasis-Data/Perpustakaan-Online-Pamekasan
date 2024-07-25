@@ -55,7 +55,9 @@ export default function Akun() {
                 <p className="text-gray-700 mb-2">
                   <strong>Nomor Handphone:</strong> {userProfile.phone}
                 </p>
+
                 <div className="mt-8 text-right">
+                  <button className="bg-blue-600  text-white py-3 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-500">LogOut</button>
                   <h4 className="text-lg font-semibold mb-2 text-gray-800">Pengaturan Akun</h4>
                   <button className="bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Ubah Informasi</button>
                 </div>
