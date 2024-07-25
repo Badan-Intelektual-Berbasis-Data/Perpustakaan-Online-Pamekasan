@@ -18,12 +18,12 @@ export default function Media() {
               </li>
               <li className="mb-2">
                 <a href="#menu2" className="hover:underline">
-                  Pustakawan
+                  Berita
                 </a>
               </li>
               <li className="mb-2">
                 <a href="#menu3" className="hover:underline">
-                  Area Anggota
+                  Pustakawan
                 </a>
               </li>
             </ul>
