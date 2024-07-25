@@ -12,17 +12,17 @@ export default function Media() {
             <h4 className="text-lg font-semibold mb-2">Kabupaten Pamekasan</h4>
             <ul className="text-sm text-gray-600">
               <li className="mb-2">
-                <a href="#menu1" className="hover:underline">
+                <a href="/informasi" className="hover:underline">
                   Informasi
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#menu2" className="hover:underline">
+                <a href="/berita" className="hover:underline">
                   Berita
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#menu3" className="hover:underline">
+                <a href="/pustakawan" className="hover:underline">
                   Pustakawan
                 </a>
               </li>

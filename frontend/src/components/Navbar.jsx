@@ -24,13 +24,13 @@ export default function Navbar() {
             <Link to="/kunjungan" className="text-gray-300 hover:text-white">
               Kunjungan
             </Link>
-            <Link to="#" className="text-gray-300 hover:text-white">
+            <Link to="/informasi" className="text-gray-300 hover:text-white">
               Informasi
             </Link>
-            <Link to="#" className="text-gray-300 hover:text-white">
+            <Link to="/berita" className="text-gray-300 hover:text-white">
               Berita
             </Link>
-            <Link to="#" className="text-gray-300 hover:text-white">
+            <Link to="/bantuan" className="text-gray-300 hover:text-white">
               Bantuan
             </Link>
           </div>

@@ -18,6 +18,10 @@ import Login from './components/Login';
 import Daftar from './components/Daftar';
 import LupaPassword from './components/LupaPassword';
 import Bookmark from './components/Bookmark';
+import Bantuan from './components/Bantuan';
+import Informasi from './components/Informasi';
+import Berita from './components/Berita';
+import Pustakawan from './components/Pustakawan';
 
 function App() {
   return (
@@ -40,6 +44,9 @@ function App() {
           }
         />
         <Route path="/kunjungan" element={<Kunjungan />} />
+        <Route path="/bantuan" element={<Bantuan />} />
+        <Route path="/informasi" element={<Informasi />} />
+        <Route path="/berita" element={<Berita />} />
         <Route path="/detail/:title" element={<DetailBuku />} />
         <Route path="/cari" element={<Cari />} />
         <Route path="/simpan" element={<Bookmark />} />
@@ -47,6 +54,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/daftar" element={<Daftar />} />
         <Route path="/lupa-password" element={<LupaPassword />} />
+        <Route path="/pustakawan" element={<Pustakawan />} />
       </Routes>
     </Router>
   );
