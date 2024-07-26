@@ -7,10 +7,10 @@ export default function Card({ title, image, author }) {
   return (
     <Link
       to={`/detail/${encodeURIComponent(title)}`}
-      className="bg-white p-2 rounded-lg shadow-md ml-4 mb-4 shrink-0"
+      className="bg-white rounded-lg shadow-md shrink-0"
     >
-      <div className="w-[160px]">
-        <img src={image} className="w-full h-full rounded-sm" alt={title} />
+      <div className="w-[220px]">
+        <img src={image} className="w-full h-full rounded-sm" alt="buku" />
       </div>
 
       <div className="flex items-center justify-between">
