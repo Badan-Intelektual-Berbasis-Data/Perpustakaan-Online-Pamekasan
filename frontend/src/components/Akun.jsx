@@ -23,7 +23,7 @@ export default function Akun() {
       <div className="py-10 min-h-screen">
         <div className="container mx-auto px-4">
           <h3 className="text-3xl font-bold text-center mb-8 text-gray-800">Profile Pengguna</h3>
-          <div className="bg-blue-200 p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+          <div className="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
             <div className="flex">
               <div className="pl-5">
                 <img src="https://via.placeholder.com/100" alt="User" className="w-44 h-44 rounded-full border-4 border-blue-500" />
