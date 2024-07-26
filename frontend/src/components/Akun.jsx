@@ -32,7 +32,7 @@ export default function Akun() {
               <div className="pt-15 pl-40">
                 <div className="">
                   <p className="text-gray-700 mb-2">
-                    <strong>NAMA:</strong> {userProfile.username}
+                    <strong>Nama:</strong> {userProfile.username}
                   </p>
                   <p className="text-gray-700 mb-2">
                     <strong>NIK:</strong> {userProfile.nik}
