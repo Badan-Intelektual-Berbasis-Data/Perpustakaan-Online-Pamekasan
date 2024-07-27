@@ -3,10 +3,10 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import perpusImage1 from "../assets/Perpus.jpg";
-import perpusImage2 from "../assets/Perpus.jpg";
-import perpusImage3 from "../assets/Perpus.jpg";
-import Container from "./molecules/Container";
+import perpusImage1 from "../../assets/Perpus.jpg";
+// import perpusImage2 from "../assets/Perpus.jpg";
+// import perpusImage3 from "../assets/Perpus.jpg";
+import Container from "../molecules/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -26,13 +26,13 @@ const Banner = () => {
       {/* content */}
       <Container className="flex">
         {/* previous slide */}
-        <div className="h-full w-16 absolute left-0 top-0 flex justify-center items-center hover:cursor-pointer">
-          <FontAwesomeIcon icon={faChevronLeft} className="text-white text-3xl"/>
+        <div className="h-full w-16 absolute left-0 top-0 flex justify-center items-center">
+          <FontAwesomeIcon icon={faChevronLeft} className="text-white text-3xl hover:cursor-pointer"/>
         </div>
 
 
         <div>
-          <h1 className="text-4xl font-bold">Belajar Ryoiki Tenkai</h1>
+          <h1 className="text-5xl font-bold">Belajar Ryoiki Tenkai</h1>
           <p className="mt-4 text-gray-300 text-base">Pengetahuan umum</p>
           <p className="line-clamp-4 w-[50ch] mt-4 leading-relaxed">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
@@ -56,16 +56,16 @@ const Banner = () => {
           {/* slider progress */}
 
           <div className="flex mt-20 w-1/4 gap-x-2">
-            <div className="w-3/4 h-[10px] rounded-md bg-blue-500"></div>
-            <div className="w-1/4 h-[10px] rounded-md bg-gray-500"></div>
-            <div className="w-1/4 h-[10px] rounded-md bg-gray-500"></div>
+            <div className="w-3/4 h-[10px] rounded-md bg-blue-500 hover:cursor-pointer"></div>
+            <div className="w-1/4 h-[10px] rounded-md bg-gray-500 hover:cursor-pointer"></div>
+            <div className="w-1/4 h-[10px] rounded-md bg-gray-500 hover:cursor-pointer"></div>
           </div>
         </div>
 
 
         {/* next slide */}
-        <div className="h-full w-16 absolute right-0 top-0 flex justify-center items-center hover:cursor-pointer">
-          <FontAwesomeIcon icon={faChevronRight} className="text-white text-3xl"/>
+        <div className="h-full w-16 absolute right-0 top-0 flex justify-center items-center">
+          <FontAwesomeIcon icon={faChevronRight} className="text-white text-3xl hover:cursor-pointer"/>
         </div>
 
 

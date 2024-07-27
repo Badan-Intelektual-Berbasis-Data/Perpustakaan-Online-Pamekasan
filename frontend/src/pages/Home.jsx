@@ -1,8 +1,7 @@
 import React from "react";
-import Banner from "../components/Banner";
-import Kategori from "../items/Kategori";
 import CardGroup from "../components/molecules/CardGroup";
 import Container from "../components/molecules/Container";
+import Banner from "../components/atoms/Banner";
 
 export default function Home() {
   const data = [
@@ -13,20 +12,17 @@ export default function Home() {
     { title: "Judul Buku 5", author: "Penulis 5", image: "/Buku1.jpg" },
     { title: "Judul Buku 6", author: "Penulis 6", image: "/Buku1.jpg" },
     { title: "Judul Buku 7", author: "Penulis 7", image: "/Buku1.jpg" },
-    { title: "Judul Buku 7", author: "Penulis 7", image: "/Buku1.jpg" },
-    { title: "Judul Buku 7", author: "Penulis 7", image: "/Buku1.jpg" },
-    { title: "Judul Buku 7", author: "Penulis 7", image: "/Buku1.jpg" },
-    { title: "Judul Buku 7", author: "Penulis 7", image: "/Buku1.jpg" },
-    { title: "Judul Buku 7", author: "Penulis 7", image: "/Buku1.jpg" },
-    { title: "Judul Buku 7", author: "Penulis 7", image: "/Buku1.jpg" },
+    { title: "Judul Buku 8", author: "Penulis 8", image: "/Buku1.jpg" },
+    { title: "Judul Buku 9", author: "Penulis 9", image: "/Buku1.jpg" },
   ];
 
   return (
     <div>
       <Banner />
-      <Container>
+
+      <div className="py-12">
         <CardGroup data={data} title="Baru Rilis" />
-      </Container>
+      </div>
     </div>
   );
 }
