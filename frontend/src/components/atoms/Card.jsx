@@ -10,13 +10,13 @@ export default function Card({ title, image, author, className, x = "" }) {
   return (
     <motion.div
       onClick={() => navigation(`/detail/${title}`)}
-      className={`bg-white rounded-lg shadow-md shrink-0 hover:cursor-pointer relative ${className}`}
+      className={`bg-white w-max rounded-lg shadow-md shrink-0 hover:cursor-pointer relative ${className}`}
       initial={{ x: x ? 80 : 0 }}
       animate={{ x: x ? x : 0}}
       transition={{ duration: 0.1, ease: "easeIn" }}
     >
       {/* description */}
-      <div className="absolute z-10 top-0 left-0 flex flex-col p-2 bg-blue-500 w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-200 ease-in">
+      <div className="absolute z-10 top-0 left-0 flex flex-col p-2 bg-blue-500 min-w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-200 ease-in">
         <p className="text-white text-sm flex-1">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam soluta,
           a saepe ad sequi architecto eveniet, officiis unde quis, quos
