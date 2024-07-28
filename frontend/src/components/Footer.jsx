@@ -5,12 +5,15 @@ import {
   faInstagram,
   faFacebook,
   faXTwitter,
+  faWhatsappSquare,
+  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
+import { faFax, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 export default function Footer() {
   return (
     <Container className="bg-gray-600 flex flex-col gap-y-20 pb-1">
-      <div className="flex w-full justify-between items-center">
+      <div className="flex w-full justify-between">
         <div>
           <div className="flex items-center gap-x-6 shrink-0">
             <img
@@ -26,32 +29,35 @@ export default function Footer() {
 
           {/* contanct */}
           <div className="text-white text-sm mt-6">
-            <p className="w-[50ch]">
-              Jl. Jokotole No.55, Rw. 05, Barurambat Kota, Kec. Pamekasan,
-              Kabupaten Pamekasan, Jawa Timur 69317
+            <p className="w-[50ch] mt-3 text-sm">
+              Kami adalah Dinas Perpustakaan dan Kearsipan Kabupaten Pamekasan
+              yang berkomitmen untuk menyediakan akses informasi dan layanan
+              perpustakaan terbaik bagi masyarakat. Kami berupaya meningkatkan
+              minat baca dan mendukung pelestarian arsip daerah.
             </p>
-            {/* <p>Fax. : (0324) 325058</p>
-            <p>Telp. : (0324) 325058</p>
-            <p>WA/Telegram : 0878-5995-5556</p> */}
           </div>
           {/* end -contanct */}
         </div>
 
         <div className="text-white">
-          <h3 className="font-medium text-lg">Tentang Kami</h3>
-          <p className="w-[50ch] mt-3 text-sm">
-            Kami adalah Dinas Perpustakaan dan Kearsipan Kabupaten Pamekasan
-            yang berkomitmen untuk menyediakan akses informasi dan layanan
-            perpustakaan terbaik bagi masyarakat. Kami berupaya meningkatkan
-            minat baca dan mendukung pelestarian arsip daerah.
+          <h3 className="font-medium text-lg">Hubungi kami</h3>
+          <p className="w-[50ch] mt-2">
+            Jl. Jokotole No.55, Rw. 05, Barurambat Kota, Kec. Pamekasan,
+            Kabupaten Pamekasan, Jawa Timur 69317
           </p>
-        </div>
-      </div>
-
-
-      <div className="border-t-[1.5px] border-gray-300 flex justify-between items-center py-8">
-          <p className="text-sm text-white">© 2020 Perpustakaan Umum Pamekasan. All rights reserved.</p>
-          <div className="flex gap-x-6">
+          <div className="flex gap-x-6 mt-8">
+            <FontAwesomeIcon
+              icon={faFax}
+              className="text-2xl text-white"
+            />
+            <FontAwesomeIcon
+              icon={faPhone}
+              className="text-2xl text-white"
+            />
+            <FontAwesomeIcon
+              icon={faWhatsapp}
+              className="text-2xl text-white"
+            />
             <FontAwesomeIcon
               icon={faInstagram}
               className="text-2xl text-white"
@@ -65,6 +71,18 @@ export default function Footer() {
               className="text-2xl text-white"
             />
           </div>
+        </div>
+      </div>
+
+      <div className="border-t-[1.5px] border-gray-300 flex justify-between items-center py-8">
+        <p className="text-sm text-white">
+          © 2020 Perpustakaan Umum Pamekasan. All rights reserved.
+        </p>
+
+        <div className="flex text-white gap-x-8 text-sm font-medium">
+          <p>Privacy policy</p>
+          <p>Terms of services</p>
+        </div>
       </div>
     </Container>
   );
