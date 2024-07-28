@@ -7,14 +7,12 @@ import { useNavigate } from "react-router-dom";
 export default function Card({ title, image, author, className, x = "" }) {
   const navigation = useNavigate();
 
-  console.log(x);
-
   return (
     <motion.div
       onClick={() => navigation(`/detail/${title}`)}
-      className={`bg-white rounded-lg shadow-md shrink-0 hover:cursor-pointer ${className}`}
-      initial={{ x: 80 }}
-      animate={{ x: x }}
+      className={`bg-white rounded-lg shadow-md shrink-0 hover:cursor-pointer relative ${className}`}
+      initial={{ x: x ? 80 : 0 }}
+      animate={{ x: x ? x : 0}}
       transition={{ duration: 0.1, ease: "easeIn" }}
     >
       {/* description */}

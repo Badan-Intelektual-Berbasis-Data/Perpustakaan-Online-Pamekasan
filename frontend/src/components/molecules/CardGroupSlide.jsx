@@ -6,8 +6,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function CardGroup({ title, data = [], type = "horizontal" }) {
-  const horizontalDisplay = "grid grid-cols-2 md:grid-cols-7 gap-4";
+export default function CardGroupSlide({ title, data = [] }) {
   const [x, setX] = useState(80);
   const [index, setIndex] = useState(1)
 

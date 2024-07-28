@@ -1,7 +1,7 @@
 import React from "react";
-import CardGroup from "../components/molecules/CardGroup";
-import Container from "../components/molecules/Container";
+import CardGroupSlide from "../components/molecules/CardGroupSlide";
 import Banner from "../components/atoms/Banner";
+import CardGroupGrid from "../components/molecules/CardGroupGrid";
 
 export default function Home() {
   const data = [
@@ -19,9 +19,10 @@ export default function Home() {
   return (
     <div>
       <Banner />
-
-      <div className="py-12">
-        <CardGroup data={data} title="Baru Rilis" />
+      <div className="space-y-16 py-12">
+        <CardGroupSlide data={data} title="Baru Rilis" />
+        <CardGroupSlide data={data} title="Rekomendasi teruntuk anda" />
+        <CardGroupGrid data={data} title="Cari lebih banyak" />
       </div>
     </div>
   );
