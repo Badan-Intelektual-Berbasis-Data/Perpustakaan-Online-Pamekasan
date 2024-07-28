@@ -20,9 +20,8 @@ export default function Navbar() {
         </div>
 
         <div className='flex items-center gap-x-12 text-white'>
-          <p>Beranda</p>
-          <p>Kunjungan</p>
-          <p>Informasi</p>
+          <Link to="/">Beranda</Link>
+          <Link>Informasi</Link>
         </div>
 
 
