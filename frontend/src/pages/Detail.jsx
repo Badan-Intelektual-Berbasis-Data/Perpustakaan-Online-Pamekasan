@@ -6,7 +6,7 @@ export default function Detail() {
   const { name } = useParams();
 
   return (
-    <div className="w-full min-h-[100dvh]">
+    <div className="w-full">
       <Container className="flex justify-center">
         <div className="flex w-3/4 justify-between">
           <div className="w-[200px]">

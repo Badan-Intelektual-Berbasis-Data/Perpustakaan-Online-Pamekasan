@@ -32,13 +32,13 @@ export default function Card({ title, image, author, className, x = "" }) {
       </div>
       {/* end-description */}
 
-      <div className="w-[200px] relative">
+      <div className="w-[180px] relative">
         <img src={image} className="w-full h-full rounded-sm" alt="buku" />
       </div>
 
       <div className="flex items-center justify-between">
         <div className="mt-4">
-          <h4 className="text-lg font-semibold mb-1 line-clamp-2">{title}</h4>
+          <h4 className="font-semibold mb-1 line-clamp-2">{title}</h4>
           <p className="text-sm text-gray-600 line-clamp-1">{author}</p>
         </div>
       </div>

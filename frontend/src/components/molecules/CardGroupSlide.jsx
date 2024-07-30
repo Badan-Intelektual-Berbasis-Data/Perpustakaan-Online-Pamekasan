@@ -37,7 +37,7 @@ export default function CardGroupSlide({ title, data = [] }) {
       {/* start content */}
       {/* sub by 232 */}
       <div>
-        <h2 className="text-3xl font-semibold mb-4 ml-20">{title}</h2>
+        <h2 className="text-3xl font-semibold mb-8 ml-20">{title}</h2>
         <div className="flex gap-x-8">
           {data &&
             data.map((item, index) => (
