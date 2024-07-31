@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="bg-gray-800 py-4">
       <div className="container mx-auto px-4 text-center">
         <p className="text-sm text-white">Perpustakaan Umum Pamekasan | © 2024 All rights reserved</p>
-        <div className="mt-2 flex justify-center space-x-4">
+        <div className="mt-2 flex justify-center space-x-4 flex-wrap">
           <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-white text-2xl hover:text-blue-500">
             <FontAwesomeIcon icon={faFacebook} />
           </a>

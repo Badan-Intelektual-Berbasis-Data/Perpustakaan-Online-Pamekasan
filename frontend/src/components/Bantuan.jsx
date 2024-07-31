@@ -31,7 +31,7 @@ const Bantuan = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
       <Navbar />
-      <div className="py-10">
+      <div className="py-10 min-h-screen">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Bantuan & FAQ</h1>
           <div className="bg-white p-8 rounded-lg shadow-lg max-w-3xl mx-auto">

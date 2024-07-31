@@ -67,13 +67,13 @@ export default function Navbar() {
           <Link to="/kunjungan" className="block text-gray-300 hover:text-white mt-2">
             Kunjungan
           </Link>
-          <Link to="#" className="block text-gray-300 hover:text-white mt-2">
+          <Link to="/informasi" className="block text-gray-300 hover:text-white mt-2">
             Informasi
           </Link>
-          <Link to="#" className="block text-gray-300 hover:text-white mt-2">
+          <Link to="/berita" className="block text-gray-300 hover:text-white mt-2">
             Berita
           </Link>
-          <Link to="#" className="block text-gray-300 hover:text-white mt-2">
+          <Link to="/bantuan" className="block text-gray-300 hover:text-white mt-2">
             Bantuan
           </Link>
           <div className="flex items-center space-x-4 mt-4">

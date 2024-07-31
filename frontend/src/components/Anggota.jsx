@@ -12,7 +12,7 @@ const Anggota = () => {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <Navbar />
-      <div className="flex-grow flex items-center justify-center">
+      <div className="flex-grow flex items-center justify-center min-h-screen">
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
           <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Masuk Anggota Perpustakaan</h1>
           <p className="text-gray-600 mb-6">Masukan ID anggota serta kata sandi yang diberikan oleh administrator sistem perpustakaan. Jika Anda anggota perpustakaan namun belum memiliki kata sandi, hubungi staf perpustakaan.</p>

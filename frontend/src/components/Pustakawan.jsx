@@ -122,9 +122,9 @@ export default function Pustakawan() {
   ];
 
   return (
-    <div>
+    <div className="bg-gray-100 min-h-screen">
       <Navbar />
-      <div className="bg-gray-100 py-10">
+      <div className="bg-gray-100 py-10 min-h-screen">
         <div className="container mx-auto px-4 bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-3xl font-bold mb-6 text-center">Pustakawan Kami</h2>
           <p className="text-lg mb-4 text-center text-gray-700">Temui tim pustakawan kami yang berdedikasi untuk membantu Anda dengan berbagai layanan perpustakaan.</p>

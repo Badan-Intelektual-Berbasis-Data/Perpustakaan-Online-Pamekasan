@@ -63,10 +63,10 @@ const DetailBuku = () => {
   };
 
   return (
-    <div>
+    <div className="bg-gray-100 min-h-screen">
       <Navbar />
       {book ? (
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden md:max-w-4xl mt-10">
+        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden md:max-w-4xl mt-10 mb-10">
           <div className="md:flex">
             <div className="md:flex-shrink-0">
               <img className="w-full object-cover h-96" src={book.image} alt={book.title} />

@@ -17,11 +17,11 @@ export default function BaruRilis() {
 
   return (
     <div className="bg-white">
-      <div className="container">
-        <h3 className="text-2xl font-bold text-left mb-6 ml-6 mr-6">Koleksi Buku Baru</h3>
-        <div className="grid grid-cols-2 md:grid-cols-7 gap-4">
+      <div className="container mx-auto px-4">
+        <h3 className="text-2xl font-bold text-left mb-3 mt-6">Koleksi Buku Baru</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4">
           {baruRilis.map((book, index) => (
-            <div key={index} className="relative bg-white p-2 rounded-lg shadow-md ml-4 mb-4">
+            <div key={index} className="relative bg-white p-2 rounded-lg shadow-md">
               <Link to={`/detail/${encodeURIComponent(book.title)}`}>
                 <img src={book.image} className="w-full h-32 object-cover mb-2" alt={book.title} />
                 <h4 className="text-lg font-semibold mb-1">{book.title}</h4>
