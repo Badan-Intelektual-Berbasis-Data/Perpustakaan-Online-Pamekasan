@@ -5,7 +5,7 @@ import Footer from './Footer';
 
 export default function Akun() {
   const userProfile = {
-    username: 'Nama Pengguna',
+    username: 'anak baik',
     email: 'email@example.com',
     joinDate: 'Januari 2024',
     nik: '1234567890123456',
