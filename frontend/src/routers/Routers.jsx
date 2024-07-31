@@ -7,6 +7,7 @@ import Profile from "../pages/Profile";
 import UserAuthentication from "../pages/auth/UserAuthentication";
 import Registration from "../pages/auth/Registration";
 import Login from "../pages/auth/Login";
+import Information from "../pages/Information";
 
 export default function Routers() {
   return (
@@ -15,6 +16,7 @@ export default function Routers() {
         <Route path="/" element={<MainLayout />}>
           <Route path="" element={<Home />} />
           <Route path="detail/:name" element={<Detail />} />
+          <Route path="information/" element={<Information />} />
         </Route>
         <Route
           path="profile/"

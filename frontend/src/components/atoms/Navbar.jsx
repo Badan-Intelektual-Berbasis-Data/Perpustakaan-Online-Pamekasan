@@ -21,7 +21,7 @@ export default function Navbar() {
 
         <div className='flex items-center gap-x-12 text-white'>
           <Link to="/">Beranda</Link>
-          <Link>Informasi</Link>
+          <Link to="information">Informasi</Link>
         </div>
 
 
@@ -52,7 +52,7 @@ export default function Navbar() {
           <Link to="/kunjungan" className="block text-gray-300 hover:text-white mt-2">
             Kunjungan
           </Link>
-          <Link to="#" className="block text-gray-300 hover:text-white mt-2">
+          <Link to="/information" className="block text-gray-300 hover:text-white mt-2">
             Informasi
           </Link>
           <Link to="#" className="block text-gray-300 hover:text-white mt-2">

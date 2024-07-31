@@ -1,13 +1,11 @@
 // Informasi.jsx
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Footer from '../components/Footer';
 
-const Informasi = () => {
+export default function Information () {
   return (
     <div className="bg-gray-100 min-h-screen">
-      <Navbar />
       <div className="py-10">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Informasi Aplikasi</h1>
@@ -59,9 +57,6 @@ const Informasi = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
-
-export default Informasi;
