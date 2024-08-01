@@ -26,7 +26,7 @@ export default function Navbar() {
 
 
         <div className="hidden md:flex items-center gap-x-6 ">
-          <Link to="/cari">
+          <Link to="/search">
             <FontAwesomeIcon icon={faSearch} className="h-5 w-5 text-gray-300 hover:text-white" />
           </Link>
           <Link to="/simpan">
@@ -62,7 +62,7 @@ export default function Navbar() {
             Bantuan
           </Link>
           <div className="flex items-center space-x-4 mt-4">
-            <Link to="/cari">
+            <Link to="/search">
               <FontAwesomeIcon icon={faSearch} className="h-5 w-5 text-gray-300 hover:text-white" />
             </Link>
             <Link to="/simpan">
