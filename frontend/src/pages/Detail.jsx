@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "../components/molecules/Container";
 import { useParams } from "react-router-dom";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
@@ -6,6 +6,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Detail() {
   const { name } = useParams();
+
+
+  useEffect(() => {
+    return async () => {
+      fetch(`${process.env.BASE_API}/books/book`)
+    }
+  }, [])
 
   return (
     <div className="w-full">

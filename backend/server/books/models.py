@@ -1,6 +1,16 @@
 from django.db import models
 
 
+
+class Genre(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    date_created = models.DateTimeField(auto_now_add=True, editable=False, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+    
+
+
 class Authors(models.Model):
     name = models.CharField(max_length=255, unique=True)
     date_created = models.DateTimeField(auto_now_add=True, editable=False, null=True, blank=True)
@@ -35,6 +45,8 @@ class Languange(models.Model):
 class BookDisplay(models.Model):
     author = models.ForeignKey(Authors, on_delete=models.CASCADE)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+    genre = models.ManyToManyField(Genre)
+    book_image_url = models.CharField(max_length=300, default='')
     title = models.CharField(max_length=200, unique=True)
     date_published = models.DateField()
     date_registered = models.DateTimeField(auto_now_add=True, editable=False)

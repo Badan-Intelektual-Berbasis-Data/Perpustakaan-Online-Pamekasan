@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../atoms/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,13 +6,12 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function CardGroupSlide({ title, data = [] }) {
+export default function CardGroupSlide({ title, id }) {
   const [x, setX] = useState(80);
   const [index, setIndex] = useState(1)
+  const [data, setData] = useState([])
 
   const handleSlide = (direction) => {
-    console.log(index);
-
     if (direction == "RIGHT" && index != data.length - 4) {
       setX(value => value - 232);
       setIndex(currentIndex => currentIndex + 1)
@@ -21,6 +20,14 @@ export default function CardGroupSlide({ title, data = [] }) {
       setX(value => value + 232);
     }
   };
+
+  useEffect(() => {
+    return async () => {
+      await fetch(`http://127.0.0.1:8000/api/books/book/?category=${id}`)
+        .then((res) => res.json())
+        .then((data) => setData(data))
+    }
+  }, [])
 
   return (
     <div className="flex relative overflow-hidden">
@@ -45,14 +52,16 @@ export default function CardGroupSlide({ title, data = [] }) {
                 x={x}
                 key={index}
                 className="translate-x-[-614px]"
-                {...item}
+                title={item.title}
+                author={item.author_name}
+                image={item.book_image_url}
               />
             ))}
         </div>
       </div>
       {/* end content */}
 
-      <div className={`absolute top-0 right-0 h-full w-16 flex justify-center items-center  hover:bg-black hover:bg-opacity-25 z-10 ${index != data.length - 4 ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`absolute top-0 right-0 h-full w-16 flex justify-center items-center  hover:bg-black hover:bg-opacity-25 z-10 ${index != data.length - 4 && data.length > 6 ? 'opacity-100' : 'opacity-0'}`}>
         <div onClick={() => handleSlide("RIGHT")}>
           <FontAwesomeIcon
             icon={faChevronRight}

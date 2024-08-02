@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, StringRelatedField
 from .models import (
     Authors,
     Book,
@@ -36,8 +36,8 @@ class PublisherSerializer(ModelSerializer):
 
 
 class BookDisplaySerializer(ModelSerializer):
-    author = PrimaryKeyRelatedField(queryset=Authors.objects.all())
-    category = PrimaryKeyRelatedField(queryset=Categories.objects.all())
+    author_name = StringRelatedField(source='author')
+    category_name = StringRelatedField(source='category')
 
     class Meta:
         model = BookDisplay

@@ -94,7 +94,22 @@ class DetailView(ModelViewSet):
 class DisplayView(ModelViewSet):
     queryset = BookDisplay.objects.all()
     serializer_class = BookDisplaySerializer
-    
+
+    def get_queryset(self):        
+        category_request = self.request.query_params.get("category")
+        id_request = self.request.query_params.get("id")
+        
+        if category_request:
+            return self.queryset.filter(category=category_request)
+        
+        elif id_request:
+            return self.queryset.filter(id=category_request)
+
+
+
+        return self.queryset
+
+
     def create(self, req):
         data = BookDisplaySerializer(data=req.POST)
 
