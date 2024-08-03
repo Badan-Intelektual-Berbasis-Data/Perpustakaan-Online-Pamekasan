@@ -44,7 +44,7 @@ class Languange(models.Model):
 
 class BookDisplay(models.Model):
     author = models.ForeignKey(Authors, on_delete=models.CASCADE)
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+    category = models.ManyToManyField(Categories)
     genre = models.ManyToManyField(Genre)
     book_image_url = models.CharField(max_length=300, default='')
     title = models.CharField(max_length=200, unique=True)

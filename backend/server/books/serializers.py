@@ -5,7 +5,8 @@ from .models import (
     BookDisplay,
     Categories,
     Languange,
-    Publisher
+    Publisher,
+    Genre
 )
 
 class AuthorSerializer(ModelSerializer):
@@ -33,11 +34,18 @@ class PublisherSerializer(ModelSerializer):
     class Meta:
         model = Publisher
         fields = '__all__'
+        
+class GenreSerializer(ModelSerializer):
+
+    class Meta:
+        model = Genre
+        fields = '__all__'
 
 
 class BookDisplaySerializer(ModelSerializer):
     author_name = StringRelatedField(source='author')
-    category_name = StringRelatedField(source='category')
+    category_name = StringRelatedField(source='category', many=True)
+    genre_name = StringRelatedField(source='genre', many=True)
 
     class Meta:
         model = BookDisplay

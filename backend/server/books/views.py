@@ -8,7 +8,8 @@ from .models import (
     BookDisplay,
     Categories,
     Publisher,
-    Languange
+    Languange,
+    Genre
 )
 from .serializers import (
     AuthorSerializer,
@@ -17,6 +18,7 @@ from .serializers import (
     CategoriesSerializer,
     PublisherSerializer,
     LanguangeSerializer,
+    GenreSerializer
 )
 
 
@@ -105,9 +107,7 @@ class DisplayView(ModelViewSet):
         elif id_request:
             return self.queryset.filter(id=category_request)
 
-
-
-        return self.queryset
+        return self.queryset.all()
 
 
     def create(self, req):
@@ -118,3 +118,19 @@ class DisplayView(ModelViewSet):
             data.save()
             
             return Response({'messege' : 'Buku baru telah ditambahkan'})
+        
+
+class GenreView(ModelViewSet):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+
+
+    def create(self, req):
+
+        data = GenreSerializer(data=req.POST)
+
+        if data.is_valid(raise_exception=True):
+
+            data.save()
+            
+            return Response({'messege' : 'Genre baru telah ditambahkan'})
