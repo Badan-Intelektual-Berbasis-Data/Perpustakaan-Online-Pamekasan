@@ -1,10 +1,10 @@
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
-import { easeIn, motion } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-export default function Card({ title, image, author, className, x = "" }) {
+export default function Card({ title, image, author, desc, className, x = "" }) {
   const navigation = useNavigate();
 
   return (
@@ -17,12 +17,7 @@ export default function Card({ title, image, author, className, x = "" }) {
     >
       {/* description */}
       <div className="absolute z-10 top-0 left-0 flex flex-col p-2 bg-blue-500 min-w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-200 ease-in">
-        <p className="text-white text-sm flex-1">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam soluta,
-          a saepe ad sequi architecto eveniet, officiis unde quis, quos
-          dignissimos nesciunt officia pariatur ea ipsa dolorum. Aperiam, error
-          perferendis.
-        </p>
+        <p className="text-white text-sm flex-1">{desc}</p>
         <div className="flex justify-end p-2">
           <FontAwesomeIcon
             icon={faBookmark}

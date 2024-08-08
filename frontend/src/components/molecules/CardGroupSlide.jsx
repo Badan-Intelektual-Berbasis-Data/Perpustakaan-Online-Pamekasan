@@ -55,6 +55,7 @@ export default function CardGroupSlide({ title, id }) {
                 title={item.title}
                 author={item.author_name}
                 image={item.book_image_url}
+                desc={item.desc}
               />
             ))}
         </div>
