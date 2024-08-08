@@ -1,10 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion, transform } from "framer-motion";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-// import perpusImage2 from "../assets/Perpus.jpg";
-// import perpusImage3 from "../assets/Perpus.jpg";
 import Container from "../molecules/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,26 +12,44 @@ import {
 export default function Banner() {
   const [activeBanner, setActiveBanner] = useState(0);
 
-  const bannerData = [
+  const [bannerData, setBannerData] = useState([
     {
-      title: "Jujutsu Kaisen",
-      image_url: "/banner2.jpg",
-      genre: ["Petualangan", "Fantasi", "Supranatural"],
-      desc: "Yūji Itadori adalah seorang siswa SMA dengan atletisitas yang tidak wajar yang tinggal di Sendai bersama kakeknya. Ia sering menghindari Klub Lari karena keengganannya pada bidang atletik, meskipun dia memiliki bakat bawaan untuk olahraga tersebut.",
-    },
-    {
-      title: "The Quintessential Quintuplets",
-      image_url: "/banner3.jpg",
-      genre: ["Harem", "Romantis", "Komedi"],
-      desc: "Ceritanya mengikuti seorang siswa sekolah menengah bernama Fuutarou Uesugi, yang berasal dari keluarga miskin dan sangat rajin belajar tetapi juga anti-sosial. Suatu hari, dia dipekerjakan sebagai guru oleh sebuah keluarga kaya untuk mengajar kelima putrinya yang semuanya kembar lima. Saudari-saudari ini, yang memiliki kepribadian kompleks dan nilai buruk, awalnya memiliki kesan negatif terhadap Fuutarou. Namun, saat dia membantu mereka meningkatkan nilai dan mengatasi masalah pribadi mereka, hubungannya dengan setiap saudara perempuan mulai berkembang dengan cara yang berbeda, yang akhirnya mengarah pada hubungan romantis dengan salah satu dari mereka. Serial ini dipuji karena karakternya yang menarik, alur cerita yang lucu, dan alur romantis yang menarik.",
-    },
-    {
-      title: "In Another World With My Smartphone",
-      image_url: "/banner1.png",
-      genre: ["Harem", "Isekai", "Komedi"],
-      desc: "Dalam kesalahan yang tidak disengaja, Tuhan secara tidak sengaja menjatuhkan Touya Mochizuki dengan sambaran petir! Sebagai permintaan maaf, Tuhan memberinya satu keinginan dan kesempatan untuk hidup kembali di dunia fantasi magis. Touya dengan senang hati menerima tawaran itu dan, atas satu permintaannya, hanya meminta untuk membawa ponsel cerdasnya saat dia memulai perjalanannya ke dunia misterius ini. Memulai dari awal di dunia baru ini, Touya menyadari bahwa dunia itu penuh dengan sihir—yang dia sukai—dan gadis-gadis cantik berlomba-lomba untuk mendapatkan perhatiannya. Gadis-gadis ini—si kembar Linze dan Elze Silhoueska, Yumina Urnea Belfast, Leen, dan Yae Kokonoe—memberi Touya rasa frustrasi romantis yang tiada habisnya, namun juga persahabatan saat ia menemukan rahasia dunia baru ini.",
-    },
-  ];
+      "id": 0,
+      "author_name": "",
+      "category_name": [],
+      "genre_name": [],
+      "backdrop_url": "",
+      "book_image_url": "",
+      "desc": "",
+      "title": "",
+      "date_published": "",
+      "date_registered": "",
+      "author": 0,
+      "category": [],
+      "genre": []
+  }
+  ])
+
+  // const bannerData = [
+  //   {
+  //     title: "Jujutsu Kaisen",
+  //     image_url: "/banner2.jpg",
+  //     genre: ["Petualangan", "Fantasi", "Supranatural"],
+  //     desc: "Yūji Itadori adalah seorang siswa SMA dengan atletisitas yang tidak wajar yang tinggal di Sendai bersama kakeknya. Ia sering menghindari Klub Lari karena keengganannya pada bidang atletik, meskipun dia memiliki bakat bawaan untuk olahraga tersebut.",
+  //   },
+  //   {
+  //     title: "The Quintessential Quintuplets",
+  //     image_url: "/banner3.jpg",
+  //     genre: ["Harem", "Romantis", "Komedi"],
+  //     desc: "Ceritanya mengikuti seorang siswa sekolah menengah bernama Fuutarou Uesugi, yang berasal dari keluarga miskin dan sangat rajin belajar tetapi juga anti-sosial. Suatu hari, dia dipekerjakan sebagai guru oleh sebuah keluarga kaya untuk mengajar kelima putrinya yang semuanya kembar lima. Saudari-saudari ini, yang memiliki kepribadian kompleks dan nilai buruk, awalnya memiliki kesan negatif terhadap Fuutarou. Namun, saat dia membantu mereka meningkatkan nilai dan mengatasi masalah pribadi mereka, hubungannya dengan setiap saudara perempuan mulai berkembang dengan cara yang berbeda, yang akhirnya mengarah pada hubungan romantis dengan salah satu dari mereka. Serial ini dipuji karena karakternya yang menarik, alur cerita yang lucu, dan alur romantis yang menarik.",
+  //   },
+  //   {
+  //     title: "In Another World With My Smartphone",
+  //     image_url: "/banner1.png",
+  //     genre: ["Harem", "Isekai", "Komedi"],
+  //     desc: "Dalam kesalahan yang tidak disengaja, Tuhan secara tidak sengaja menjatuhkan Touya Mochizuki dengan sambaran petir! Sebagai permintaan maaf, Tuhan memberinya satu keinginan dan kesempatan untuk hidup kembali di dunia fantasi magis. Touya dengan senang hati menerima tawaran itu dan, atas satu permintaannya, hanya meminta untuk membawa ponsel cerdasnya saat dia memulai perjalanannya ke dunia misterius ini. Memulai dari awal di dunia baru ini, Touya menyadari bahwa dunia itu penuh dengan sihir—yang dia sukai—dan gadis-gadis cantik berlomba-lomba untuk mendapatkan perhatiannya. Gadis-gadis ini—si kembar Linze dan Elze Silhoueska, Yumina Urnea Belfast, Leen, dan Yae Kokonoe—memberi Touya rasa frustrasi romantis yang tiada habisnya, namun juga persahabatan saat ia menemukan rahasia dunia baru ini.",
+  //   },
+  // ];
 
   const textVariants = {
     hidden: {
@@ -86,7 +100,15 @@ export default function Banner() {
   }
 
   useEffect(() => {
-    const interval = setInterval(() => updateBanner('right'), 5000)
+    const interval = setInterval(() => updateBanner('right'), 6000)
+    const getData = async () => {
+      await fetch('http://127.0.0.1:8000/api/books/book/')
+        .then(res => res.json())
+        .then(data => setBannerData(data))
+    }
+
+    getData()
+
 
     return () => clearInterval(interval)
   }, []);
@@ -102,8 +124,8 @@ export default function Banner() {
           animate="show"
           exit="hidden"
           variants={imageVariants}
-          key={bannerData[activeBanner].image_url}
-          src={bannerData[activeBanner].image_url}
+          key={bannerData[activeBanner].backdrop_url  }
+          src={bannerData[activeBanner].backdrop_url}
           className="absolute w-full object-center h-full -z-30 bg-black top-0"
           alt="image"
         />
@@ -133,18 +155,18 @@ export default function Banner() {
             {bannerData[activeBanner].title}
           </motion.h1>
           <p className="mt-4 text-gray-400 text-base">
-            {bannerData[activeBanner].genre.join(" - ")}
+            {bannerData[activeBanner].genre_name.join(" - ")}
           </p>
           <motion.p
             initial="hidden"
             animate="show"
             exit="hidden"
             variants={textVariants}
-            key={bannerData[activeBanner].desc}
+            key={bannerData[activeBanner].id}
             className="line-clamp-4 w-[50ch] mt-4 leading-relaxed"
           >
             {bannerData[activeBanner].desc}
-          </motion.p>
+            </motion.p>
           <div className="flex gap-x-4 mt-12">
             <button className="w-[300px] bg-blue-500 py-2 px-4 text-lg font-medium text-white">
               Pinjam sekarang
