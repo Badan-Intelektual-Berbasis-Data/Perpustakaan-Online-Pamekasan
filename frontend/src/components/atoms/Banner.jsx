@@ -86,10 +86,10 @@ export default function Banner() {
   }
 
   useEffect(() => {
-    const interval = setInterval(() => updateBanner('right'), 8000)
+    const interval = setInterval(() => updateBanner('right'), 5000)
 
     return () => clearInterval(interval)
-  });
+  }, []);
 
   return (
     <div className="relative w-full flex flex-col h-[70dvh] justify-center overflow-hidden text-white">
@@ -156,22 +156,22 @@ export default function Banner() {
 
           {/* slider progress */}
 
-          <div className="flex mt-20 w-1/4 gap-x-2 max-w-[150px]">
-            <div
-              className={`h-[10px] rounded-md hover:cursor-pointer ${
+          <div className="flex mt-20 w-1/4 gap-x-2 max-w-[105px]">
+            <button
+              className={`h-[10px] rounded-md transition-all ease-in ${
                 activeBanner == 0 ? "bg-blue-500 w-3/4" : "bg-gray-500 w-1/4"
               }`}
-            ></div>
-            <div
-              className={`h-[10px] rounded-md hover:cursor-pointer ${
+            ></button>
+            <button
+              className={`h-[10px] rounded-md transition-all ease-in ${
                 activeBanner == 1 ? "bg-blue-500 w-3/4" : "bg-gray-500 w-1/4"
               }`}
-            ></div>
-            <div
-              className={`h-[10px] rounded-md hover:cursor-pointer ${
+            ></button>
+            <button
+              className={`h-[10px] rounded-md transition-all ease-in ${
                 activeBanner == 2 ? "bg-blue-500 w-3/4" : "bg-gray-500 w-1/4"
               }`}
-            ></div>
+            ></button>
           </div>
         </div>
 
