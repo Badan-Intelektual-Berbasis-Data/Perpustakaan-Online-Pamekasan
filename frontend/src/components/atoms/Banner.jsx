@@ -14,21 +14,21 @@ export default function Banner() {
 
   const [bannerData, setBannerData] = useState([
     {
-      "id": 0,
-      "author_name": "",
-      "category_name": [],
-      "genre_name": [],
-      "backdrop_url": "",
-      "book_image_url": "",
-      "desc": "",
-      "title": "",
-      "date_published": "",
-      "date_registered": "",
-      "author": 0,
-      "category": [],
-      "genre": []
-  }
-  ])
+      id: 0,
+      author_name: "",
+      category_name: [],
+      genre_name: [],
+      backdrop_url: "",
+      book_image_url: "",
+      desc: "",
+      title: "",
+      date_published: "",
+      date_registered: "",
+      author: 0,
+      category: [],
+      genre: [],
+    },
+  ]);
 
   // const bannerData = [
   //   {
@@ -87,30 +87,32 @@ export default function Banner() {
     },
   };
 
-
   // Direction right => value increases
   const updateBanner = (direction) => {
     setActiveBanner((value) => {
-      if (value == bannerData.length - 1) {
-        return 0
+      if (value >= 2) {
+        return 0;
       } else {
-        return value + 1
+        if (direction == "right") {
+          return value + 1;
+        } else {
+          return value - 1;
+        }
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    const interval = setInterval(() => updateBanner('right'), 6000)
+    const interval = setInterval(() => updateBanner("right"), 6000);
     const getData = async () => {
-      await fetch('http://127.0.0.1:8000/api/books/book/')
-        .then(res => res.json())
-        .then(data => setBannerData(data))
-    }
+      await fetch("http://127.0.0.1:8000/api/books/book/")
+        .then((res) => res.json())
+        .then((data) => setBannerData(data));
+    };
 
-    getData()
+    getData();
 
-
-    return () => clearInterval(interval)
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -124,7 +126,7 @@ export default function Banner() {
           animate="show"
           exit="hidden"
           variants={imageVariants}
-          key={bannerData[activeBanner].backdrop_url  }
+          key={bannerData[activeBanner].backdrop_url}
           src={bannerData[activeBanner].backdrop_url}
           className="absolute w-full object-center h-full -z-30 bg-black top-0"
           alt="image"
@@ -136,7 +138,10 @@ export default function Banner() {
       {/* content */}
       <Container className="flex">
         {/* previous slide */}
-        <button onClick={() => updateBanner("left")} className="h-full w-16 absolute left-0 top-0 flex justify-center items-center">
+        <button
+          onClick={() => updateBanner("left")}
+          className="h-full w-16 absolute left-0 top-0 flex justify-center items-center"
+        >
           <FontAwesomeIcon
             icon={faChevronLeft}
             className="text-white text-3xl hover:cursor-pointer"
@@ -151,7 +156,7 @@ export default function Banner() {
             key={bannerData[activeBanner].title}
             variants={textVariants}
             className="text-5xl font-bold"
-            >
+          >
             {bannerData[activeBanner].title}
           </motion.h1>
           <p className="mt-4 text-gray-400 text-base">
@@ -166,7 +171,7 @@ export default function Banner() {
             className="line-clamp-4 w-[50ch] mt-4 leading-relaxed"
           >
             {bannerData[activeBanner].desc}
-            </motion.p>
+          </motion.p>
           <div className="flex gap-x-4 mt-12">
             <button className="w-[300px] bg-blue-500 py-2 px-4 text-lg font-medium text-white">
               Pinjam sekarang
@@ -180,16 +185,19 @@ export default function Banner() {
 
           <div className="flex mt-20 w-1/4 gap-x-2 max-w-[105px]">
             <button
+              onClick={() => setActiveBanner(0)}
               className={`h-[10px] rounded-md transition-all ease-in ${
                 activeBanner == 0 ? "bg-blue-500 w-3/4" : "bg-gray-500 w-1/4"
               }`}
             ></button>
             <button
+              onClick={() => setActiveBanner(1)}
               className={`h-[10px] rounded-md transition-all ease-in ${
                 activeBanner == 1 ? "bg-blue-500 w-3/4" : "bg-gray-500 w-1/4"
               }`}
             ></button>
             <button
+              onClick={() => setActiveBanner(2)}
               className={`h-[10px] rounded-md transition-all ease-in ${
                 activeBanner == 2 ? "bg-blue-500 w-3/4" : "bg-gray-500 w-1/4"
               }`}
@@ -198,7 +206,10 @@ export default function Banner() {
         </div>
 
         {/* next slide */}
-        <button onClick={() => updateBanner("right")} className="h-full w-16 absolute right-0 top-0 flex justify-center items-center">
+        <button
+          onClick={() => updateBanner("right")}
+          className="h-full w-16 absolute right-0 top-0 flex justify-center items-center"
+        >
           <FontAwesomeIcon
             icon={faChevronRight}
             className="text-white text-3xl hover:cursor-pointer"
