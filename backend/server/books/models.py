@@ -1,6 +1,16 @@
 from django.db import models
 
 
+
+class Genre(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    date_created = models.DateTimeField(auto_now_add=True, editable=False, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+    
+
+
 class Authors(models.Model):
     name = models.CharField(max_length=255, unique=True)
     date_created = models.DateTimeField(auto_now_add=True, editable=False, null=True, blank=True)
@@ -33,9 +43,13 @@ class Languange(models.Model):
 
 
 class BookDisplay(models.Model):
+    author = models.ForeignKey(Authors, on_delete=models.CASCADE)
+    category = models.ManyToManyField(Categories)
+    genre = models.ManyToManyField(Genre)
+    backdrop_url = models.CharField(max_length=300, default='')
+    book_image_url = models.CharField(max_length=300, default='')
+    desc = models.CharField(max_length=1000, default='')
     title = models.CharField(max_length=200, unique=True)
-    author_id = models.ForeignKey(Authors, on_delete=models.CASCADE)
-    category_id = models.ForeignKey(Categories, on_delete=models.CASCADE)
     date_published = models.DateField()
     date_registered = models.DateTimeField(auto_now_add=True, editable=False)
 
@@ -43,9 +57,9 @@ class BookDisplay(models.Model):
         return self.title
 
 class Book(models.Model):
-    title_id = models.ForeignKey(BookDisplay, on_delete=models.CASCADE)
-    publisher_id = models.ForeignKey(Publisher, on_delete=models.CASCADE)
-    languange_id = models.ForeignKey(Languange, on_delete=models.CASCADE)
+    title = models.ForeignKey(BookDisplay, on_delete=models.CASCADE)
+    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+    languange = models.ForeignKey(Languange, on_delete=models.CASCADE)
     classification_number = models.PositiveBigIntegerField()
     call_number = models.CharField(max_length=30, default='')
     width = models.IntegerField()

@@ -6,12 +6,14 @@ from .views import (
     DetailView,
     CategoriesView,
     PublisherView,
-    LanguangeView
+    LanguangeView,
+    GenreView
 )
 
 
 routers = DefaultRouter()
 routers.register("book", DisplayView, basename="book_view")
+routers.register("genre", GenreView, basename="genre_view")
 routers.register("detail", DetailView, basename="detail_view")
 routers.register("author", AuthorsView, basename="authors_view")
 routers.register("category", CategoriesView, basename="categories_view")

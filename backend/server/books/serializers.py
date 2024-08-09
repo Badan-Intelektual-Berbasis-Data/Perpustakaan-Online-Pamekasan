@@ -1,11 +1,12 @@
-from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, StringRelatedField
 from .models import (
     Authors,
     Book,
     BookDisplay,
     Categories,
     Languange,
-    Publisher
+    Publisher,
+    Genre
 )
 
 class AuthorSerializer(ModelSerializer):
@@ -33,9 +34,18 @@ class PublisherSerializer(ModelSerializer):
     class Meta:
         model = Publisher
         fields = '__all__'
+        
+class GenreSerializer(ModelSerializer):
+
+    class Meta:
+        model = Genre
+        fields = '__all__'
 
 
 class BookDisplaySerializer(ModelSerializer):
+    author_name = StringRelatedField(source='author')
+    category_name = StringRelatedField(source='category', many=True)
+    genre_name = StringRelatedField(source='genre', many=True)
 
     class Meta:
         model = BookDisplay
@@ -44,9 +54,9 @@ class BookDisplaySerializer(ModelSerializer):
 
 class BooksSerializer(ModelSerializer):
 
-    title_id = PrimaryKeyRelatedField(queryset=BookDisplay.objects.all())
-    publisher_id = PrimaryKeyRelatedField(queryset=Publisher.objects.all())
-    languange_id = PrimaryKeyRelatedField(queryset=Languange.objects.all())
+    title = BookDisplaySerializer()
+    publisher = PrimaryKeyRelatedField(queryset=Publisher.objects.all())
+    languange = PrimaryKeyRelatedField(queryset=Languange.objects.all())
     
     class Meta:
         model = Book

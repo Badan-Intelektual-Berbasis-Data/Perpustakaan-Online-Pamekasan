@@ -1,31 +1,89 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faTwitter, faInstagram, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import React from "react";
+import Container from "./molecules/Container";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInstagram,
+  faFacebook,
+  faXTwitter,
+  faWhatsappSquare,
+  faWhatsapp,
+} from "@fortawesome/free-brands-svg-icons";
+import { faFax, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 py-4">
-      <div className="container mx-auto px-4 text-center">
-        <p className="text-sm text-white">Perpustakaan Umum Pamekasan | © 2024 All rights reserved</p>
-        <div className="mt-2 flex justify-center space-x-4 flex-wrap">
-          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-white text-2xl hover:text-blue-500">
-            <FontAwesomeIcon icon={faFacebook} />
-          </a>
-          <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="text-white text-2xl hover:text-blue-400">
-            <FontAwesomeIcon icon={faTwitter} />
-          </a>
-          <a href="https://www.instagram.com/perpusippamekasan/" target="_blank" rel="noopener noreferrer" className="text-white text-2xl hover:text-pink-500">
-            <FontAwesomeIcon icon={faInstagram} />
-          </a>
-          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white text-2xl hover:text-blue-700">
-            <FontAwesomeIcon icon={faLinkedin} />
-          </a>
-          <a href="https://www.youtube.com/channel/UCn32kqt-7KokDsJ2-8QtWtw" target="_blank" rel="noopener noreferrer" className="text-white text-2xl hover:text-red-600">
-            <FontAwesomeIcon icon={faYoutube} />
-          </a>
+    <Container className="bg-gray-600 flex flex-col gap-y-20 pb-1">
+      <div className="flex w-full justify-between">
+        <div>
+          <div className="flex items-center gap-x-6 shrink-0">
+            <img
+              src="/logo.png"
+              alt="Partner 1"
+              className="w-24 h-24 object-cover rounded-md"
+            />
+            <div className="font-bold text-xl text-white">
+              <h2>Dinas Perpustakaan dan Kearsipan</h2>
+              <h2>Kabupaten Pamekasan</h2>
+            </div>
+          </div>
+
+          {/* contanct */}
+          <div className="text-white text-sm mt-6">
+            <p className="w-[50ch] mt-3 text-sm">
+              Kami adalah Dinas Perpustakaan dan Kearsipan Kabupaten Pamekasan
+              yang berkomitmen untuk menyediakan akses informasi dan layanan
+              perpustakaan terbaik bagi masyarakat. Kami berupaya meningkatkan
+              minat baca dan mendukung pelestarian arsip daerah.
+            </p>
+          </div>
+          {/* end -contanct */}
+        </div>
+
+        <div className="text-white">
+          <h3 className="font-medium text-lg">Hubungi kami</h3>
+          <p className="w-[50ch] mt-2">
+            Jl. Jokotole No.55, Rw. 05, Barurambat Kota, Kec. Pamekasan,
+            Kabupaten Pamekasan, Jawa Timur 69317
+          </p>
+          <div className="flex gap-x-6 mt-8">
+            <FontAwesomeIcon
+              icon={faFax}
+              className="text-2xl text-white"
+            />
+            <FontAwesomeIcon
+              icon={faPhone}
+              className="text-2xl text-white"
+            />
+            <FontAwesomeIcon
+              icon={faWhatsapp}
+              className="text-2xl text-white"
+            />
+            <FontAwesomeIcon
+              icon={faInstagram}
+              className="text-2xl text-white"
+            />
+            <FontAwesomeIcon
+              icon={faFacebook}
+              className="text-2xl text-white"
+            />
+            <FontAwesomeIcon
+              icon={faXTwitter}
+              className="text-2xl text-white"
+            />
+          </div>
         </div>
       </div>
-    </footer>
+
+      <div className="border-t-[1.5px] border-gray-300 flex justify-between items-center py-8">
+        <p className="text-sm text-white">
+          © 2020 Perpustakaan Umum Pamekasan. All rights reserved.
+        </p>
+
+        <div className="flex text-white gap-x-8 text-sm font-medium">
+          <p>Privacy policy</p>
+          <p>Terms of services</p>
+        </div>
+      </div>
+    </Container>
   );
 }

@@ -13,15 +13,17 @@ from datetime import datetime
 class BookTest(TestCase):
 
     def setUp(self):
-        title = BookDisplay.objects.create(title="Belajar Ryoiki Tenkai - Part 2", date_published=datetime(2020, 5, 17))
-        publisher = Publisher.objects.create(name="PT. Usaha Jaya, Ltd.")
-        languange = Languange.objects.create(name="EN")
         author = Authors.objects.create(name="Helen Svacovich")
         category = Categories.objects.create(name="Sains")
+        title = BookDisplay.objects.create(title="Belajar Ryoiki Tenkai - Part 2", date_published=datetime(2020, 5, 17), author=author, category=category)
+        publisher = Publisher.objects.create(name="PT. Usaha Jaya, Ltd.")
+        languange = Languange.objects.create(name="EN")
 
-        title.author_id.add(author)
 
-        book = Book.objects.create(
+        Book.objects.create(
+            title=title,
+            publisher=publisher,
+            languange=languange,
             pages=20,
             width=30,
             height=40,
@@ -31,13 +33,6 @@ class BookTest(TestCase):
             isbn=1234567891234,
             date_published=datetime(2020, 5, 17)
         )
-
-        book.category_id.add(category)
-        book.title_id.add(title)
-        book.publisher_id.add(publisher)
-        book.languange_id.add(languange)
-        book.author_id.add(author)
-
 
     def test_relation_data_integrity(self):
         self.assertEqual(Book.objects.get(title="Belajar Ryoiki Tenkai - Part 2").title, "Belajar Ryoiki Tenkai - Part 2")
