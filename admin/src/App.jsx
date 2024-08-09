@@ -1,3 +1,12 @@
-export default function App() {
-  return <h1 className="text-3xl font-bold underline bg-slate-500">Halaman Admin</h1>;
+import React from 'react';
+import Admin from './components/Admin';
+
+function App() {
+  return (
+    <div>
+      <Admin />
+    </div>
+  );
 }
+
+export default App;
