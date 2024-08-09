@@ -1,6 +1,8 @@
+import random
 # from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from rest_framework.viewsets import ModelViewSet
 from .models import (
     Authors,
@@ -60,6 +62,17 @@ class CategoriesView(ModelViewSet):
     serializer_class = CategoriesSerializer
 
 
+    def get_queryset(self):
+
+        mixed = self.request.query_params.get("mixed")
+
+        if mixed:
+            return sorted(self.queryset.all().order_by('name'), key=lambda x: random.random())[:3]
+
+
+        return self.queryset.all()
+
+
     def retrieve(self, _):
 
         query_data = CategoriesSerializer(Categories.objects.all(), many=True)
@@ -81,6 +94,11 @@ class DetailView(ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BooksSerializer
 
+    def retrieve(self, _, pk):
+
+        
+
+        return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
     def create(self, req):
 
@@ -100,12 +118,16 @@ class DisplayView(ModelViewSet):
     def get_queryset(self):        
         category_request = self.request.query_params.get("category")
         id_request = self.request.query_params.get("id")
+        mixed = self.request.query_params.get("mixed")
         
         if category_request:
             return self.queryset.filter(category=category_request)
         
         elif id_request:
             return self.queryset.filter(id=category_request)
+
+        elif mixed:
+            return sorted(self.queryset.all().order_by('title'), key=lambda x: random.random())[:3]
 
         return self.queryset.all()
 

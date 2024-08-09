@@ -30,27 +30,6 @@ export default function Banner() {
     },
   ]);
 
-  // const bannerData = [
-  //   {
-  //     title: "Jujutsu Kaisen",
-  //     image_url: "/banner2.jpg",
-  //     genre: ["Petualangan", "Fantasi", "Supranatural"],
-  //     desc: "Yūji Itadori adalah seorang siswa SMA dengan atletisitas yang tidak wajar yang tinggal di Sendai bersama kakeknya. Ia sering menghindari Klub Lari karena keengganannya pada bidang atletik, meskipun dia memiliki bakat bawaan untuk olahraga tersebut.",
-  //   },
-  //   {
-  //     title: "The Quintessential Quintuplets",
-  //     image_url: "/banner3.jpg",
-  //     genre: ["Harem", "Romantis", "Komedi"],
-  //     desc: "Ceritanya mengikuti seorang siswa sekolah menengah bernama Fuutarou Uesugi, yang berasal dari keluarga miskin dan sangat rajin belajar tetapi juga anti-sosial. Suatu hari, dia dipekerjakan sebagai guru oleh sebuah keluarga kaya untuk mengajar kelima putrinya yang semuanya kembar lima. Saudari-saudari ini, yang memiliki kepribadian kompleks dan nilai buruk, awalnya memiliki kesan negatif terhadap Fuutarou. Namun, saat dia membantu mereka meningkatkan nilai dan mengatasi masalah pribadi mereka, hubungannya dengan setiap saudara perempuan mulai berkembang dengan cara yang berbeda, yang akhirnya mengarah pada hubungan romantis dengan salah satu dari mereka. Serial ini dipuji karena karakternya yang menarik, alur cerita yang lucu, dan alur romantis yang menarik.",
-  //   },
-  //   {
-  //     title: "In Another World With My Smartphone",
-  //     image_url: "/banner1.png",
-  //     genre: ["Harem", "Isekai", "Komedi"],
-  //     desc: "Dalam kesalahan yang tidak disengaja, Tuhan secara tidak sengaja menjatuhkan Touya Mochizuki dengan sambaran petir! Sebagai permintaan maaf, Tuhan memberinya satu keinginan dan kesempatan untuk hidup kembali di dunia fantasi magis. Touya dengan senang hati menerima tawaran itu dan, atas satu permintaannya, hanya meminta untuk membawa ponsel cerdasnya saat dia memulai perjalanannya ke dunia misterius ini. Memulai dari awal di dunia baru ini, Touya menyadari bahwa dunia itu penuh dengan sihir—yang dia sukai—dan gadis-gadis cantik berlomba-lomba untuk mendapatkan perhatiannya. Gadis-gadis ini—si kembar Linze dan Elze Silhoueska, Yumina Urnea Belfast, Leen, dan Yae Kokonoe—memberi Touya rasa frustrasi romantis yang tiada habisnya, namun juga persahabatan saat ia menemukan rahasia dunia baru ini.",
-  //   },
-  // ];
-
   const textVariants = {
     hidden: {
       opacity: 0,
@@ -105,7 +84,7 @@ export default function Banner() {
   useEffect(() => {
     const interval = setInterval(() => updateBanner("right"), 6000);
     const getData = async () => {
-      await fetch("http://127.0.0.1:8000/api/books/book/")
+      await fetch("http://127.0.0.1:8000/api/books/book?mixed=True")
         .then((res) => res.json())
         .then((data) => setBannerData(data));
     };
@@ -170,7 +149,7 @@ export default function Banner() {
             key={bannerData[activeBanner].id}
             className="line-clamp-4 w-[50ch] mt-4 leading-relaxed"
           >
-            {bannerData[activeBanner].desc}
+            {bannerData[activeBanner].desc ? bannerData[activeBanner].desc : "Tidak ada deskripsi tersedia"}
           </motion.p>
           <div className="flex gap-x-4 mt-12">
             <button className="w-[300px] bg-blue-500 py-2 px-4 text-lg font-medium text-white">

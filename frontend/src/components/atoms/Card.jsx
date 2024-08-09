@@ -22,19 +22,18 @@ export default function Card({
       animate={{ x: x ? x : 0 }}
       transition={{ duration: 0.1, ease: "easeIn" }}
     >
-      {/* description */}
-      <div className="absolute z-10 top-0 left-0 flex flex-col p-2 bg-blue-500 min-w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-200 ease-in">
-        <div className="max-h-1/2 overflow-hidden py-3">
-          <p className="text-white text-sm flex-1">{desc}</p>
+      <div className="w-[180px] relative">
+        <img src={image} className="w-full min-h-[250px] max-h-[250px] object-cover rounded-sm" alt="buku" />
+        {/* description */}
+        <div className="absolute z-10 top-0 left-0 flex flex-col p-2 bg-blue-500 min-w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-200 ease-in">
+          <div className="max-h-1/2 overflow-hidden py-3 px-2">
+            <p className="text-white text-sm flex-1">{desc.slice(0, 180)}...</p>
+          </div>
+          <div className="flex justify-end p-2">
+            <FontAwesomeIcon icon={faBookmark} className="text-white text-lg" />
+          </div>
         </div>
-        <div className="flex justify-end p-2">
-          <FontAwesomeIcon icon={faBookmark} className="text-white text-lg" />
-        </div>
-      </div>
-      {/* end-description */}
-
-      <div className="w-[180px]">
-        <img src={image} className="w-full h-full rounded-sm" alt="buku" />
+        {/* end-description */}
       </div>
 
       <div className="flex items-center justify-between">

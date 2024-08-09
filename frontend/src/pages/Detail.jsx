@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../components/molecules/Container";
 import { useParams } from "react-router-dom";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
@@ -6,11 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Detail() {
   const { name } = useParams();
+  const [bookData, setBookData] = useState({})
 
 
   useEffect(() => {
     return async () => {
-      fetch(`${process.env.BASE_API}/books/book`)
+      fetch(`${process.env.BASE_API}/books/book/${name}`)
     }
   }, [])
 

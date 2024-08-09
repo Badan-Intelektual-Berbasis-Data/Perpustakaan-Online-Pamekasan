@@ -62,7 +62,7 @@ export default function CardGroupSlide({ title, id }) {
       </div>
       {/* end content */}
 
-      <div className={`absolute top-0 right-0 h-full w-16 flex justify-center items-center  hover:bg-black hover:bg-opacity-25 z-10 ${index != data.length - 4 && data.length > 6 ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`absolute top-0 right-0 h-full w-16 flex justify-center items-center  hover:bg-black hover:bg-opacity-25 z-10 ${index != data.length - 4 ? 'opacity-100' : 'opacity-0'}`}>
         <div onClick={() => handleSlide("RIGHT")}>
           <FontAwesomeIcon
             icon={faChevronRight}
