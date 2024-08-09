@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Container from "../components/molecules/Container";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -35,11 +35,20 @@ export default function Detail() {
     date_registered: "",
   });
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     return async () => {
       await fetch(`http://127.0.0.1:8000/api/books/detail/${name}/`)
-        .then((res) => res.json())
-        .then((data) => setBookData(data));
+        .then(res => {
+          if (res.status == 404) {
+            alert("Buku tidak ditemukan")
+            navigate("/")
+            return
+          }
+          res.json()
+        })
+        .then(data => setBookData(data))
     };
   }, []);
 
