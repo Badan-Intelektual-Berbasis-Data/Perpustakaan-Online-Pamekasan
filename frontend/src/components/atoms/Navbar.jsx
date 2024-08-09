@@ -52,11 +52,7 @@ export default function Navbar() {
           <Link to="/kunjungan" className="block text-gray-300 hover:text-white mt-2">
             Kunjungan
           </Link>
-<<<<<<< HEAD:frontend/src/components/Navbar.jsx
-          <Link to="/informasi" className="block text-gray-300 hover:text-white mt-2">
-=======
           <Link to="/information" className="block text-gray-300 hover:text-white mt-2">
->>>>>>> origin/frontend-refactor:frontend/src/components/atoms/Navbar.jsx
             Informasi
           </Link>
           <Link to="/berita" className="block text-gray-300 hover:text-white mt-2">
