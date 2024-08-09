@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 export default function Card({
+  id,
   title,
   image,
   author,
@@ -16,7 +17,7 @@ export default function Card({
 
   return (
     <motion.div
-      onClick={() => navigation(`/detail/${title}`)}
+      onClick={() => navigation(`/detail/${id}`)}
       className={`bg-white w-max rounded-lg shadow-md shrink-0 hover:cursor-pointer relative ${className}`}
       initial={{ x: x ? 80 : 0 }}
       animate={{ x: x ? x : 0 }}

@@ -6,14 +6,42 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Detail() {
   const { name } = useParams();
-  const [bookData, setBookData] = useState({})
-
+  const [bookData, setBookData] = useState({
+    id: 0,
+    title: {
+      author_name: "",
+      category_name: [],
+      genre_name: [],
+      backdrop_url: "",
+      book_image_url: "",
+      desc: "",
+      title: "",
+      date_published: "",
+      date_registered: "",
+      author: 0,
+      category: [],
+      genre: [],
+    },
+    publisher: 0,
+    languange: 0,
+    classification_number: 0,
+    call_number: "",
+    width: 0,
+    height: 0,
+    pages: 0,
+    isbn: 0,
+    edition: 0,
+    date_published: "",
+    date_registered: "",
+  });
 
   useEffect(() => {
     return async () => {
-      fetch(`${process.env.BASE_API}/books/book/${name}`)
-    }
-  }, [])
+      await fetch(`http://127.0.0.1:8000/api/books/detail/${name}/`)
+        .then((res) => res.json())
+        .then((data) => setBookData(data));
+    };
+  }, []);
 
   return (
     <div className="w-full">
@@ -21,7 +49,7 @@ export default function Detail() {
         <div className="flex justify-center gap-x-6 w-[900px]">
           <div className="min-w-[250px] max-w-[300px]">
             <img
-              src="/Buku1.jpg"
+              src={bookData.title.book_image_url}
               alt="gambar-buku"
               className="w-full object-cover"
             />
@@ -29,14 +57,9 @@ export default function Detail() {
 
           {/* content */}
           <div className="py-6">
-            <h1 className="font-bold text-3xl">{name}</h1>
-            <p className="text-gray-500">Action - Romance</p>
-            <p className="max-w-[50ch] mt-4">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptates maiores aspernatur velit explicabo eum ea iste
-              architecto asperiores eaque perspiciatis. Repudiandae dolor in
-              quam doloremque numquam placeat error repellat dignissimos?
-            </p>
+            <h1 className="font-bold text-3xl">{bookData.title.title}</h1>
+            <p className="text-gray-500">{bookData.title.genre_name.join(" - ")}</p>
+            <p className="max-w-[50ch] mt-4">{bookData.title.desc}</p>
             <div className="mt-6 space-y-2 text-sm">
               <div className="flex justify-between w-full">
                 <p>Status:</p>

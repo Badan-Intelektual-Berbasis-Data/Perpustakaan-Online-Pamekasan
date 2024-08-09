@@ -94,11 +94,6 @@ class DetailView(ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BooksSerializer
 
-    def retrieve(self, _, pk):
-
-        
-
-        return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
     def create(self, req):
 
