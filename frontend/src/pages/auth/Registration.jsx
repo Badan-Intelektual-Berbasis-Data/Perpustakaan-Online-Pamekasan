@@ -20,6 +20,30 @@ export default function Registration() {
     "Perempuan"
   ]
 
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    const form = new FormData(event.target)
+    
+    const data = new URLSearchParams()
+
+    for (let [key, value] of form.entries()) {
+      data.append(key, value)
+    }
+
+    await fetch('http://127.0.0.1/api/user/', {
+      method: 'post',
+      headers: {
+        'Content-Type' : 'application/x-www-form-urlencoded'
+      },
+      body: data.toString()
+    })
+      .then(res => {
+        console.log(res);
+        
+      })
+  }
+
   return (
     <StackLayout>
       <div className="bg-gray-100 min-h-[100dvh] py-10 flex flex-col justify-center">
@@ -28,7 +52,7 @@ export default function Registration() {
               Daftar Akun Baru
             </h3>
             <div className="bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
-              <form className="space-y-12">
+              <form className="space-y-12" onSubmit={handleSubmit}>
                 <Field title="NIK ( Nomor Induk Kewarganegaraan )">
                   <Input type="text" name="username" />
                 </Field>
@@ -51,10 +75,10 @@ export default function Registration() {
                   <Input type="number" name="birth" />
                 </Field>
                 <Field title="Gender">
-                  <Select options={gender_options} />
+                  <Select options={gender_options} name="gender"/>
                 </Field>
                 <Field title="Status">
-                  <Select options={status_options} />
+                  <Select options={status_options} name="status"/>
                 </Field>
                 <button
                   type="submit"
