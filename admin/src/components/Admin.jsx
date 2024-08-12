@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faBook, faClipboardList, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import Dashboard from '../items/Dashboard';
+import Buku from '../items/Buku';
+import Pengguna from '../items/Pengguna';
+import Peminjam from '../items/Peminjam';
 
 function Admin() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -52,7 +55,10 @@ function Admin() {
         </aside>
 
         <main className="flex-grow bg-gray-400 p-2">
-          <Dashboard />
+          {activeTab === 'dashboard' && <Dashboard />}
+          {activeTab === 'buku' && <Buku />}
+          {activeTab === 'pengguna' && <Pengguna />}
+          {activeTab === 'peminjam' && <Peminjam />}
         </main>
       </div>
 
