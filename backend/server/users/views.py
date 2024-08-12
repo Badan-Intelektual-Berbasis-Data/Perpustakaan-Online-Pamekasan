@@ -1,3 +1,7 @@
+from rest_framework.status import (
+    HTTP_201_CREATED,
+    HTTP_400_BAD_REQUEST
+)
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from .models import User
@@ -13,10 +17,14 @@ class UserView(ModelViewSet):
 
     def create(self, req):
 
+
         form = self.get_serializer(data=req.POST)
 
-        print(form.is_valid(raise_exception=True))
+    
+        if not form.is_valid():
+            return Response(status=HTTP_400_BAD_REQUEST)
 
+        form.save()
 
-        return Response()
+        return Response(status=HTTP_201_CREATED)
 

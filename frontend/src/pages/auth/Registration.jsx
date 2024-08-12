@@ -24,20 +24,19 @@ export default function Registration() {
     if (!validated_form) {
       return
     }
-    
 
 
-    // await fetch('http://127.0.0.1:8000/api/users/user/', {
-    //   method: 'post',
-    //   headers: {
-    //     'Content-Type' : 'application/x-www-form-urlencoded'
-    //   },
-    //   body: validated_form.toString()
-    // })
-    //   .then(res => {
-    //     console.log(res);
+    await fetch('http://127.0.0.1:8000/api/users/user/', {
+      method: 'post',
+      headers: {
+        'Content-Type' : 'application/x-www-form-urlencoded'
+      },
+      body: validated_form.toString()
+    })
+      .then(res => {
+        console.log(res);
         
-    //   })
+      })
   }
 
   return (
@@ -68,7 +67,10 @@ export default function Registration() {
                   <Input type="type" name="address" placeholder="Alamat" />
                 </Field>
                 <Field title="Umur">
-                  <Input type="number" name="birth" />
+                  <Input type="number" name="age" />
+                </Field>
+                <Field title="Nomor Telepon">
+                  <Input type="number" name="phone" />
                 </Field>
                 <Field title="Gender">
                   <Select options={gender_options} name="gender"/>

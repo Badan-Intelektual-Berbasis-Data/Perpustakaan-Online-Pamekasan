@@ -15,7 +15,6 @@ export default function FormValidation(form) {
     }
 
     if (key == "nik") {
-      console.log(value);
       
       if (value.length != 16) {
         alert("NIK tidak valid")
