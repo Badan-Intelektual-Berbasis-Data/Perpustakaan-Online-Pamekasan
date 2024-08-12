@@ -6,14 +6,9 @@ import StackLayout from "../../layouts/StackLayout";
 import Field from "../../components/molecules/Field";
 import Input from "../../components/atoms/Input";
 import Select from "../../components/atoms/Select";
+import FormValidation from "../../../utils/FormValidation";
 
 export default function Registration() {
-
-
-  const status_options = [
-    "Member",
-    "Pengunjung"
-  ]
 
   const gender_options = [
     "Laki-Laki",
@@ -23,25 +18,26 @@ export default function Registration() {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    const form = new FormData(event.target)
-    
-    const data = new URLSearchParams()
 
-    for (let [key, value] of form.entries()) {
-      data.append(key, value)
+    const validated_form = FormValidation(event.target)
+
+    if (!validated_form) {
+      return
     }
+    
 
-    await fetch('http://127.0.0.1/api/user/', {
-      method: 'post',
-      headers: {
-        'Content-Type' : 'application/x-www-form-urlencoded'
-      },
-      body: data.toString()
-    })
-      .then(res => {
-        console.log(res);
+
+    // await fetch('http://127.0.0.1:8000/api/users/user/', {
+    //   method: 'post',
+    //   headers: {
+    //     'Content-Type' : 'application/x-www-form-urlencoded'
+    //   },
+    //   body: validated_form.toString()
+    // })
+    //   .then(res => {
+    //     console.log(res);
         
-      })
+    //   })
   }
 
   return (
@@ -54,10 +50,10 @@ export default function Registration() {
             <div className="bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
               <form className="space-y-12" onSubmit={handleSubmit}>
                 <Field title="NIK ( Nomor Induk Kewarganegaraan )">
-                  <Input type="text" name="username" />
+                  <Input type="number" name="nik" minLength="16" maxLength="16"/>
                 </Field>
                 <Field title="Nama Pengguna">
-                  <Input type="text" name="username" />
+                  <Input type="text" name="name" />
                 </Field>
                 <Field title="Email">
                   <Input type="email" name="email" />
@@ -68,8 +64,8 @@ export default function Registration() {
                 <Field title="Konfirmasi Password">
                   <Input type="password" name="confirm_password" placeholder="Ulangi password" />
                 </Field>
-                <Field title="Tanggal Lahir">
-                  <Input type="date" name="birth" />
+                <Field title="Alamat">
+                  <Input type="type" name="address" placeholder="Alamat" />
                 </Field>
                 <Field title="Umur">
                   <Input type="number" name="birth" />
@@ -77,8 +73,8 @@ export default function Registration() {
                 <Field title="Gender">
                   <Select options={gender_options} name="gender"/>
                 </Field>
-                <Field title="Status">
-                  <Select options={status_options} name="status"/>
+                <Field title="Foto Profil">
+                  <Input type="file" accept="image/*" required={false}/>
                 </Field>
                 <button
                   type="submit"
