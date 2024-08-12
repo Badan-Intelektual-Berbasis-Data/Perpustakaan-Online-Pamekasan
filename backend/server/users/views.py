@@ -4,6 +4,7 @@ from rest_framework.status import (
 )
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User
 from .serializers import UserSerializer
 
@@ -20,11 +21,17 @@ class UserView(ModelViewSet):
 
         form = self.get_serializer(data=req.POST)
 
-    
+        refresh_token = RefreshToken()
+
         if not form.is_valid():
             return Response(status=HTTP_400_BAD_REQUEST)
 
         form.save()
 
-        return Response(status=HTTP_201_CREATED)
+        token_data = {
+            "refresh_token": refresh_token,
+            "access_token": refresh_token.access_token
+        }
+
+        return Response(token_data, status=HTTP_201_CREATED)
 
