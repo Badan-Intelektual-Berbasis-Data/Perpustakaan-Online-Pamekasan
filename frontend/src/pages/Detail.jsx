@@ -44,9 +44,9 @@ export default function Detail() {
           if (res.status == 404) {
             alert("Buku tidak ditemukan")
             navigate("/")
-            return
           }
-          res.json()
+          
+          return res.json()
         })
         .then(data => setBookData(data))
     };
