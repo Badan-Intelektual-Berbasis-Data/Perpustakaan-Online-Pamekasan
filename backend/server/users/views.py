@@ -21,16 +21,16 @@ class UserView(ModelViewSet):
 
         form = self.get_serializer(data=req.POST)
 
-        refresh_token = RefreshToken()
 
         if not form.is_valid():
             return Response(status=HTTP_400_BAD_REQUEST)
 
         form.save()
 
+        refresh_token = RefreshToken.for_user(req.user)
         token_data = {
-            "refresh_token": refresh_token,
-            "access_token": refresh_token.access_token
+            "refresh_token": str(refresh_token),
+            "access_token": str(refresh_token.access_token)
         }
 
         return Response(token_data, status=HTTP_201_CREATED)
