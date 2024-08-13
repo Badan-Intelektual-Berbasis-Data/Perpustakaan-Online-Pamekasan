@@ -1,12 +1,19 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 function Pengguna() {
   const users = [
-    { nomor: 1, pengguna: 'Defilia', status: 'Admin'},
-    { nomor: 2, pengguna: 'Faisal', status: 'Member'},
+    { nomor: 1, pengguna: 'Defilia', status: 'Admin', alamat: 'Jalan Jalmak Gang.VII', usia: '20 Tahun', pekerjaan: 'Programmer'},
+    { nomor: 2, pengguna: 'Faisal', status: 'Member', alamat: 'Jalan Teja', usia: '25 Tahun', pekerjaan: 'Programmer'},
   ];
+
+  const navigate = useNavigate();
+
+  const handleDetailClick = (user) => {
+    navigate('/detail-pengguna', { state: { user } });
+  };
 
   return (
     <div>
@@ -27,7 +34,9 @@ function Pengguna() {
               <td className={`py-2 px-3 text-xs ${user.status === 'Admin' ? 'text-green-500' : 'text-red-500'}`}>{user.status}</td>
               <td className="py-2 px-3 text-xs text-gray-800">
                 <div className="flex items-center justify-center">
-                  <FontAwesomeIcon icon={faChevronRight} className="text-xs" />
+                  <button onClick={() => handleDetailClick(user)}>
+                    <FontAwesomeIcon icon={faChevronRight} className="text-xs" />
+                  </button>
                 </div>
               </td>
             </tr>

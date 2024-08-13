@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faBook, faClipboardList, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import Dashboard from '../items/Dashboard';
-import Buku from '../items/Buku';
-import Pengguna from '../items/Pengguna';
-import Peminjam from '../items/Peminjam';
+import { useNavigate } from 'react-router-dom';
 
-function Admin() {
-  const [activeTab, setActiveTab] = useState('dashboard');
+function Sidebar() {
+  const [activeTab, setActiveTab] = useState('');
+  const navigate = useNavigate();
+
+  const handleTabClick = (tab, path) => {
+    setActiveTab(tab);
+    navigate(path);
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-600">
@@ -19,28 +22,28 @@ function Admin() {
           <nav className="flex flex-col flex-grow px-2">
             <button 
               className={`flex items-center py-1 px-3 mb-1 text-base rounded-lg transition-colors ${activeTab === 'dashboard' ? 'bg-gray-500' : 'hover:bg-gray-700'}`}
-              onClick={() => setActiveTab('dashboard')}
+              onClick={() => handleTabClick('dashboard', '/dashboard')}
             >
               <FontAwesomeIcon icon={faHome} className="mr-1" />
               DASHBOARD
             </button>
             <button 
               className={`flex items-center py-1 px-3 mb-1 text-base rounded-lg transition-colors ${activeTab === 'buku' ? 'bg-gray-500' : 'hover:bg-gray-700'}`}
-              onClick={() => setActiveTab('buku')}
+              onClick={() => handleTabClick('buku', '/buku')}
             >
               <FontAwesomeIcon icon={faBook} className="mr-1" />
               BUKU
             </button>
             <button 
               className={`flex items-center py-1 px-3 mb-1 text-base rounded-lg transition-colors ${activeTab === 'pengguna' ? 'bg-gray-500' : 'hover:bg-gray-700'}`}
-              onClick={() => setActiveTab('pengguna')}
+              onClick={() => handleTabClick('pengguna', '/pengguna')}
             >
               <FontAwesomeIcon icon={faUser} className="mr-1" />
               PENGGUNA
             </button>
             <button 
               className={`flex items-center py-1 px-3 mb-1 text-base rounded-lg transition-colors ${activeTab === 'peminjam' ? 'bg-gray-500' : 'hover:bg-gray-700'}`}
-              onClick={() => setActiveTab('peminjam')}
+              onClick={() => handleTabClick('peminjam', '/peminjam')}
             >
               <FontAwesomeIcon icon={faClipboardList} className="mr-1" />
               PEMINJAM
@@ -53,20 +56,9 @@ function Admin() {
             </button>
           </div>
         </aside>
-
-        <main className="flex-grow bg-gray-400 p-2">
-          {activeTab === 'dashboard' && <Dashboard />}
-          {activeTab === 'buku' && <Buku />}
-          {activeTab === 'pengguna' && <Pengguna />}
-          {activeTab === 'peminjam' && <Peminjam />}
-        </main>
       </div>
-
-      <footer className="bg-gray-800 text-white text-center py-2 ml-64">
-        <p className="text-xs">PEPUSTAKAAN UMUM DAERAH PAMEKASAN</p>
-      </footer>
     </div>
   );
 }
 
-export default Admin;
+export default Sidebar;
