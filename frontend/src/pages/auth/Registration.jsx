@@ -1,7 +1,7 @@
 // Daftar.jsx
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import StackLayout from "../../layouts/StackLayout";
 import Field from "../../components/molecules/Field";
 import Input from "../../components/atoms/Input";
@@ -14,9 +14,11 @@ export default function Registration() {
     "Laki-Laki",
     "Perempuan"
   ]
+  const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+
 
 
     const validated_form = FormValidation(event.target)
@@ -34,8 +36,20 @@ export default function Registration() {
       body: validated_form.toString()
     })
       .then(res => {
-        console.log(res);
+        if (res.status == 400) {
+          alert("Akun telah terdaftar")
+        }
         
+        return res.json()
+
+      })
+      .then(data => {          
+
+          Object.keys(data).map(key => {
+            localStorage.setItem(key, data[key])
+          })
+
+          navigate("/login")
       })
   }
 
@@ -51,7 +65,7 @@ export default function Registration() {
                 <Field title="NIK ( Nomor Induk Kewarganegaraan )">
                   <Input type="number" name="nik" minLength="16" maxLength="16"/>
                 </Field>
-                <Field title="Nama Pengguna">
+                <Field title="Nama Lengkap">
                   <Input type="text" name="name" />
                 </Field>
                 <Field title="Email">
