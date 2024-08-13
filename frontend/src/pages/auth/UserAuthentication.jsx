@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 async function checkToken() {
   
   const access_token = localStorage.getItem("access_token");
-  // const refresh_token = localStorage.getItem("refresh_token")
+  const refresh_token = localStorage.getItem("refresh_token")
 
   if (!access_token && !refresh_token) return
   
@@ -19,15 +19,19 @@ async function checkToken() {
       token: access_token,
     })
   })
-    .then(res => console.log(res))
+    .then(res => {
+      if (res.status == 401) {
+        getToken(refresh_token)
+      }
+    })
 }
 
 
-async function getToken(password) {
-  await fetch("http://127.0.0.1:8000/api/verify/", {
+async function getToken(credentials) {
+  await fetch("http://127.0.0.1:8000/api/token/auth/", {
     method: 'post',
     body: {
-      token: access_token,
+      refresh_token: credentials,
     }
   })
     .then(res => console.log(res))
