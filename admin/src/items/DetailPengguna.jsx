@@ -6,41 +6,33 @@ function DetailPengguna() {
   const { user } = location.state || {};
 
   if (!user) {
-    return <p>Data pengguna tidak ditemukan.</p>;
+    return <p className="text-center text-red-500 font-semibold">Data pengguna tidak ditemukan.</p>;
   }
 
   return (
-    <div className="min-w-full">
-      <header className="bg-blue-800 text-white text-center py-3 mb-4">
-        <h2 className="text-xl font-bold">DETAIL PENGGUNA</h2>
+    <div className="min-w-full bg-gray-400">
+      <header className="bg-blue-800 text-white text-center py-4 mb-6 shadow-md rounded-b-lg">
+        <h2 className="text-2xl font-bold">DETAIL PENGGUNA</h2>
       </header>
-      <div className="flex p-6">
+      <div className="max-w-3xl mx-auto p-6 bg-gray-800 shadow-lg rounded-lg flex items-center space-x-6">
         <img
-          src="https://via.placeholder.com/200" 
+          src="https://via.placeholder.com/200"
           alt={user.pengguna}
-          className="w-50 h-50 object-cover mr-6"
+          className="w-32 h-32 object-cover rounded-full border border-gray-300"
         />
-        <div>
-          <div className="flex mb-3">
-            <p className="text-xl font-bold text-gray-800 w-40 uppercase">NAMA:</p>
-            <p className="text-xl font-bold text-gray-800 uppercase">{user.pengguna}</p>
-          </div>
-          <div className="flex mb-3">
-            <p className="text-xl font-bold text-gray-800 w-40 uppercase">STATUS:</p>
-            <p className="text-xl font-bold text-gray-800 uppercase">{user.status}</p>
-          </div>
-          <div className="flex mb-3">
-            <p className="text-xl font-bold text-gray-800 w-40 uppercase">ALAMAT:</p>
-            <p className="text-xl font-bold text-gray-800 uppercase">{user.alamat}</p>
-          </div>
-          <div className="flex mb-3">
-            <p className="text-xl font-bold text-gray-800 w-40 uppercase">USIA:</p>
-            <p className="text-xl font-bold text-gray-800 uppercase">{user.usia}</p>
-          </div>
-          <div className="flex mb-3">
-            <p className="text-xl font-bold text-gray-800 w-40 uppercase">PEKERJAAN:</p>
-            <p className="text-xl font-bold text-gray-800 uppercase">{user.pekerjaan}</p>
-          </div>
+        <div className="flex flex-col space-y-4 w-full">
+          {[
+            { label: 'NAMA', value: user.pengguna },
+            { label: 'STATUS', value: user.status },
+            { label: 'ALAMAT', value: user.alamat },
+            { label: 'USIA', value: user.usia },
+            { label: 'PEKERJAAN', value: user.pekerjaan }
+          ].map((item, index) => (
+            <div key={index} className="flex items-center border-b border-gray-300 py-2">
+              <p className="text-lg font-semibold text-white w-40 flex-shrink-0 uppercase pr-4">{item.label}:</p>
+              <p className="text-lg font-medium text-white flex-1">{item.value}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
