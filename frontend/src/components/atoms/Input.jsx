@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Input({type, name="", placeholder="", maxLength="", minLength="", required=true}) {
+export default function Input({type, name="", placeholder="", maxLength="", minLength="", required=true, value=""}) {
   return (
     <input
       type={type}
@@ -10,6 +10,7 @@ export default function Input({type, name="", placeholder="", maxLength="", minL
       maxLength={maxLength}
       minLength={minLength}
       required={required}
+      defaultValue={value}
     />
   );
 }
