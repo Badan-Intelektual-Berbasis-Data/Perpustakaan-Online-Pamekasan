@@ -1,12 +1,18 @@
 from rest_framework.status import (
     HTTP_201_CREATED,
-    HTTP_400_BAD_REQUEST
+    HTTP_400_BAD_REQUEST,
+    HTTP_404_NOT_FOUND
 )
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import User
-from .serializers import UserSerializer
+from .serializers import (
+    UserSerializer,
+    BookmarkSerializer
+)
+from .models import (
+    User, Bookmark
+)
 
 
 
@@ -35,3 +41,26 @@ class UserView(ModelViewSet):
 
         return Response(token_data, status=HTTP_201_CREATED)
 
+
+
+class BookmarkView(ModelViewSet):
+    queryset = Bookmark.objects.all()
+    serializer_class = BookmarkSerializer
+
+
+    def retrieve(self, req, pk=None):
+        data = req.POST
+
+        if not self.get_serializer(data=data).is_valid() or not data:
+            return Response(status=HTTP_400_BAD_REQUEST)
+        
+
+        if pk:
+            query = self.queryset.filter(id=pk)
+
+            if len(query) == 0:
+                return Response(status=HTTP_404_NOT_FOUND)
+            
+            return Response(query[0])
+
+        return Response(status=HTTP_400_BAD_REQUEST)
