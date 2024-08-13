@@ -1,46 +1,55 @@
 // Daftar.jsx
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import StackLayout from "../../layouts/StackLayout";
 import Field from "../../components/molecules/Field";
 import Input from "../../components/atoms/Input";
 import Select from "../../components/atoms/Select";
+import FormValidation from "../../../utils/FormValidation";
 
 export default function Registration() {
-
-
-  const status_options = [
-    "Member",
-    "Pengunjung"
-  ]
 
   const gender_options = [
     "Laki-Laki",
     "Perempuan"
   ]
+  const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    const form = new FormData(event.target)
-    
-    const data = new URLSearchParams()
 
-    for (let [key, value] of form.entries()) {
-      data.append(key, value)
+
+    const validated_form = FormValidation(event.target)
+
+    if (!validated_form) {
+      return
     }
 
-    await fetch('http://127.0.0.1/api/user/', {
+
+    await fetch('http://127.0.0.1:8000/api/users/user/', {
       method: 'post',
       headers: {
         'Content-Type' : 'application/x-www-form-urlencoded'
       },
-      body: data.toString()
+      body: validated_form.toString()
     })
       .then(res => {
-        console.log(res);
+        if (res.status == 400) {
+          alert("Akun telah terdaftar")
+        }
         
+        return res.json()
+
+      })
+      .then(data => {          
+
+          Object.keys(data).map(key => {
+            localStorage.setItem(key, data[key])
+          })
+
+          navigate("/login")
       })
   }
 
@@ -54,10 +63,10 @@ export default function Registration() {
             <div className="bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
               <form className="space-y-12" onSubmit={handleSubmit}>
                 <Field title="NIK ( Nomor Induk Kewarganegaraan )">
-                  <Input type="text" name="username" />
+                  <Input type="number" name="nik" minLength="16" maxLength="16"/>
                 </Field>
-                <Field title="Nama Pengguna">
-                  <Input type="text" name="username" />
+                <Field title="Nama Lengkap">
+                  <Input type="text" name="name" />
                 </Field>
                 <Field title="Email">
                   <Input type="email" name="email" />
@@ -68,17 +77,20 @@ export default function Registration() {
                 <Field title="Konfirmasi Password">
                   <Input type="password" name="confirm_password" placeholder="Ulangi password" />
                 </Field>
-                <Field title="Tanggal Lahir">
-                  <Input type="date" name="birth" />
+                <Field title="Alamat">
+                  <Input type="type" name="address" placeholder="Alamat" />
                 </Field>
                 <Field title="Umur">
-                  <Input type="number" name="birth" />
+                  <Input type="number" name="age" />
+                </Field>
+                <Field title="Nomor Telepon">
+                  <Input type="number" name="phone" />
                 </Field>
                 <Field title="Gender">
                   <Select options={gender_options} name="gender"/>
                 </Field>
-                <Field title="Status">
-                  <Select options={status_options} name="status"/>
+                <Field title="Foto Profil">
+                  <Input type="file" accept="image/*" required={false}/>
                 </Field>
                 <button
                   type="submit"

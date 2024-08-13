@@ -19,7 +19,6 @@ export default function Routers() {
           <Route path="search/" element={<Search />} />
           <Route path="detail/:name" element={<Detail />} />
           <Route path="information/" element={<Information />} />
-        </Route>
         <Route
           path="profile/"
           element={
@@ -28,6 +27,7 @@ export default function Routers() {
             </UserAuthentication>
           }
         />
+        </Route>
         <Route
           path="login/"
           element={
