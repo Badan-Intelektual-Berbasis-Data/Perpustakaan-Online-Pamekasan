@@ -22,25 +22,32 @@ async function checkToken() {
     .then(res => {
       // Access token is expired
       if (res.status == 401) {
+        console.log("hello");
+        
         if (!getToken(refresh_token)) return false
 
         return true
       }
+
+      return false
     })
 }
 
 
 async function getToken(credentials) {
-  return await fetch("http://127.0.0.1:8000/api/token/auth/", {
+  return await fetch("http://127.0.0.1:8000/api/token/refresh/", {
     method: 'post',
+    headers: {
+      'Content-Type' : 'application/json'
+    },
     body: JSON.stringify({
-      refresh_token: credentials,
+      refresh: credentials,
     })
   })
     .then(res => {
-      if (res.status == 401) return null
+      if (res.status == 200) return res.json
 
-      return res.json()
+      return 
     })
     .then(data => data ? data.token : false)
 }
