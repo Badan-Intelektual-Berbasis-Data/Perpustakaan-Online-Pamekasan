@@ -1,16 +1,61 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // eslint-disable-next-line no-unused-vars
-import { faSearch, faBookmark, faBook, faUserPlus, faSignInAlt, faBars, faTimes, faBell } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import {
+  faSearch,
+  faBookmark,
+  faBook,
+  faUserPlus,
+  faSignInAlt,
+  faBars,
+  faTimes,
+  faBell,
+} from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(0);
+
+
+  const backdropVariants = {
+
+    hidden : {
+        visibility: 'hidden', 
+        opacity: 0, 
+        transition: {
+          duration: 0.3, 
+          ease: "easeIn"
+        }
+      },
+
+  
+      visible : {
+        visibility: 'visible', 
+        opacity: 1, 
+        transition: {
+          duration: 0.3, 
+          ease: "easeOut"
+        }
+      }
+
+  }
 
   return (
     <nav className="bg-gray-600 p-4">
-      <div className="container mx-auto flex justify-between items-center">
+      {/* Search backdrop */}
+        <motion.div
+          initial="hidden"
+          animate={searchOpen ? 'visible' : 'hidden'}
+          variants={backdropVariants}
+          className="fixed top-0 left-0 min-h-screen w-full bg-black z-20 bg-opacity-75"
+          onClick={() => setSearchOpen(false)}
+        ></motion.div>
+
+      <div className="container mx-auto flex justify-between items-center relative">
         <div className="flex items-center">
           <FontAwesomeIcon icon={faBook} className="h-10 w-10 text-white" />
           <div className="ml-2">
@@ -19,28 +64,133 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className='flex items-center gap-x-12 text-white'>
-          <Link to="/">Beranda</Link>
-          <Link to="information">Informasi</Link>
-        </div>
+        <AnimatePresence>
+          {!searchOpen ? (
+            <div className="flex items-center gap-x-12 text-white">
+              <Link to="/">Beranda</Link>
+              <Link to="information">Informasi</Link>
+            </div>
+          ) : (
+            <motion.div
+              initial="visible"
+              animate={searchOpen ? "visible" : 'hidden'}
+              variants={backdropVariants}
+              className="bg-white absolute z-30 top-0 left-0 w-full rounded-md"
+            >
+              <div
+                className="flex gap-x-20 items-center"
+                onBlur={() => setSearchOpen(false)}
+              >
+                <div className="flex items-center">
+                  <FontAwesomeIcon
+                    icon={faBook}
+                    className="h-10 w-10 text-gray-600"
+                  />
+                  <div className="ml-2">
+                    <h1 className="text-black text-xl font-bold">
+                      Perpustakaan Umum
+                    </h1>
+                    <span className="text-gray-500 text-sm">Pamekasan</span>
+                  </div>
+                </div>
 
+                <div className="flex-1 flex items-center max-w-[800px] bg-gray-200 rounded-md px-4">
+                  <FontAwesomeIcon icon={faSearch} className="text-gray-500" />
+                  <input
+                    type="text"
+                    className="border-none outline-none w-full p-2 bg-transparent"
+                    placeholder="Cari buku"
+                  />
+                </div>
+
+                <Link to="/profile">
+                  <div className="rounded-full">
+                    <img
+                      className="h-8 w-8 rounded-full"
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                  </div>
+                </Link>
+              </div>
+
+              <div className="flex gap-x-20 px-16 py-8 items-center">
+                <div className="flex flex-col items-start gap-y-[20px]">
+                  <button
+                    onClick={() => setSelectedOption(0)}
+                    className={`${
+                      selectedOption == 0 ? "font-medium" : "font-normal"
+                    }`}
+                  >
+                    Trending
+                  </button>
+                  <button
+                    onClick={() => setSelectedOption(1)}
+                    className={`${
+                      selectedOption == 1 ? "font-medium" : "font-normal"
+                    }`}
+                  >
+                    Manga
+                  </button>
+                  <button
+                    onClick={() => setSelectedOption(2)}
+                    className={`${
+                      selectedOption == 2 ? "font-medium" : "font-normal"
+                    }`}
+                  >
+                    Ilmu Pengetahuan
+                  </button>
+                </div>
+
+                {/* Search Result */}
+                <div className="flex-1 flex flex-col gap-y-[20px] text-gray-700 text-sm">
+                  <button className="flex justify-between items-center">
+                    <h3>Jujutsu Kaisen - Vol 1</h3>
+                    <h3>Gege Akutami</h3>
+                  </button>
+                  <button className="flex justify-between items-center">
+                    <h3>Jujutsu Kaisen - Vol 1</h3>
+                    <h3>Gege Akutami</h3>
+                  </button>
+                  <button className="flex justify-between items-center">
+                    <h3>Jujutsu Kaisen - Vol 1</h3>
+                    <h3>Gege Akutami</h3>
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <div className="hidden md:flex items-center gap-x-6 ">
-          <Link to="/search">
-            <FontAwesomeIcon icon={faSearch} className="h-5 w-5 text-gray-300 hover:text-white" />
-          </Link>
+          <button onClick={() => setSearchOpen(true)}>
+            <FontAwesomeIcon
+              icon={faSearch}
+              className="h-5 w-5 text-gray-300 hover:text-white"
+            />
+          </button>
           <Link to="/simpan">
-            <FontAwesomeIcon icon={faBell} className="h-5 w-5 text-gray-300 hover:text-white" />
+            <FontAwesomeIcon
+              icon={faBell}
+              className="h-5 w-5 text-gray-300 hover:text-white"
+            />
           </Link>
           <Link to="/profile">
-            <div className='rounded-full'>
-            <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />            
+            <div className="rounded-full">
+              <img
+                className="h-8 w-8 rounded-full"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
             </div>
           </Link>
         </div>
         <div className="md:hidden flex items-center">
           <button onClick={() => setMenuOpen(!menuOpen)} className="text-white">
-            <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} className="h-6 w-6" />
+            <FontAwesomeIcon
+              icon={menuOpen ? faTimes : faBars}
+              className="h-6 w-6"
+            />
           </button>
         </div>
       </div>
@@ -49,24 +199,42 @@ export default function Navbar() {
           <Link to="/" className="block text-gray-300 hover:text-white mt-2">
             Beranda
           </Link>
-          <Link to="/kunjungan" className="block text-gray-300 hover:text-white mt-2">
+          <Link
+            to="/kunjungan"
+            className="block text-gray-300 hover:text-white mt-2"
+          >
             Kunjungan
           </Link>
-          <Link to="/information" className="block text-gray-300 hover:text-white mt-2">
+          <Link
+            to="/information"
+            className="block text-gray-300 hover:text-white mt-2"
+          >
             Informasi
           </Link>
-          <Link to="/berita" className="block text-gray-300 hover:text-white mt-2">
+          <Link
+            to="/berita"
+            className="block text-gray-300 hover:text-white mt-2"
+          >
             Berita
           </Link>
-          <Link to="/bantuan" className="block text-gray-300 hover:text-white mt-2">
+          <Link
+            to="/bantuan"
+            className="block text-gray-300 hover:text-white mt-2"
+          >
             Bantuan
           </Link>
           <div className="flex items-center space-x-4 mt-4">
             <Link to="/search">
-              <FontAwesomeIcon icon={faSearch} className="h-5 w-5 text-gray-300 hover:text-white" />
+              <FontAwesomeIcon
+                icon={faSearch}
+                className="h-5 w-5 text-gray-300 hover:text-white"
+              />
             </Link>
             <Link to="/simpan">
-              <FontAwesomeIcon icon={faBookmark} className="h-5 w-5 text-gray-300 hover:text-white" />
+              <FontAwesomeIcon
+                icon={faBookmark}
+                className="h-5 w-5 text-gray-300 hover:text-white"
+              />
             </Link>
             <Link to="/akun">
               <button className="bg-red-500 text-white p-2 rounded flex items-center">
