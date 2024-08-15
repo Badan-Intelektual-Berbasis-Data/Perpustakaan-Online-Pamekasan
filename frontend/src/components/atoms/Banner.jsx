@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
+import React, { act, useEffect, useState } from "react";
 import { AnimatePresence, motion, transform } from "framer-motion";
 import Container from "../molecules/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,7 +14,7 @@ export default function Banner() {
 
   const [bannerData, setBannerData] = useState([
     {
-      id: 0,
+      id: null,
       author_name: "",
       category_name: [],
       genre_name: [],
@@ -27,7 +27,7 @@ export default function Banner() {
       author: 0,
       category: [],
       genre: [],
-    }
+    },
   ]);
 
   const textVariants = {
@@ -68,6 +68,8 @@ export default function Banner() {
 
   // Direction right => value increases
   const updateBanner = (direction) => {
+    if (!bannerData[activeBanner].id) return;
+
     setActiveBanner((value) => {
       if (value >= 2) {
         return 0;
@@ -86,7 +88,7 @@ export default function Banner() {
     const getData = async () => {
       await fetch("http://127.0.0.1:8000/api/books/book?mixed=True")
         .then((res) => res.json())
-        .then((data) => data ? setBannerData(data) : '');
+        .then((data) => setBannerData(data));
     };
 
     getData();
@@ -97,7 +99,13 @@ export default function Banner() {
   return (
     <div className="relative w-full flex flex-col h-[70dvh] justify-center overflow-hidden text-white">
       {/* background gradient */}
-      <div className="absolute w-full h-full bg-black bg-opacity-75 -z-20"></div>
+      <div
+        className={`absolute w-full h-full bg-black bg-opacity-75 -z-20 ${
+          bannerData[activeBanner].backdrop_url
+            ? ""
+            : "animate-pulse duration-75 bg-gray-600"
+        }`}
+      ></div>
       {/* background */}
       <AnimatePresence>
         <motion.img
@@ -117,15 +125,17 @@ export default function Banner() {
       {/* content */}
       <Container className="flex">
         {/* previous slide */}
-        <button
-          onClick={() => updateBanner("left")}
-          className="h-full w-16 absolute left-0 top-0 flex justify-center items-center"
-        >
-          <FontAwesomeIcon
-            icon={faChevronLeft}
-            className="text-white text-3xl hover:cursor-pointer"
-          />
-        </button>
+        {bannerData[activeBanner].id && (
+          <button
+            onClick={() => updateBanner("left")}
+            className="h-full w-16 absolute left-0 top-0 flex justify-center items-center"
+          >
+            <FontAwesomeIcon
+              icon={faChevronLeft}
+              className="text-white text-3xl hover:cursor-pointer"
+            />
+          </button>
+        )}
 
         <div>
           <motion.h1
@@ -134,7 +144,7 @@ export default function Banner() {
             exit="hidden"
             key={bannerData[activeBanner].title}
             variants={textVariants}
-            className="text-5xl font-bold"
+            className={`text-5xl font-bold ${bannerData[activeBanner].id ? '' : 'w-[300px] h-[50px] bg-gray-600 animate-pulse'}`}
           >
             {bannerData[activeBanner].title}
           </motion.h1>
@@ -149,7 +159,9 @@ export default function Banner() {
             key={bannerData[activeBanner].id}
             className="line-clamp-4 w-[50ch] mt-4 leading-relaxed"
           >
-            {bannerData[activeBanner].desc ? bannerData[activeBanner].desc : "Tidak ada deskripsi tersedia"}
+            {bannerData[activeBanner].desc
+              ? bannerData[activeBanner].desc
+              : "Tidak ada deskripsi tersedia"}
           </motion.p>
           <div className="flex gap-x-4 mt-12">
             <button className="w-[300px] bg-blue-500 py-2 px-4 text-lg font-medium text-white">
@@ -162,38 +174,42 @@ export default function Banner() {
 
           {/* slider progress */}
 
-          <div className="flex mt-20 w-1/4 gap-x-2 max-w-[105px]">
-            <button
-              onClick={() => setActiveBanner(0)}
-              className={`h-[10px] rounded-md transition-all ease-in ${
-                activeBanner == 0 ? "bg-blue-500 w-3/4" : "bg-gray-500 w-1/4"
-              }`}
-            ></button>
-            <button
-              onClick={() => setActiveBanner(1)}
-              className={`h-[10px] rounded-md transition-all ease-in ${
-                activeBanner == 1 ? "bg-blue-500 w-3/4" : "bg-gray-500 w-1/4"
-              }`}
-            ></button>
-            <button
-              onClick={() => setActiveBanner(2)}
-              className={`h-[10px] rounded-md transition-all ease-in ${
-                activeBanner == 2 ? "bg-blue-500 w-3/4" : "bg-gray-500 w-1/4"
-              }`}
-            ></button>
-          </div>
+          {bannerData[activeBanner].id && (
+            <div className="flex mt-20 w-1/4 gap-x-2 max-w-[105px]">
+              <button
+                onClick={() => setActiveBanner(0)}
+                className={`h-[10px] rounded-md transition-all ease-in ${
+                  activeBanner == 0 ? "bg-blue-500 w-3/4" : "bg-gray-500 w-1/4"
+                }`}
+              ></button>
+              <button
+                onClick={() => setActiveBanner(1)}
+                className={`h-[10px] rounded-md transition-all ease-in ${
+                  activeBanner == 1 ? "bg-blue-500 w-3/4" : "bg-gray-500 w-1/4"
+                }`}
+              ></button>
+              <button
+                onClick={() => setActiveBanner(2)}
+                className={`h-[10px] rounded-md transition-all ease-in ${
+                  activeBanner == 2 ? "bg-blue-500 w-3/4" : "bg-gray-500 w-1/4"
+                }`}
+              ></button>
+            </div>
+          )}
         </div>
 
         {/* next slide */}
-        <button
-          onClick={() => updateBanner("right")}
-          className="h-full w-16 absolute right-0 top-0 flex justify-center items-center"
-        >
-          <FontAwesomeIcon
-            icon={faChevronRight}
-            className="text-white text-3xl hover:cursor-pointer"
-          />
-        </button>
+        {bannerData[activeBanner].id && (
+          <button
+            onClick={() => updateBanner("right")}
+            className="h-full w-16 absolute right-0 top-0 flex justify-center items-center"
+          >
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              className="text-white text-3xl hover:cursor-pointer"
+            />
+          </button>
+        )}
       </Container>
     </div>
   );
