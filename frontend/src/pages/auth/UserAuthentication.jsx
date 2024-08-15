@@ -20,8 +20,11 @@ async function checkToken() {
     })
   })
     .then(res => {
+      // Access token is expired
       if (res.status == 401) {
-        getToken(refresh_token)
+        if (!getToken(refresh_token)) return false
+
+        return true
       }
     })
 }
@@ -34,8 +37,12 @@ async function getToken(credentials) {
       refresh_token: credentials,
     })
   })
-    .then(res => res.json())
-    .then(data => data.token)
+    .then(res => {
+      if (res.status == 401) return null
+
+      return res.json()
+    })
+    .then(data => data ? data.token : false)
 }
 
 
@@ -46,14 +53,14 @@ export default function UserAuthentication({ children }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (location.pathname == "/login") {
-      // if (localStorage.getItem("access_token")) {
-      //   navigate("/profile")
-      // }
-    } else if (location.pathname == "/register") {
-      navigate('/register')
+    if (location.pathname == "/login" && location.pathname == "/register") {
+      if (checkToken()) {
+        navigate("/profile")
+      }
     } else if (location.pathname == "/profile") {
-      checkToken()
+      if (!checkToken()) {
+        navigate("/login")
+      }
     }
   }, []);
 

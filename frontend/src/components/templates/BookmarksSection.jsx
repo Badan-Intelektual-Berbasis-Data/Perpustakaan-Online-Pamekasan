@@ -19,7 +19,7 @@ export default function BookmarksSection() {
     return async () => {
       await fetch("http://127.0.0.1:8000/api/users/bookmark/1/", {
         headers: {
-          'Authorization' : `Bearer ${access_token}`
+          'Authorization' : `JWT ${access_token}`
         }
       })
         .then((res) => res.json())
