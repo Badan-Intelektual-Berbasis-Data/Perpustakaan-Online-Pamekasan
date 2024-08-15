@@ -17,9 +17,27 @@ class UserSerializer(ModelSerializer):
         model = User
 
 
+    def create(self, validated_data):
+        
+        password = validated_data.pop("password")
+
+        _, _ = validated_data.pop("groups"), validated_data.pop("user_permissions")
+
+
+        user = User.objects.create(**validated_data)
+
+        user.set_password(password)
+        user.save()
+
+        return user
+
+
+
+
+
 class BookmarkSerializer(ModelSerializer):
 
-    books = BookDisplaySerializer(many=True)
+    # books = BookDisplaySerializer(many=True)
     class Meta:
         fields = '__all__'
         model = Bookmark

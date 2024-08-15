@@ -18,7 +18,7 @@ class UserManager(BaseUserManager):
             raise ValueError(f"Password must be used!")
 
 
-        extra_fields.setdefault("is_user", True)
+        extra_fields.setdefault("is_admin", False)
         email = self.normalize_email(_(email))
         user = self.model(name=name, age=age, email=email, phone=phone, address=address, **extra_fields)
         user.set_password(password)
@@ -27,10 +27,9 @@ class UserManager(BaseUserManager):
         return user
 
 
-    def create_adminuser(self, name, age, email, phone, address, password, **extra_fields):
-        extra_fields.setdefault("is_admin", True)
+    def create_adminuser(self, name, age, email, phone, address, password):
 
-        return self.create_user(name, age, email, phone, address, password, **extra_fields)
+        return self.create_user(name, age, email, phone, address, password, is_admin=True)
 
 
 

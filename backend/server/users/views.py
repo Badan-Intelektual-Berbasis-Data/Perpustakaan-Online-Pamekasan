@@ -1,11 +1,15 @@
+from django.contrib.auth import get_user_model
 from rest_framework.status import (
     HTTP_201_CREATED,
     HTTP_400_BAD_REQUEST,
-    HTTP_403_FORBIDDEN
+    HTTP_403_FORBIDDEN,
+    HTTP_404_NOT_FOUND
 )
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.decorators import action
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import IsAuthenticated
 from .serializers import (
     UserSerializer,
     BookmarkSerializer
@@ -19,6 +23,24 @@ from .models import (
 class UserView(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+    @action(methods=["post"], detail=False, url_path='login')
+    def login(self, req):
+        
+        data = req.POST
+
+
+        user = get_user_model().objects.filter(email=data.get("email"))
+
+        if not user:
+            return Response(status=HTTP_404_NOT_FOUND)
+        
+        # Authenticate request with it's credentials
+
+        print(user[0].check_password(data["password"]))
+
+        return Response()
 
 
 
@@ -46,7 +68,9 @@ class UserView(ModelViewSet):
 class BookmarkView(ModelViewSet):
     queryset = Bookmark.objects.all()
     serializer_class = BookmarkSerializer
+    permission_classes = (IsAuthenticated,)
 
 
     def list(self, _):
         return Response(status=HTTP_403_FORBIDDEN)
+    

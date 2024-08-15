@@ -7,10 +7,10 @@ async function checkToken() {
   const access_token = localStorage.getItem("access_token");
   const refresh_token = localStorage.getItem("refresh_token")
 
-  if (!access_token && !refresh_token) return
+  if (!access_token && !refresh_token) return false
   
 
-  await fetch("http://127.0.0.1:8000/api/token/verify/", {
+  return await fetch("http://127.0.0.1:8000/api/token/verify/", {
     method: 'post',
     headers: {
       'Content-Type' : 'application/json'
@@ -28,13 +28,14 @@ async function checkToken() {
 
 
 async function getToken(credentials) {
-  await fetch("http://127.0.0.1:8000/api/token/auth/", {
+  return await fetch("http://127.0.0.1:8000/api/token/auth/", {
     method: 'post',
-    body: {
+    body: JSON.stringify({
       refresh_token: credentials,
-    }
+    })
   })
-    .then(res => console.log(res))
+    .then(res => res.json())
+    .then(data => data.token)
 }
 
 
@@ -46,9 +47,9 @@ export default function UserAuthentication({ children }) {
 
   useEffect(() => {
     if (location.pathname == "/login") {
-      if (localStorage.getItem("access_token")) {
-        navigate("/profile")
-      }
+      // if (localStorage.getItem("access_token")) {
+      //   navigate("/profile")
+      // }
     } else if (location.pathname == "/register") {
       navigate('/register')
     } else if (location.pathname == "/profile") {

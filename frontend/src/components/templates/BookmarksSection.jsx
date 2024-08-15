@@ -13,10 +13,17 @@ export default function BookmarksSection() {
   });
 
   useEffect(() => {
+    const access_token = localStorage.getItem("access_token")
+    console.log(`Bearer ${access_token}`)
+
     return async () => {
-      await fetch("http://127.0.0.1:8000/api/users/bookmark/1/")
+      await fetch("http://127.0.0.1:8000/api/users/bookmark/1/", {
+        headers: {
+          'Authorization' : `Bearer ${access_token}`
+        }
+      })
         .then((res) => res.json())
-        .then((data) => setData(data));
+        .then((data) => console.log(data))
     };
   }, []);
 

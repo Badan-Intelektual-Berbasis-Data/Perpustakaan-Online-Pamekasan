@@ -27,7 +27,7 @@ export default function Banner() {
       author: 0,
       category: [],
       genre: [],
-    },
+    }
   ]);
 
   const textVariants = {
@@ -86,7 +86,7 @@ export default function Banner() {
     const getData = async () => {
       await fetch("http://127.0.0.1:8000/api/books/book?mixed=True")
         .then((res) => res.json())
-        .then((data) => setBannerData(data));
+        .then((data) => data ? setBannerData(data) : '');
     };
 
     getData();

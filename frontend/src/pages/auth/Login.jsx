@@ -1,9 +1,50 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import StackLayout from "../../layouts/StackLayout";
+import FormValidation from "../../../utils/FormValidation";
+import Field from "../../components/molecules/Field";
+import Input from "../../components/atoms/Input";
+
 
 export default function Login() {
+
+  const navigate = useNavigate()
+
+  const loginHandle = async (e) => {
+    e.preventDefault()
+
+    const validated_form = FormValidation(e.target)
+
+    if (!validated_form) return
+
+    await fetch('http://127.0.0.1:8000/api/users/user/login/', {
+      method: 'post',
+      headers: {
+        'Content-Type' : 'application/x-www-form-urlencoded'
+      },
+      body: validated_form.toString()
+
+    })
+      .then(res => {
+        if (res.status == 404) {
+          alert("Pengguna tidak ditemukan")
+        }
+
+        return res.json()
+      })
+        .then(data => {          
+
+          console.log(data)
+
+          Object.keys(data).map(key => {
+            localStorage.setItem(key, data[key])
+          })
+
+          navigate("/profile")
+      })
+  }
+
   return (
     <StackLayout>
       <div className="bg-gray-100 min-h-screen">
@@ -16,36 +57,14 @@ export default function Login() {
               <h4 className="text-2xl font-semibold mb-6 text-gray-800">
                 Login
               </h4>
-              <form>
-                <div className="mb-6">
-                  <label
-                    htmlFor="email"
-                    className="block text-gray-700 text-sm font-medium mb-2"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    placeholder="Masukkan Email Anda"
-                  />
-                </div>
-                <div className="mb-6">
-                  <label
-                    htmlFor="password"
-                    className="block text-gray-700 text-sm font-medium mb-2"
-                  >
-                    Kata Sandi
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    placeholder="Masukkan Kata Sandi Anda"
-                  />
-                </div>
-                <div className="flex items-center mb-6">
+              <form onSubmit={loginHandle} className="space-y-8">
+                <Field title="Email">
+                  <Input name="email" type="email"/>
+                </Field>
+                <Field title="Password">
+                  <Input type="password" name="password"/>
+                </Field>
+                <div className="flex items-center">
                   <input type="checkbox" id="rememberMe" className="mr-2" />
                   <label
                     htmlFor="rememberMe"
@@ -54,7 +73,7 @@ export default function Login() {
                     Ingat Aku
                   </label>
                 </div>
-                <div className="mb-6 text-right">
+                <div className="text-right">
                   <Link
                     to="/lupa-password"
                     className="text-blue-600 hover:underline"
@@ -68,7 +87,7 @@ export default function Login() {
                 >
                   Masuk
                 </button>
-                <div className="mt-6 text-center text-gray-700">
+                <div className="text-center text-gray-700">
                   Belum punya akun?{" "}
                   <Link to="/register" className="text-blue-600 hover:underline">
                     Daftar
