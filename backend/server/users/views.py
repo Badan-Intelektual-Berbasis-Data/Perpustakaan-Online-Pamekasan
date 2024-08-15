@@ -1,9 +1,10 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 from rest_framework.status import (
     HTTP_201_CREATED,
     HTTP_400_BAD_REQUEST,
     HTTP_403_FORBIDDEN,
-    HTTP_404_NOT_FOUND
+    HTTP_404_NOT_FOUND,
+    HTTP_401_UNAUTHORIZED
 )
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
@@ -38,9 +39,19 @@ class UserView(ModelViewSet):
         
         # Authenticate request with it's credentials
 
-        print(user[0].check_password(data["password"]))
+        auth = authenticate(req, email=data["email"], password=data["password"])
 
-        return Response()
+        if not auth:
+            return Response(status=HTTP_401_UNAUTHORIZED)
+        
+        refresh_token = RefreshToken.for_user(auth)
+
+        payload = {
+            "refresh_token" : str(refresh_token),
+            "access_token" : str(refresh_token.access_token)
+        }
+
+        return Response(payload)
 
 
 

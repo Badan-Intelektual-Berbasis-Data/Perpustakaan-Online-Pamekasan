@@ -52,9 +52,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.name
 
 
-    USERNAME_FIELD = "name"
+    USERNAME_FIELD = "email"
  
-    REQUIRED_FIELDS = ["age", "email", "phone", "address", "nik"]
+    REQUIRED_FIELDS = ["age", "name", "phone", "address", "nik"]
 
 
 class Bookmark(models.Model):

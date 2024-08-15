@@ -29,13 +29,14 @@ export default function Login() {
       .then(res => {
         if (res.status == 404) {
           alert("Pengguna tidak ditemukan")
+          return
         }
 
         return res.json()
       })
         .then(data => {          
 
-          console.log(data)
+          if (!data) return
 
           Object.keys(data).map(key => {
             localStorage.setItem(key, data[key])

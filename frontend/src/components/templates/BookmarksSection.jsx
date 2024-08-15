@@ -3,7 +3,7 @@ import Card from "../atoms/Card";
 
 export default function BookmarksSection() {
   const [data, setData] = useState({
-    id: 0,
+    id: null,
     books: [{
       title: '',
       author_name: '',
@@ -30,8 +30,11 @@ export default function BookmarksSection() {
   return (
     <div className="flex-1 px-24">
       <h1 className="text-2xl text-medium">Bookmark</h1>
-      <div className="grid grid-cols-4 gap-x-8 gap-y-12 mt-12">
-        {data.books.map((item, index) => (
+      <div className={`grid mt-12 h-full ${data.id ? 'grid-cols-4 gap-x-8 gap-y-12' : 'place-items-center'}`}>
+        {!data.id && 
+          <h1 className="text-xl text-gray-400">Anda belum menambah bookmark</h1>
+        }
+        {data.id && data.books.map((item, index) => (
           <Card
             key={index}
             className="translate-x-[-614px]"
