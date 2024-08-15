@@ -30,7 +30,7 @@ function Buku() {
         </thead>
         <tbody className="bg-gray-200">
           {books.map((book, index) => (
-            <tr key={index} className="border-t border-gray-300">
+            <tr key={index} className="border-t-4 border-gray-400">
               <td className="py-2 px-3 text-xs text-gray-800">{book.kode}</td>
               <td className="py-2 px-3 text-xs text-gray-800">{book.title}</td>
               <td className="py-2 px-3 text-xs text-gray-800">{book.year}</td>

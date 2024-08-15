@@ -12,6 +12,14 @@ function Sidebar() {
     navigate(path);
   };
 
+  const handleLogout = () => {
+    const confirmLogout = window.confirm('Apakah Anda yakin ingin keluar dari halaman admin?');
+    if (confirmLogout) {
+      localStorage.removeItem('isLoggedIn');
+      navigate('/');
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-600">
       <div className="flex flex-grow">
@@ -50,7 +58,10 @@ function Sidebar() {
             </button>
           </nav>
           <div className="mt-auto px-2 py-4">
-            <button className="flex items-center py-1 px-3 mb-1 text-base bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors w-full">
+            <button 
+              className="flex items-center py-1 px-3 mb-1 text-base bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors w-full"
+              onClick={handleLogout}
+            >
               <FontAwesomeIcon icon={faSignOutAlt} className="mr-1" />
               Keluar
             </button>

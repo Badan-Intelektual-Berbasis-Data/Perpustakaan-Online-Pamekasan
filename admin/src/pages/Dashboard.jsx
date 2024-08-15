@@ -6,21 +6,21 @@ function Dashboard() {
   return (
     <div className="p-1 max-w-4xl mx-auto mt-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-3">
-        <div className="bg-gray-600 shadow rounded-lg p-4 flex items-center">
+        <div className="bg-gray-800 shadow rounded-lg p-4 flex items-center">
           <FontAwesomeIcon icon={faBook} className="text-5xl text-green-500 mr-3" />
           <div>
             <h2 className="text-sm font-semibold text-white">BUKU</h2>
             <p className="mt-1 text-white text-lg">1.352</p>
           </div>
         </div>
-        <div className="bg-gray-600 shadow rounded-lg p-4 flex items-center">
+        <div className="bg-gray-800 shadow rounded-lg p-4 flex items-center">
           <FontAwesomeIcon icon={faUser} className="text-5xl text-yellow-500 mr-3" />
           <div>
             <h2 className="text-sm font-semibold text-white">PENGGUNA</h2>
             <p className="mt-1 text-white text-lg">352</p>
           </div>
         </div>
-        <div className="bg-gray-600 shadow rounded-lg p-4 flex items-center">
+        <div className="bg-gray-800 shadow rounded-lg p-4 flex items-center">
           <FontAwesomeIcon icon={faClipboardList} className="text-5xl text-red-500 mr-3" />
           <div>
             <h2 className="text-sm font-semibold text-white">PEMINJAMAN</h2>

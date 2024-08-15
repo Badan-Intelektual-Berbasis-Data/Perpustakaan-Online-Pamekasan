@@ -1,30 +1,37 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import RootLayout from './layouts/RootLayout';
-import Buku from './items/Buku';
-import DetailBuku from './items/DetailBuku';
-import Peminjam from './items/Peminjam';
-import Pengguna from './items/Pengguna';
-import Dashboard from './items/Dashboard';
+import Buku from './pages/Buku';
+import DetailBuku from './pages/DetailBuku';
+import Peminjam from './pages/Peminjam';
+import Pengguna from './pages/Pengguna';
+import Dashboard from './pages/Dashboard';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import DetailPengguna from './items/DetailPengguna';
-import DetailPeminjam from './items/DetailPeminjam';
+import DetailPengguna from './pages/DetailPengguna';
+import DetailPeminjam from './pages/DetailPeminjam';
+import Login from './pages/Login';  
+import Register from './pages/Register';
+import LupaPassword from './pages/LupaPassword';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/lupa-password' element={<LupaPassword />} />
         <Route path='/' element={<RootLayout />}>
-          <Route path="/" element={<Welcome />} />
+          <Route path="/welcome" element={<Welcome />} />
           <Route path='/dashboard' element={<Dashboard />}/>
           <Route path='/buku' element={<Buku />}/>
           <Route path='/peminjam' element={<Peminjam />}/>
           <Route path='/pengguna' element={<Pengguna />}/>
-          <Route path='detail-buku/' element={<DetailBuku />}/>
-          <Route path='detail-pengguna/' element={<DetailPengguna />}/>
-          <Route path='detail-peminjam/' element={<DetailPeminjam />}/>
+          <Route path='/detail-buku/' element={<DetailBuku />}/>
+          <Route path='/detail-pengguna/' element={<DetailPengguna />}/>
+          <Route path='/detail-peminjam/' element={<DetailPeminjam />}/>
         </Route>
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>
   );
@@ -42,6 +49,5 @@ function Welcome() {
     </div>
   );
 }
-
 
 export default App;

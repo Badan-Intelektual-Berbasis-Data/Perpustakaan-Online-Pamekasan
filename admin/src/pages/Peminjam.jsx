@@ -24,13 +24,13 @@ function Peminjam() {
             <th className="py-2 px-3 text-left text-xs font-semibold text-white">No</th>
             <th className="py-2 px-3 text-left text-xs font-semibold text-white">Nama Peminjam</th>
             <th className="py-2 px-3 text-left text-xs font-semibold text-white">Buku Yang Dipinjam</th>
-            <th className="py-2 px-3 text-left text-xs font-semibold text-white">Tanggal</th>
+            <th className="py-2 px-3 text-left text-xs font-semibold text-white">Tanggal Peminjaman</th>
             <th className="py-2 px-3 text-center text-xs font-semibold text-white">Detail</th>
           </tr>
         </thead>
         <tbody className="bg-gray-200">
           {books.map((book, index) => (
-            <tr key={index} className="border-t border-gray-300">
+            <tr key={index} className="border-t-4 border-gray-400">
               <td className="py-2 px-3 text-xs text-gray-800">{book.no}</td>
               <td className="py-2 px-3 text-xs text-gray-800">{book.peminjam}</td>
               <td className="py-2 px-3 text-xs text-gray-800">{book.bukupinjam}</td>

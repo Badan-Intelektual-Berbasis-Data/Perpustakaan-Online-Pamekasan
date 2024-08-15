@@ -28,7 +28,7 @@ function Pengguna() {
         </thead>
         <tbody className="bg-gray-200">
           {users.map((user, index) => (
-            <tr key={index} className="border-t border-gray-300">
+            <tr key={index} className="border-t-4 border-gray-400">
               <td className="py-2 px-3 text-xs text-gray-800">{user.nomor}</td>
               <td className="py-2 px-3 text-xs text-gray-800">{user.pengguna}</td>
               <td className={`py-2 px-3 text-xs ${user.status === 'Admin' ? 'text-green-500' : 'text-red-500'}`}>{user.status}</td>

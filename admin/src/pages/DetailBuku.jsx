@@ -22,6 +22,10 @@ function DetailBuku() {
         />
         <div className="flex flex-col justify-between">
           <div className="flex mb-4">
+            <p className="text-lg font-semibold text-white w-36">KODE:</p>
+            <p className="text-lg font-medium text-white flex-1">{book.kode}</p>
+          </div>
+          <div className="flex mb-4">
             <p className="text-lg font-semibold text-white w-36">NAMA BUKU:</p>
             <p className="text-lg font-medium text-white flex-1">{book.title}</p>
           </div>
@@ -36,6 +40,10 @@ function DetailBuku() {
           <div className="flex mb-4">
             <p className="text-lg font-semibold text-white w-36">JUMLAH STOK:</p>
             <p className="text-lg font-medium text-white flex-1">{book.stock}</p>
+          </div>
+          <div className="flex mb-4">
+            <p className="text-lg font-semibold text-white w-36">STATUS:</p>
+            <p className="text-lg font-medium text-white flex-1">{book.status}</p>
           </div>
         </div>
       </div>
