@@ -4,7 +4,6 @@ import Container from "../components/molecules/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Card from "../components/atoms/Card";
-import BackButton from "../components/atoms/BackButton";
 
 export default function Search() {
   return (

@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import StackLayout from "../layouts/StackLayout";
-import Field from "../components/molecules/Field";
-import Input from "../components/atoms/Input";
 import Container from "../components/molecules/Container";
-import Select from "../components/atoms/Select";
 import BiodataSection from "../components/templates/BiodataSection";
 import BookmarksSection from "../components/templates/BookmarksSection";
 
