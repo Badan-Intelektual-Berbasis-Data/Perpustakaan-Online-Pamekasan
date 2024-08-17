@@ -70,8 +70,6 @@ class Book(models.Model):
     date_published = models.DateField()
     date_registered = models.DateTimeField(auto_now_add=True, editable=False)
 
-    def __str__(self):
-        return self.title
 
 
 class bookShelf(models.Model):

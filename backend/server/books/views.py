@@ -95,6 +95,7 @@ class DetailView(ModelViewSet):
     serializer_class = BooksSerializer
 
 
+
     def create(self, req):
 
         data = BooksSerializer(data=req.POST)

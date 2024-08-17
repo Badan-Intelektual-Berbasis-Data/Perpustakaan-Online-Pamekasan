@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // eslint-disable-next-line no-unused-vars
 import {
@@ -19,41 +19,65 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(0);
-
+  const [categoriesData, setCategoriesData] = useState([]);
+  const [booksData, setBooksData] = useState([]);
 
   const backdropVariants = {
-
-    hidden : {
-        visibility: 'hidden', 
-        opacity: 0, 
-        transition: {
-          duration: 0.3, 
-          ease: "easeIn"
-        }
+    hidden: {
+      visibility: "hidden",
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeIn",
       },
+    },
 
-  
-      visible : {
-        visibility: 'visible', 
-        opacity: 1, 
-        transition: {
-          duration: 0.3, 
-          ease: "easeOut"
-        }
-      }
+    visible: {
+      visibility: "visible",
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    },
+  };
 
-  }
+  useEffect(() => {
+    return async () => {
+      await fetch("http://127.0.0.1:8000/api/books/category?mixed=true")
+        .then((res) => res.json())
+        .then((data) => setCategoriesData(data));
+
+    };
+  }, []);
+
+  useEffect(() => {    
+
+    return async () => {
+
+      if (!categoriesData[selectedOption]) return
+
+      console.log(selectedOption);
+      
+
+      await fetch(
+        `http://127.0.0.1:8000/api/books/book/?category=${categoriesData[selectedOption].id}`
+      )
+        .then((res) => res.json())
+        .then((data) => setBooksData(data));
+    };
+  }, [categoriesData, selectedOption]);
 
   return (
     <nav className="bg-gray-600 p-4">
       {/* Search backdrop */}
-        <motion.div
-          initial="hidden"
-          animate={searchOpen ? 'visible' : 'hidden'}
-          variants={backdropVariants}
-          className="fixed top-0 left-0 min-h-screen w-full bg-black z-20 bg-opacity-75"
-          onClick={() => setSearchOpen(false)}
-        ></motion.div>
+      <motion.div
+        initial="hidden"
+        animate={searchOpen ? "visible" : "hidden"}
+        variants={backdropVariants}
+        className="fixed top-0 left-0 min-h-screen w-full bg-black z-20 bg-opacity-75"
+        onClick={() => setSearchOpen(false)}
+      ></motion.div>
 
       <div className="container mx-auto flex justify-between items-center relative">
         <div className="flex items-center">
@@ -73,7 +97,7 @@ export default function Navbar() {
           ) : (
             <motion.div
               initial="visible"
-              animate={searchOpen ? "visible" : 'hidden'}
+              animate={searchOpen ? "visible" : "hidden"}
               variants={backdropVariants}
               className="bg-white absolute z-30 top-0 left-0 w-full rounded-md"
             >
@@ -98,7 +122,7 @@ export default function Navbar() {
                   <FontAwesomeIcon icon={faSearch} className="text-gray-500" />
                   <input
                     type="text"
-                    className="border-none outline-none w-full p-2 bg-transparent"
+                    className="border-none outline-none w-full p-2 bg-transparent text-sm"
                     placeholder="Cari buku"
                   />
                 </div>
@@ -114,48 +138,36 @@ export default function Navbar() {
                 </Link>
               </div>
 
-              <div className="flex gap-x-20 px-16 py-8 items-center">
+              <div className="flex gap-x-20 px-16 py-8 items-start">
                 <div className="flex flex-col items-start gap-y-[20px]">
-                  <button
-                    onClick={() => setSelectedOption(0)}
-                    className={`${
-                      selectedOption == 0 ? "font-medium" : "font-normal"
-                    }`}
-                  >
-                    Trending
-                  </button>
-                  <button
-                    onClick={() => setSelectedOption(1)}
-                    className={`${
-                      selectedOption == 1 ? "font-medium" : "font-normal"
-                    }`}
-                  >
-                    Manga
-                  </button>
-                  <button
-                    onClick={() => setSelectedOption(2)}
-                    className={`${
-                      selectedOption == 2 ? "font-medium" : "font-normal"
-                    }`}
-                  >
-                    Ilmu Pengetahuan
-                  </button>
+                  {categoriesData &&
+                    categoriesData.map((category, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setSelectedOption(index)}
+                        className={`${
+                          selectedOption == index
+                            ? "font-medium"
+                            : "font-normal"
+                        }`}
+                      >
+                        {category.name}
+                      </button>
+                    ))}
                 </div>
 
                 {/* Search Result */}
-                <div className="flex-1 flex flex-col gap-y-[20px] text-gray-700 text-sm">
-                  <button className="flex justify-between items-center">
-                    <h3>Jujutsu Kaisen - Vol 1</h3>
-                    <h3>Gege Akutami</h3>
-                  </button>
-                  <button className="flex justify-between items-center">
-                    <h3>Jujutsu Kaisen - Vol 1</h3>
-                    <h3>Gege Akutami</h3>
-                  </button>
-                  <button className="flex justify-between items-center">
-                    <h3>Jujutsu Kaisen - Vol 1</h3>
-                    <h3>Gege Akutami</h3>
-                  </button>
+                <div className="flex-1 flex flex-col gap-y-[20px] text-gray-700 text-base">
+                  {booksData &&
+                    booksData.map((book, index) => (
+                      <button
+                        key={index}
+                        className="flex justify-between items-center"
+                      >
+                        <h3>{book.title}</h3>
+                        <h3>{book.author_name}</h3>
+                      </button>
+                    ))}
                 </div>
               </div>
             </motion.div>
