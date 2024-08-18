@@ -144,7 +144,7 @@ export default function Banner() {
             exit="hidden"
             key={bannerData[activeBanner].title}
             variants={textVariants}
-            className={`text-5xl font-bold ${bannerData[activeBanner].id ? '' : 'w-[300px] h-[50px] bg-gray-600 animate-pulse'}`}
+            className={`text-5xl font-bold ${bannerData[activeBanner].id ? '' : 'w-[300px] py-4 bg-gray-600 animate-pulse'}`}
           >
             {bannerData[activeBanner].title}
           </motion.h1>
@@ -157,13 +157,17 @@ export default function Banner() {
             exit="hidden"
             variants={textVariants}
             key={bannerData[activeBanner].id}
-            className="line-clamp-4 w-[50ch] mt-4 leading-relaxed"
+            className={`line-clamp-4 w-[50ch] mt-4 leading-relaxed ${bannerData[activeBanner].id ? '' : 'min-w-[50px] bg-gray-600 py-2'}`}
           >
             {bannerData[activeBanner].desc
               ? bannerData[activeBanner].desc
-              : "Tidak ada deskripsi tersedia"}
+              : ""}
           </motion.p>
-          <div className="flex gap-x-4 mt-12">
+
+          {bannerData[activeBanner].id && (
+
+            
+            <div className="flex gap-x-4 mt-12">
             <button className="w-[300px] bg-blue-500 py-2 px-4 text-lg font-medium text-white">
               Pinjam sekarang
             </button>
@@ -171,6 +175,8 @@ export default function Banner() {
               <FontAwesomeIcon icon={faBookmark} />
             </button>
           </div>
+            )
+          }
 
           {/* slider progress */}
 
