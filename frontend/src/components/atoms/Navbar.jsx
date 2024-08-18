@@ -21,6 +21,7 @@ export default function Navbar() {
   const [selectedOption, setSelectedOption] = useState(0);
   const [categoriesData, setCategoriesData] = useState([]);
   const [booksData, setBooksData] = useState([]);
+  
 
   const backdropVariants = {
     hidden: {
@@ -43,8 +44,9 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+  
     return async () => {
-      await fetch(`${import.meta.env.BASE_API}/books/category?mixed=true`)
+      await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/category?mixed=true`)
         .then((res) => res.json())
         .then((data) => setCategoriesData(data));
 
@@ -57,7 +59,7 @@ export default function Navbar() {
 
       if (!categoriesData[selectedOption]) return
 
-      console.log(selectedOption);
+      
       
 
       await fetch(
@@ -140,7 +142,16 @@ export default function Navbar() {
 
               <div className="flex gap-x-20 px-16 py-8 items-start">
                 <div className="flex flex-col items-start gap-y-[20px]">
-                  {categoriesData &&
+                  {categoriesData.length == 0 && (
+                    <>
+                    <button className="min-w-[200px] bg-gray-300 py-2 animate-pulse"></button>
+                    <button className="min-w-[200px] bg-gray-300 py-2 animate-pulse"></button>
+                    <button className="min-w-[200px] bg-gray-300 py-2 animate-pulse"></button>
+                    <button className="min-w-[200px] bg-gray-300 py-2 animate-pulse"></button>
+                    <button className="min-w-[200px] bg-gray-300 py-2 animate-pulse"></button>
+                    </>
+                  )}
+                  {categoriesData.length >= 1 &&
                     categoriesData.map((category, index) => (
                       <button
                         key={index}
@@ -154,10 +165,19 @@ export default function Navbar() {
                         {category.name}
                       </button>
                     ))}
+                  
                 </div>
 
                 {/* Search Result */}
                 <div className="flex-1 flex flex-col gap-y-[20px] text-gray-700 text-base">
+                  {booksData.length == 0 && Array.from({length : 10}, () =>  (
+                   <>
+                     <button className="flex justify-between items-center">
+                      <h3 className="w-1/2 py-2 bg-gray-300 animate-pulse"></h3>
+                      <h3 className="w-[100px] py-2 bg-gray-300 animate-pulse"></h3>
+                    </button>
+                   </>
+                  ))}
                   {booksData &&
                     booksData.map((book, index) => (
                       <button
