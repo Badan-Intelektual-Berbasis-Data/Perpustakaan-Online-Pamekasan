@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { act, useEffect, useState } from "react";
-import { AnimatePresence, motion, transform } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Container from "../molecules/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

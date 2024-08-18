@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// eslint-disable-next-line no-unused-vars
+
 import {
   faSearch,
   faBookmark,
@@ -15,12 +15,14 @@ import {
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(0);
   const [categoriesData, setCategoriesData] = useState([]);
   const [booksData, setBooksData] = useState([]);
+  const [activeLink, setActiveLink] = useState(0)
   
 
   const backdropVariants = {
@@ -60,8 +62,6 @@ export default function Navbar() {
       if (!categoriesData[selectedOption]) return
 
       
-      
-
       await fetch(
         `http://127.0.0.1:8000/api/books/book/?category=${categoriesData[selectedOption].id}`
       )
@@ -93,8 +93,8 @@ export default function Navbar() {
         <AnimatePresence>
           {!searchOpen ? (
             <div className="flex items-center gap-x-12 text-white">
-              <Link to="/">Beranda</Link>
-              <Link to="information">Informasi</Link>
+              <Link onClick={() => setActiveLink(0)} className={`${activeLink == 0 ? 'text-white' : 'text-gray-300'}`} to="/">Beranda</Link>
+              <Link onClick={() => setActiveLink(1)} className={`${activeLink == 1 ? 'text-white' : 'text-gray-300'}`} to="information">Informasi</Link>
             </div>
           ) : (
             <motion.div
