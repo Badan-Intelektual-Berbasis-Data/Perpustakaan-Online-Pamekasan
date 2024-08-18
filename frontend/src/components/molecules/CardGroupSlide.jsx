@@ -23,7 +23,7 @@ export default function CardGroupSlide({ title, id }) {
 
   useEffect(() => {
     return async () => {
-      await fetch(`${import.meta.env.BASE_API}/books/book/?category=${id}`)
+      await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/book/?category=${id}`)
         .then((res) => res.json())
         .then((data) => setData(data));
     };

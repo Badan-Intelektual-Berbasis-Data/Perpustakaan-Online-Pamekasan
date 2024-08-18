@@ -9,7 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     return async () => {
-      await fetch(`${import.meta.env.BASE_API}/books/category?mixed=true`)
+      await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/category?mixed=true`)
         .then((res) => res.json())
         .then((data) => setCategories(data))
     }
