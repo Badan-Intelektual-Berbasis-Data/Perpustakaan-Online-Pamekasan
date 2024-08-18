@@ -44,7 +44,7 @@ export default function Navbar() {
 
   useEffect(() => {
     return async () => {
-      await fetch("http://127.0.0.1:8000/api/books/category?mixed=true")
+      await fetch(`${import.meta.env.BASE_API}/books/category?mixed=true`)
         .then((res) => res.json())
         .then((data) => setCategoriesData(data));
 
@@ -69,7 +69,7 @@ export default function Navbar() {
   }, [categoriesData, selectedOption]);
 
   return (
-    <nav className="bg-gray-600 p-4">
+    <nav className="bg-primary p-4">
       {/* Search backdrop */}
       <motion.div
         initial="hidden"

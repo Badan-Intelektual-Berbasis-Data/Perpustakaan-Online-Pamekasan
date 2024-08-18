@@ -25,8 +25,8 @@ export default function Profile() {
             onClick={() => setActive(0)}
             className={`border-[1.5px] w-full py-2 rounded-md ${
               active == 0
-                ? "bg-slate-500 text-white "
-                : "border-slate-500 text-slate-500"
+                ? "bg-primary text-white "
+                : "border-primary text-primary"
             }`}
           >
             Biodata
@@ -35,8 +35,8 @@ export default function Profile() {
             onClick={() => setActive(1)}
             className={`border-[1.5px] w-full py-2 rounded-md ${
               active == 1
-                ? "bg-slate-500 text-white "
-                : "border-slate-500 text-slate-500"
+                ? "bg-primary text-white "
+                : "border-primary text-primary"
             }`}
           >
             Bookmarks

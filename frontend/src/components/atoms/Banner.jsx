@@ -86,7 +86,7 @@ export default function Banner() {
   useEffect(() => {
     const interval = setInterval(() => updateBanner("right"), 6000);
     const getData = async () => {
-      await fetch("http://127.0.0.1:8000/api/books/book?mixed=True")
+      await fetch(`${import.meta.env.BASE_API}/books/book?mixed=True`)
         .then((res) => res.json())
         .then((data) => setBannerData(data));
     };

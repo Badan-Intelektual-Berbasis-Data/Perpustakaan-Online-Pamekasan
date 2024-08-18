@@ -12,7 +12,7 @@ import { faFax, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 export default function Footer() {
   return (
-    <Container className="bg-gray-600 flex flex-col gap-y-20 pb-1">
+    <Container className="bg-primary flex flex-col gap-y-20 pb-1">
       <div className="flex w-full justify-between">
         <div>
           <div className="flex items-center gap-x-6 shrink-0">
