@@ -115,7 +115,7 @@ export default function Banner() {
           variants={imageVariants}
           key={bannerData[activeBanner].backdrop_url}
           src={bannerData[activeBanner].backdrop_url}
-          className="absolute w-full object-center h-full -z-30 bg-black top-0"
+          className="absolute w-full object-center h-full -z-30 bg-black top-0 text-transparent"
           alt="image"
         />
       </AnimatePresence>
