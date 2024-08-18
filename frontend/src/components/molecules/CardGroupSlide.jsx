@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Card from "../atoms/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,6 +10,8 @@ export default function CardGroupSlide({ title, id }) {
   const [x, setX] = useState(80);
   const [index, setIndex] = useState(1);
   const [data, setData] = useState([]);
+  const [isOverflowing, setIsOverflowing] = useState(false)
+  const containerRef = useRef()
 
   const handleSlide = (direction) => {
     if (direction == "RIGHT" && index != data.length - 4) {
@@ -29,8 +31,16 @@ export default function CardGroupSlide({ title, id }) {
     };
   }, []);
 
+  useMemo(() => {
+    const element = containerRef.current;
+      if (element) {
+        const hasOverflow = element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+        setIsOverflowing(hasOverflow);
+      }
+  }, [data])
+
   return (
-    <div className="flex relative overflow-hidden group">
+    <div ref={containerRef} className="flex relative overflow-hidden group">
       <div
         className={`absolute top-0 left-0 h-full w-16 flex justify-center items-center z-10 hover:bg-black hover:bg-opacity-25 ${
           x < 80 ? "opacity-0 group-hover:opacity-100" : "opacity-0"
@@ -68,7 +78,7 @@ export default function CardGroupSlide({ title, id }) {
 
       <div
         className={`absolute top-0 right-0 h-full w-16 flex justify-center items-center  hover:bg-black hover:bg-opacity-25 z-10 ${
-          index != data.length - 4 && data.length >= 6
+          index != data.length - 4 && isOverflowing
             ? "opacity-0 group-hover:opacity-100"
             : "opacity-0"
         }`}
