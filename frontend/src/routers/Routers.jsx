@@ -9,6 +9,7 @@ import Registration from "../pages/auth/Registration";
 import Login from "../pages/auth/Login";
 import Information from "../pages/Information";
 import Search from "../pages/Search";
+import NotFound from "../pages/NotFound";
 
 export default function Routers() {
   return (
@@ -44,6 +45,7 @@ export default function Routers() {
             </UserAuthentication>
           }
         />
+        <Route path="not-found" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

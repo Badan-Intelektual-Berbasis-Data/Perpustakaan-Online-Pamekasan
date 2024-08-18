@@ -39,11 +39,12 @@ export default function Detail() {
 
   useEffect(() => {
     return async () => {
-      await fetch(`http://127.0.0.1:8000/api/books/detail/${name}/`)
+      await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/detail/${name}/`)
         .then(res => {
+          console.log(res.status);
+          
           if (res.status == 404) {
-            alert("Buku tidak ditemukan")
-            navigate("/")
+            navigate("/not-found")
           }
           
           return res.json()
