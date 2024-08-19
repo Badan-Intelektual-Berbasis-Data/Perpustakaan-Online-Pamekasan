@@ -55,7 +55,7 @@ async function getToken(credentials) {
 
 
 
-export default function useAuth(onFailed="/login") {
+export default function useAuth(onSuccess="/profile",onFailed="/login") {
   
   const navigate = useNavigate();
   
@@ -65,6 +65,8 @@ export default function useAuth(onFailed="/login") {
       .then(status => {
       
         if (!status) return navigate(onFailed)
+
+        navigate(onSuccess)
     })
   }, []);
 
