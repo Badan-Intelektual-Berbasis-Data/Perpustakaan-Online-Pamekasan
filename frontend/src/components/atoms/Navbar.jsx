@@ -63,7 +63,7 @@ export default function Navbar() {
 
       
       await fetch(
-        `http://127.0.0.1:8000/api/books/book/?category=${categoriesData[selectedOption].id}`
+        `${import.meta.env.VITE_BASE_API_URL}/books/book/?category=${categoriesData[selectedOption].id}`
       )
         .then((res) => res.json())
         .then((data) => setBooksData(data));

@@ -7,6 +7,7 @@ import Field from "../../components/molecules/Field";
 import Input from "../../components/atoms/Input";
 import Select from "../../components/atoms/Select";
 import FormValidation from "../../../utils/FormValidation";
+import useAuth from "../../hooks/useAuth";
 
 export default function Registration() {
 
@@ -15,6 +16,8 @@ export default function Registration() {
     "Perempuan"
   ]
   const navigate = useNavigate()
+
+  useAuth()
 
   const handleSubmit = async (event) => {
     event.preventDefault()

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import  { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 async function checkToken() {
@@ -10,7 +10,7 @@ async function checkToken() {
   if (!access_token && !refresh_token) return false
   
 
-  return await fetch("http://127.0.0.1:8000/api/token/verify/", {
+  return await fetch(`${import.meta.env.BASE_API_URL}/token/verify/`, {
     method: 'post',
     headers: {
       'Content-Type' : 'application/json'
@@ -21,8 +21,9 @@ async function checkToken() {
   })
     .then(res => {
       // Access token is expired
+      
+      
       if (res.status == 401) {
-        console.log("hello");
         
         if (!getToken(refresh_token)) return false
 
@@ -35,7 +36,7 @@ async function checkToken() {
 
 
 async function getToken(credentials) {
-  return await fetch("http://127.0.0.1:8000/api/token/refresh/", {
+  return await fetch(`${import.meta.env.VITE_BASE_API_URL}/token/refresh/`, {
     method: 'post',
     headers: {
       'Content-Type' : 'application/json'
@@ -54,22 +55,18 @@ async function getToken(credentials) {
 
 
 
-export default function UserAuthentication({ children }) {
+export default function useAuth(onFailed="/login") {
   
-  const location = useLocation();
   const navigate = useNavigate();
+  
 
   useEffect(() => {
-    if (location.pathname == "/login" && location.pathname == "/register") {
-      if (checkToken()) {
-        navigate("/profile")
-      }
-    } else if (location.pathname == "/profile") {
-      if (!checkToken()) {
-        navigate("/login")
-      }
-    }
+    checkToken() 
+      .then(status => {
+      
+        if (!status) return navigate(onFailed)
+    })
   }, []);
 
-  return <>{children}</>;
+
 }
