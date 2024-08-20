@@ -15,15 +15,15 @@ import {
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(0);
-  const [categoriesData, setCategoriesData] = useState([]);
   const [booksData, setBooksData] = useState([]);
-  const [activeLink, setActiveLink] = useState(0)
-  
+  const [categories, setCategoriesData] = useState([])
+  const [activeLink, setActiveLink] = useState(0);
+
+
 
   const backdropVariants = {
     hidden: {
@@ -45,30 +45,37 @@ export default function Navbar() {
     },
   };
 
-  useEffect(() => {
-  
-    return async () => {
-      await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/category?mixed=true`)
-        .then((res) => res.json())
-        .then((data) => setCategoriesData(data));
+  async function getData(){
+    console.log(categories);
+    
+    if (!categories[selectedOption]) return;
 
-    };
-  }, []);
-
-  useEffect(() => {    
-
-    return async () => {
-
-      if (!categoriesData[selectedOption]) return
-
-      
       await fetch(
-        `${import.meta.env.VITE_BASE_API_URL}/books/book/?category=${categoriesData[selectedOption].id}`
+        `${import.meta.env.VITE_BASE_API_URL}/books/book/?category=${
+          categories[selectedOption].id
+        }`
       )
         .then((res) => res.json())
         .then((data) => setBooksData(data));
-    };
-  }, [categoriesData, selectedOption]);
+}
+
+async function getCategories() {
+  await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/category`)
+  .then(res => res.json())
+  .then(data => setCategoriesData(data))
+}
+
+
+useEffect(() => {
+  getCategories()
+}, []) 
+
+
+useMemo(() => {
+  if (!searchOpen) return
+  getData()
+}, [selectedOption, searchOpen])
+  
 
   return (
     <nav className="bg-primary p-4">
@@ -93,8 +100,24 @@ export default function Navbar() {
         <AnimatePresence>
           {!searchOpen ? (
             <div className="flex items-center gap-x-12 text-white">
-              <Link onClick={() => setActiveLink(0)} className={`${activeLink == 0 ? 'text-white' : 'text-gray-300'}`} to="/">Beranda</Link>
-              <Link onClick={() => setActiveLink(1)} className={`${activeLink == 1 ? 'text-white' : 'text-gray-300'}`} to="information">Informasi</Link>
+              <Link
+                onClick={() => setActiveLink(0)}
+                className={`${
+                  activeLink == 0 ? "text-white" : "text-gray-300"
+                }`}
+                to="/"
+              >
+                Beranda
+              </Link>
+              <Link
+                onClick={() => setActiveLink(1)}
+                className={`${
+                  activeLink == 1 ? "text-white" : "text-gray-300"
+                }`}
+                to="information"
+              >
+                Informasi
+              </Link>
             </div>
           ) : (
             <motion.div
@@ -142,42 +165,23 @@ export default function Navbar() {
 
               <div className="flex gap-x-20 px-16 py-8 items-start">
                 <div className="flex flex-col items-start gap-y-[20px]">
-                  {categoriesData.length == 0 && (
-                    <>
-                    <button className="min-w-[200px] bg-gray-300 py-2 animate-pulse"></button>
-                    <button className="min-w-[200px] bg-gray-300 py-2 animate-pulse"></button>
-                    <button className="min-w-[200px] bg-gray-300 py-2 animate-pulse"></button>
-                    <button className="min-w-[200px] bg-gray-300 py-2 animate-pulse"></button>
-                    <button className="min-w-[200px] bg-gray-300 py-2 animate-pulse"></button>
-                    </>
-                  )}
-                  {categoriesData.length >= 1 &&
-                    categoriesData.map((category, index) => (
+                  {categories.map((category, index) => (
                       <button
-                        key={index}
-                        onClick={() => setSelectedOption(index)}
-                        className={`${
-                          selectedOption == index
-                            ? "font-medium"
-                            : "font-normal"
-                        }`}
-                      >
-                        {category.name}
-                      </button>
-                    ))}
-                  
+                      key={index}
+                      onClick={() => setSelectedOption(index)}
+                      className={`${
+                        selectedOption == index ? "font-medium" : "font-normal"
+                      }`}
+                    >
+                      {category.name}
+                    </button>
+                  ))}
+                
+               
                 </div>
 
                 {/* Search Result */}
                 <div className="flex-1 flex flex-col gap-y-[20px] text-gray-700 text-base">
-                  {booksData.length == 0 && Array.from({length : 10}, () =>  (
-                   <>
-                     <button className="flex justify-between items-center">
-                      <h3 className="w-1/2 py-2 bg-gray-300 animate-pulse"></h3>
-                      <h3 className="w-[100px] py-2 bg-gray-300 animate-pulse"></h3>
-                    </button>
-                   </>
-                  ))}
                   {booksData &&
                     booksData.map((book, index) => (
                       <button
