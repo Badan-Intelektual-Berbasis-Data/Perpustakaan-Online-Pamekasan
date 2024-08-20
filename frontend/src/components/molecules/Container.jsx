@@ -1,9 +1,12 @@
 import React from 'react'
 
-export default function Container({className='', children}) {
+const Container = React.forwardRef(({className='', children}, ref) => {
   return (
-    <div className={`py-16 px-20 ${className}`}>
+    <div ref={ref} className={`py-16 px-20 ${className}`}>
         {children}
     </div>
   )
-}
+})
+
+
+export default Container
