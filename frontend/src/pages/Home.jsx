@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import CardGroupSlide from "../components/molecules/CardGroupSlide";
 import Banner from "../components/atoms/Banner";
 // import CardGroupGrid from "../components/molecules/CardGroupGrid";
@@ -9,6 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     return async () => {
+      
       await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/category?mixed=true`)
         .then((res) => res.json())
         .then((data) => setCategories(data))

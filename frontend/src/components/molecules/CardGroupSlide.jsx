@@ -5,12 +5,14 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import CardSkeleton from "../skeletons/CardSkeleton";
 
 export default function CardGroupSlide({ title, id }) {
   const [x, setX] = useState(80);
   const [index, setIndex] = useState(1);
   const [data, setData] = useState([]);
   const [isOverflowing, setIsOverflowing] = useState(false)
+  const [dataLoading, setDataLoading] = useState(true)
   const containerRef = useRef()
 
   const handleSlide = (direction) => {
@@ -27,11 +29,14 @@ export default function CardGroupSlide({ title, id }) {
     return async () => {
       await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/book/?category=${id}`)
         .then((res) => res.json())
-        .then((data) => setData(data));
+        .then((data) => {
+          setData(data)
+          setDataLoading(false)
+        });
     };
   }, []);
 
-  useMemo(() => {
+  useEffect(() => {
     const element = containerRef.current;
       if (element) {
         const hasOverflow = element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
@@ -59,8 +64,11 @@ export default function CardGroupSlide({ title, id }) {
       <div>
         <h2 className="text-3xl font-semibold mb-8 ml-20">{title}</h2>
         <div className="flex gap-x-8">
-          {data &&
-            data.map((item, index) => (
+          {dataLoading && Array.from({length : 8}, () => (
+            <CardSkeleton />
+          ))}
+
+          {!dataLoading && data.map((item, index) => (
               <Card
                 x={x}
                 key={index}
