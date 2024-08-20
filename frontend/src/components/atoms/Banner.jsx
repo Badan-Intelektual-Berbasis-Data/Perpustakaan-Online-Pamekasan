@@ -8,6 +8,7 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { useMemo } from "react";
 
 export default function Banner() {
   const [activeBanner, setActiveBanner] = useState(0);
@@ -70,22 +71,25 @@ export default function Banner() {
   const updateBanner = (direction) => {
     if (!bannerData[activeBanner].id) return;
 
-    setActiveBanner((value) => {
+    setActiveBanner(value => {
+
       if (value >= 2) {
         return 0;
       } else {
         if (direction == "right") {
           return value + 1;
         } else {
+          if (value == 0) return 2
           return value - 1;
         }
       }
     });
   };
 
-  useEffect(() => {
+  useMemo(() => {
     const interval = setInterval(() => updateBanner("right"), 6000);
     const getData = async () => {
+      
       await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/book?mixed=True`)
         .then((res) => res.json())
         .then((data) => setBannerData(data));
@@ -115,7 +119,7 @@ export default function Banner() {
           variants={imageVariants}
           key={bannerData[activeBanner].backdrop_url}
           src={bannerData[activeBanner].backdrop_url}
-          className="absolute w-full object-center h-full -z-30 bg-black top-0 text-transparent"
+          className="absolute w-full object-fill h-full -z-30 bg-black top-0 text-transparent"
           alt="image"
         />
       </AnimatePresence>
