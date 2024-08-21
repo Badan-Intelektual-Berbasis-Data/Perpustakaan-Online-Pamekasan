@@ -9,7 +9,6 @@ export function ProfileClean(data) {
         }
     } )
 
-    console.log(new_data)
 
     return new_data
 }
