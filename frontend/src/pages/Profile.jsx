@@ -3,28 +3,66 @@ import Container from "../components/molecules/Container";
 import BiodataSection from "../components/templates/BiodataSection";
 import BookmarksSection from "../components/templates/BookmarksSection";
 import useAuth from "../hooks/useAuth";
+import { ProfileClean } from "../../utils/DataCleaner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default function Profile() {
   const [active, setActive] = useState(0); 
+  const [profileData, setProfileData] = useState({})
+
+
+  useEffect(() => {
+    const access_token = localStorage.getItem("access_token")
+
+    const getUserData = async () =>  {
+      if (!access_token) return
+
+      const data = new URLSearchParams()
+      data.append("access_token", access_token)
+
+      return await fetch(`${import.meta.env.VITE_BASE_API_URL}/users/user/get_user/`, {
+        method: 'post',
+        body: data.toString(),
+        headers: {
+          'Content-Type' : 'application/x-www-form-urlencoded'
+        }
+      })
+        .then(res => res.json())
+        .then(data => setProfileData(data))
+    }
+
+    getUserData()
+
+  }, [])
 
   useAuth()
+
   
 
   return (
     
       <Container className="flex">
-        <div className="flex flex-col items-center sticky top-0 left-0 h-max">
+        <div className="flex flex-col items-center sticky  top-0 left-0 h-max">
           <div className="rounded-full w-[200px] h-[200px] overflow-hidden">
-            <img
-              className="w-full h-full object-cover"
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              alt="foto-profile"
-            />
+            {profileData.image_url == "UNSET" ?
+              <FontAwesomeIcon icon={faUserCircle} className="w-full h-full" />
+
+              :
+
+              <img
+                className="w-full h-full object-cover"
+                src={profileData.image_url}
+                alt="foto-profile"
+              />
+
+
+            }
           </div>
-          <h1 className="mt-4 text-2xl font-semibold">John Doe</h1>
+          <h1 className="mt-4 text-2xl font-semibold">{profileData.name}</h1>
           <p className="mt-2 text-gray-500">Anggota</p>
 
-          <div className="flex flex-col gap-y-4 justify-center mt-12 w-full">
+          <div className="flex-1 flex flex-col gap-y-4 mt-12 w-full">
             <button
               onClick={() => setActive(0)}
               className={`border-[1.5px] w-full py-2 rounded-md ${
@@ -45,10 +83,16 @@ export default function Profile() {
             >
               Bookmarks
             </button>
+            <button
+              onClick={() => setActive(2)}
+              className={`border-[1.5px] border-red-500 w-full py-2 rounded-md bg-red-500 text-white mt-24`}
+            >
+              Logout
+            </button>
           </div>
         </div>
 
-        {active == 0 && <BiodataSection />}
+        {active == 0 && <BiodataSection data={ProfileClean(profileData)} />}
 
         {active == 1 && <BookmarksSection />}
       </Container>
