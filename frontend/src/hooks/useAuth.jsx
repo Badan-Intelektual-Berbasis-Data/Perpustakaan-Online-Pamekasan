@@ -1,4 +1,4 @@
-import  { useEffect } from "react";
+import  { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -10,7 +10,7 @@ async function checkToken() {
   if (!access_token && !refresh_token) return false
   
 
-  return await fetch(`${import.meta.env.BASE_API_URL}/token/verify/`, {
+  return await fetch(`${import.meta.env.VITE_BASE_API_URL}/token/verify/`, {
     method: 'post',
     headers: {
       'Content-Type' : 'application/json'
@@ -30,7 +30,7 @@ async function checkToken() {
         return true
       }
 
-      return false
+      return true
     })
 }
 
@@ -55,20 +55,34 @@ async function getToken(credentials) {
 
 
 
-export default function useAuth(onSuccess="/profile",onFailed="/login") {
+export default function useAuth(onSuccess="/profile", onFailed="/login", autoRedirect=true) {
   
   const navigate = useNavigate();
+  const [authenticated, setAuthenticated] = useState(false)
   
 
   useEffect(() => {
     checkToken() 
       .then(status => {
       
-        if (!status) return navigate(onFailed)
+        if (!autoRedirect) {
+          if (status) {
+            setAuthenticated(true)
+          } else {
+            setAuthenticated(false)
+          }
+        } else {
 
-        navigate(onSuccess)
+          if (!status)  {
+            navigate(onFailed)
+          } else {
+            navigate(onSuccess)
+          }
+        }
+
     })
   }, []);
-
+  
+  return authenticated
 
 }

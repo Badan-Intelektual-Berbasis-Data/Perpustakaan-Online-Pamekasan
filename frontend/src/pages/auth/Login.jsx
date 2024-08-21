@@ -1,10 +1,11 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import StackLayout from "../../layouts/StackLayout";
 import FormValidation from "../../../utils/FormValidation";
 import Field from "../../components/molecules/Field";
 import Input from "../../components/atoms/Input";
+import useAuth from "../../hooks/useAuth";
 
 
 export default function Login() {
@@ -18,7 +19,7 @@ export default function Login() {
 
     if (!validated_form) return
 
-    await fetch('http://127.0.0.1:8000/api/users/user/login/', {
+    await fetch(`${import.meta.env.VITE_BASE_API_URL}/users/user/login/`, {
       method: 'post',
       headers: {
         'Content-Type' : 'application/x-www-form-urlencoded'
@@ -31,6 +32,7 @@ export default function Login() {
           alert("Pengguna tidak ditemukan")
           return
         }
+        
 
         return res.json()
       })
@@ -45,6 +47,9 @@ export default function Login() {
           navigate("/profile")
       })
   }
+
+
+  useAuth()
 
   return (
     <StackLayout>
