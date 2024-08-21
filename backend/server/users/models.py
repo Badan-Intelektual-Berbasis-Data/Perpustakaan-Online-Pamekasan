@@ -39,6 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     age = models.IntegerField()
     email = models.EmailField(unique=True)
     phone = models.BigIntegerField()
+    gender = models.CharField(max_length=10, default='Pria')
     address = models.CharField(max_length=300)
     image_url = models.CharField(max_length=255, default="UNSET")
     is_admin = models.BooleanField(default=False)

@@ -13,7 +13,7 @@ from .models import (
 
 class UserSerializer(ModelSerializer):
     class Meta:
-        fields = '__all__'
+        exclude = ['password', 'groups', 'is_superuser', 'last_login', 'user_permissions']
         model = User
 
 

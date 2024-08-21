@@ -8,8 +8,14 @@ from rest_framework.status import (
 )
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.decorators import action
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.decorators import (
+    action,
+    permission_classes
+)
+from rest_framework_simplejwt.tokens import (
+    RefreshToken, 
+    AccessToken
+)
 from rest_framework.permissions import IsAuthenticated
 from .serializers import (
     UserSerializer,
@@ -30,7 +36,6 @@ class UserView(ModelViewSet):
     def login(self, req):
         
         data = req.POST
-
 
         user = get_user_model().objects.filter(email=data.get("email"))
 
@@ -53,6 +58,20 @@ class UserView(ModelViewSet):
 
         return Response(payload)
 
+
+    @action(methods=["post"], detail=False, url_path="get_user")
+    @permission_classes([IsAuthenticated])
+    def get_user(self, req):
+
+        data = req.POST
+
+        access_token = AccessToken(data["access_token"])
+        user_id = access_token["user_id"]
+
+
+        user = UserSerializer(get_user_model().objects.filter(id=int(user_id))[0])
+
+        return Response(user.data)
 
 
     def create(self, req):
