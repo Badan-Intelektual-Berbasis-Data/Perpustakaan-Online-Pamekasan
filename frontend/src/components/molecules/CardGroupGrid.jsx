@@ -11,7 +11,7 @@ export default function CardGroupGrid({ title, data=[] }) {
               <Card
                 key={index}
                 className="translate-x-[-614px]"
-                {...item}
+                
               />
             ))}
         </div>
