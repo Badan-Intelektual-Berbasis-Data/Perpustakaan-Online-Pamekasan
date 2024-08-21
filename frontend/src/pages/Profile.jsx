@@ -5,7 +5,7 @@ import BookmarksSection from "../components/templates/BookmarksSection";
 import useAuth from "../hooks/useAuth";
 import { ProfileClean } from "../../utils/DataCleaner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPencil, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default function Profile() {
   const [active, setActive] = useState(0); 
@@ -33,6 +33,7 @@ export default function Profile() {
     }
 
     getUserData()
+    
 
   }, [])
 
@@ -44,9 +45,14 @@ export default function Profile() {
     
       <Container className="flex">
         <div className="flex flex-col items-center sticky  top-0 left-0 h-max">
-          <div className="rounded-full w-[200px] h-[200px] overflow-hidden">
-            {profileData.image_url == "UNSET" ?
+          <div className="rounded-full w-[200px] h-[200px]">
+            {profileData.image_url == "UNSET" || !profileData.image_url ?
+            <button className="relative">
               <FontAwesomeIcon icon={faUserCircle} className="w-full h-full" />
+              <div className="absolute rounded-full bg-gray-100 w-10 h-10 bottom-1 right-5 flex items-center justify-center">
+                <FontAwesomeIcon icon={faPencil} className=" text-black " />
+              </div>
+            </button>
 
               :
 
