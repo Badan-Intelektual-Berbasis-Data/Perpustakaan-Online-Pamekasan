@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import useAuth from '../../../frontend/src/hooks/useAuth';
+import { useEffect } from 'react';
+import { getCsrfToken } from '../../../frontend/utils/Token';
 
 function Login() {
   const [usernameOrEmail, setUsernameOrEmail] = useState('');
@@ -29,6 +31,11 @@ function Login() {
   const handleGoogleError = (error) => {
     console.error('Google login error:', error);
   };
+
+
+  useEffect(() => {
+    getCsrfToken()
+  }, [])
 
   return (
     <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">

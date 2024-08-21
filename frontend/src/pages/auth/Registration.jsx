@@ -1,6 +1,6 @@
 // Daftar.jsx
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import StackLayout from "../../layouts/StackLayout";
 import Field from "../../components/molecules/Field";
@@ -8,6 +8,7 @@ import Input from "../../components/atoms/Input";
 import Select from "../../components/atoms/Select";
 import FormValidation from "../../../utils/FormValidation";
 import useAuth from "../../hooks/useAuth";
+import { getCsrfToken } from "../../../utils/Token";
 
 export default function Registration() {
 
@@ -29,9 +30,9 @@ export default function Registration() {
     if (!validated_form) {
       return
     }
+  
 
-
-    await fetch('http://127.0.0.1:8000/api/users/user/', {
+    await fetch(`${import.meta.env.VITE_BASE_API_URL}/users/user/`, {
       method: 'post',
       headers: {
         'Content-Type' : 'application/x-www-form-urlencoded'
@@ -55,6 +56,12 @@ export default function Registration() {
           navigate("/login")
       })
   }
+
+
+  useEffect(() => {
+    getCsrfToken()
+    
+  }, [])
 
   return (
     <StackLayout>
