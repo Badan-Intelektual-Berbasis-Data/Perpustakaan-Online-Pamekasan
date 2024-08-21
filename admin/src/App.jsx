@@ -18,11 +18,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/lupa-password' element={<LupaPassword />} />
         <Route path='/' element={<RootLayout />}>
           <Route path="/welcome" element={<Welcome />} />
+          <Route path="/login" element={<Login />} />
           <Route path='/dashboard' element={<Dashboard />}/>
           <Route path='/buku' element={<Buku />}/>
           <Route path='/peminjam' element={<Peminjam />}/>
