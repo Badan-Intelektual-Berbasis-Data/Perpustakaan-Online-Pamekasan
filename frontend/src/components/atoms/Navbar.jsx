@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -11,8 +11,9 @@ import {
   faBars,
   faTimes,
   faBell,
+  faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Search from "./Search";
 import useAuth from "../../hooks/useAuth";
@@ -21,14 +22,16 @@ import { backdropVariants } from "../../../utils/Consts";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState(0);
-
+  const [currentURL, setCurrentURL] = useState("")
 
   const authenticated = useAuth("", "", false)
 
+  const location = useLocation()
+
+  useEffect(() => {setCurrentURL(location.pathname)}, [location.pathname])
 
   return (
-    <nav className="bg-primary p-4">
+    <nav className="bg-primary p-4 sticky top-0 left-0 z-30">
       {/* Search backdrop */}
       <motion.div
         initial="hidden"
@@ -51,25 +54,23 @@ export default function Navbar() {
           {!searchOpen ? (
             <div className="flex items-center gap-x-12 text-white">
               <Link
-                onClick={() => setActiveLink(0)}
                 className={`${
-                  activeLink == 0 ? "text-white" : "text-gray-300"
+                  currentURL == '/' ? "text-white" : "text-gray-300"
                 }`}
                 to="/"
               >
                 Beranda
               </Link>
               <Link
-                onClick={() => setActiveLink(1)}
                 className={`${
-                  activeLink == 1 ? "text-white" : "text-gray-300"
+                  currentURL == "/information" ? "text-white" : "text-gray-300"
                 }`}
                 to="information"
               >
                 Informasi
               </Link>
             </div>
-          ) : <Search searchOpen={searchOpen} setSearchOpen={setSearchOpen} />}
+          ) : <Search authenticated={authenticated} searchOpen={searchOpen} setSearchOpen={setSearchOpen} />}
         </AnimatePresence>
 
         <div className="hidden md:flex items-center gap-x-6 ">
@@ -85,6 +86,13 @@ export default function Navbar() {
               className="h-5 w-5 text-gray-300 hover:text-white"
             />
           </Link>
+          {!authenticated && (
+            <div className="flex gap-x-2">
+              <Link className="text-white border-white border-2 text-sm px-6 py-2" to="/login">Masuk</Link>
+              <Link className="text-black bg-white border-white border-2 text-sm px-6 py-2" to="/register">Daftar</Link>
+            </div>
+          )}
+          {authenticated && 
           <Link to="/profile">
             <div className="rounded-full">
               <img
@@ -94,6 +102,7 @@ export default function Navbar() {
               />
             </div>
           </Link>
+          }
         </div>
         <div className="md:hidden flex items-center">
           <button onClick={() => setMenuOpen(!menuOpen)} className="text-white">
