@@ -76,7 +76,7 @@ class CategoriesView(ModelViewSet):
 
     def retrieve(self, _):
 
-        query_data = CategoriesSerializer(Categories.objects.all(), many=True)
+        query_data = CategoriesSerializer(Categories.objects.all()[:5], many=True)
 
         return Response(query_data.data)
     

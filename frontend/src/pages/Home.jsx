@@ -1,6 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import CardGroupSlide from "../components/molecules/CardGroupSlide";
 import Banner from "../components/atoms/Banner";
+import CardGroupSlideSkeleton from "../components/skeletons/CardGroupSlideSkeleton";
+import CardGroupGridSkeleton from "../components/skeletons/CardGroupGridSkeleton";
+import CardGroupGrid from "../components/molecules/CardGroupGrid";
 // import CardGroupGrid from "../components/molecules/CardGroupGrid";
 
 export default function Home() {
@@ -16,14 +19,26 @@ export default function Home() {
     }
   }, [])
 
+
   return (
     <div>
       <Banner />
-      <div className="space-y-16 py-12">
+      <div className="space-y-20 py-12">
+        {!categories && (
+          <>
+            <CardGroupSlideSkeleton />
+            <CardGroupSlideSkeleton />
+          </>
+        )}
         { categories && categories.map((category, index) => (
-          <CardGroupSlide id={category.id} title={category.name} key={index} />
+          <Suspense fallback={<CardGroupSlideSkeleton />}>
+            <CardGroupSlide id={category.id} title={category.name} key={index} />
+          </Suspense>
         ))
         }
+        
+        <CardGroupGrid title="Lainnya"/>
+       
       </div>
     </div>
   );

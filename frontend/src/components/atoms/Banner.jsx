@@ -1,14 +1,15 @@
 // eslint-disable-next-line no-unused-vars
-import React, { act, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Container from "../molecules/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBookmark,
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { useMemo } from "react";
+import { Link } from "react-router-dom";
+
 
 export default function Banner() {
   const [activeBanner, setActiveBanner] = useState(0);
@@ -101,7 +102,7 @@ export default function Banner() {
   }, []);
 
   return (
-    <div className="relative w-full flex flex-col h-[70dvh] justify-center overflow-hidden text-white">
+    <div className="relative w-full flex flex-col h-[72dvh] justify-center overflow-hidden text-white">
       {/* background gradient */}
       <div
         className={`absolute w-full h-full bg-black bg-opacity-75 -z-20 ${
@@ -119,7 +120,7 @@ export default function Banner() {
           variants={imageVariants}
           key={bannerData[activeBanner].backdrop_url}
           src={bannerData[activeBanner].backdrop_url}
-          className="absolute w-full object-fill h-full -z-30 bg-black top-0 text-transparent"
+          className="absolute w-full object-fill h-full -z-40 bg-black top-0 text-transparent"
           alt="image"
         />
       </AnimatePresence>
@@ -172,12 +173,9 @@ export default function Banner() {
 
             
             <div className="flex gap-x-4 mt-12">
-            <button className="w-[300px] bg-blue-500 py-2 px-4 text-lg font-medium text-white">
+            <Link to={`detail/${bannerData[activeBanner].id}`} className="w-[400px] bg-blue-500 py-2 px-4 text-lg font-medium text-white text-center">
               Pinjam sekarang
-            </button>
-            <button className="w-[50px] border-4 border-blue-500 text-blue-500">
-              <FontAwesomeIcon icon={faBookmark} />
-            </button>
+            </Link>
           </div>
             )
           }

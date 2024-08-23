@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Container from "./molecules/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,10 +9,25 @@ import {
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import { faFax, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { useInView } from "framer-motion";
 
 export default function Footer() {
+
+  const footerRef = useRef(null)
+  const isInView = useInView(footerRef)
+
+  /*
+  null => Checking server health
+  false => Server error
+  true => Server ok
+
+  */
+  const [serverOk, setServerOk] = useState(null)
+
+  useEffect(() => console.log(isInView), [isInView])
+
   return (
-    <Container className="bg-primary flex flex-col gap-y-20 pb-1">
+    <Container ref={footerRef} className="bg-primary flex flex-col gap-y-20 pb-1">
       <div className="flex w-full justify-between">
         <div>
           <div className="flex items-center gap-x-6 shrink-0">
@@ -74,14 +89,21 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t-[1.5px] border-gray-300 flex justify-between items-center py-8">
-        <p className="text-sm text-white">
-          © 2020 Perpustakaan Umum Pamekasan. All rights reserved.
-        </p>
+      <div className="space-y-4">
+        <div className="flex justify-end items-center gap-x-2">
+          <div className="rounded-full h-[10px] w-[10px] bg-blue-500"></div>
+          <p className="text-blue-500">All systems normal</p>
+        </div>
 
-        <div className="flex text-white gap-x-8 text-sm font-medium">
-          <p>Privacy policy</p>
-          <p>Terms of services</p>
+        <div className="border-t-[1.5px] border-gray-300 flex justify-between items-center py-8">
+          <p className="text-sm text-white">
+            © 2020 Perpustakaan Umum Pamekasan. All rights reserved.
+          </p>
+
+          <div className="flex text-white gap-x-8 text-sm font-medium">
+            <p>Privacy policy</p>
+            <p>Terms of services</p>
+          </div>
         </div>
       </div>
     </Container>

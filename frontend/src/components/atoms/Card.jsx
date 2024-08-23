@@ -18,7 +18,7 @@ export default function Card({
   return (
     <motion.div
       onClick={() => navigation(`/detail/${id}`)}
-      className={`bg-white w-max rounded-lg shadow-md shrink-0 hover:cursor-pointer relative ${className}`}
+      className={`bg-white w-max rounded-lg shadow-sm shrink-0 hover:cursor-pointer relative ${className}`}
       initial={{ x: x ? 80 : 0 }}
       animate={{ x: x ? x : 0 }}
       transition={{ duration: 0.1, ease: "easeIn" }}

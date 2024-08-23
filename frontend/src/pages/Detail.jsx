@@ -3,6 +3,7 @@ import Container from "../components/molecules/Container";
 import { useNavigate, useParams } from "react-router-dom";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CardGroupGrid from "../components/molecules/CardGroupGrid";
 
 export default function Detail() {
   const { name } = useParams();
@@ -41,7 +42,6 @@ export default function Detail() {
     return async () => {
       await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/detail/${name}/`)
         .then(res => {
-          console.log(res.status);
           
           if (res.status == 404) {
             navigate("/not-found")
@@ -81,13 +81,13 @@ export default function Detail() {
               </div>
             </div>
             <div className="flex mt-12 gap-x-4">
-              <button className="flex-1 py-2 rounded-md bg-blue-500 text-white">
+              <button className="flex-1 py-2 rounded-md bg-blue-500 text-white outline-none">
                 Pinjam
               </button>
-              <button className="w-1/4 py-2 rounded-md bg-blue-500 text-white">
+              <button className="py-2 px-2 rounded-md">
                 <FontAwesomeIcon
                   icon={faBookmark}
-                  className="h-5 w-5 text-gray-300 hover:text-white"
+                  className="h-5 w-5 text-blue-500"
                 />
               </button>
             </div>
@@ -95,6 +95,8 @@ export default function Detail() {
           {/* end content */}
         </div>
       </Container>
+
+      <CardGroupGrid title="Lainnya" className="mt-2 mb-16"/>
     </div>
   );
 }
