@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model, authenticate
+from django.middleware.csrf import get_token
 from rest_framework.status import (
     HTTP_201_CREATED,
     HTTP_400_BAD_REQUEST,
@@ -7,7 +8,11 @@ from rest_framework.status import (
     HTTP_401_UNAUTHORIZED
 )
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
+# from rest_framework.views import APIView
+from rest_framework.viewsets import (
+    ModelViewSet,
+    ViewSet
+)
 from rest_framework.decorators import (
     action,
     permission_classes
@@ -58,7 +63,6 @@ class UserView(ModelViewSet):
 
         return Response(payload)
 
-
     @action(methods=["post"], detail=False, url_path="get_user")
     @permission_classes([IsAuthenticated])
     def get_user(self, req):
@@ -74,6 +78,7 @@ class UserView(ModelViewSet):
         return Response(user.data)
 
 
+    # Register
     def create(self, req):
 
 
@@ -103,4 +108,14 @@ class BookmarkView(ModelViewSet):
 
     def list(self, _):
         return Response(status=HTTP_403_FORBIDDEN)
+    
+
+
+class GetCsrfView(ViewSet):
+
+    @action(methods=["get"], detail=False)
+    def get_token(self, req):
+        token = get_token(req)
+
+        return Response({"csrftoken" : token})
     

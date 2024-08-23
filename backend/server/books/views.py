@@ -1,5 +1,6 @@
 import random
-# from rest_framework.views import APIView
+from django.db.models import ForeignKey
+from rest_framework.exceptions import NotFound
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -114,18 +115,52 @@ class DisplayView(ModelViewSet):
     def get_queryset(self):        
         category_request = self.request.query_params.get("category")
         id_request = self.request.query_params.get("id")
-        mixed = self.request.query_params.get("mixed")
+        search = self.request.query_params.get("search")
+        filter_ = self.request.query_params.get("by")
+
+        res = self.queryset
         
         if category_request:
-            return self.queryset.filter(category=category_request)
+            res = res.filter(category=category_request)
+
+        if id_request:
+            res = res.filter(id=category_request)
+
+
+        if search:
+            filters = {}
+
+            if filter_:
+                if self.is_foreign_key(filter_):
+                    filters[f"{filter_}__name__icontains"] = search
+                else:
+                    filters[f"{filter_}__icontains"] = search
+            else:
+                filters["title__contains"] = search
+            
+            print(filters)
+
+            res = res.filter(**filters)
+            print(self.queryset.filter(author__name__contains='haru'))
+
+            if not res:
+                raise NotFound()
+
+
+        else:
+            return res.all()
+
+        return res
+    
+    def is_foreign_key(self, field_name):
         
-        elif id_request:
-            return self.queryset.filter(id=category_request)
-
-        elif mixed:
-            return sorted(self.queryset.all().order_by('title'), key=lambda x: random.random())[:3]
-
-        return self.queryset.all()
+        model_class = self.queryset.model
+        
+        try:
+            field = model_class._meta.get_field(field_name)
+            return isinstance(field, ForeignKey)
+        except:
+            return False
 
 
     def create(self, req):
