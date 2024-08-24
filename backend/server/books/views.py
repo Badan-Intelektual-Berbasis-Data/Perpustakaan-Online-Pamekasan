@@ -138,10 +138,7 @@ class DisplayView(ModelViewSet):
             else:
                 filters["title__contains"] = search
             
-            print(filters)
-
             res = res.filter(**filters)
-            print(self.queryset.filter(author__name__contains='haru'))
 
             if not res:
                 raise NotFound()
