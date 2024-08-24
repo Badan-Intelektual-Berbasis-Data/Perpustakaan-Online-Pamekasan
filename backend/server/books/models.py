@@ -65,6 +65,7 @@ class Book(models.Model):
     width = models.IntegerField()
     height = models.IntegerField()
     pages = models.IntegerField()
+    status = models.BooleanField(default=True)
     isbn = models.PositiveBigIntegerField(unique=True, null=True, blank=True)  # 13 Digits
     edition = models.IntegerField(default=1)
     date_published = models.DateField()
