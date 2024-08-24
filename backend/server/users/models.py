@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone = models.BigIntegerField()
     gender = models.CharField(max_length=10, default='Pria')
     address = models.CharField(max_length=300)
-    image_url = models.CharField(max_length=255, default="UNSET")
+    image_url = models.CharField(max_length=255, default="https://loremflickr.com/200/200?random=2")
     is_admin = models.BooleanField(default=False)
     date_registered = models.DateTimeField(auto_now_add=True, editable=False)
 
