@@ -12,6 +12,7 @@ import {
   faTimes,
   faBell,
   faUserCircle,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
@@ -23,12 +24,22 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [currentURL, setCurrentURL] = useState("")
+  const [photo, setPhoto] = useState("")
+
 
   const authenticated = useAuth("", "", false)
 
   const location = useLocation()
 
   useEffect(() => {setCurrentURL(location.pathname)}, [location.pathname])
+
+  useEffect(() => {
+    const image_url = sessionStorage.getItem("user_image")
+
+    setPhoto(image_url)
+    
+
+  }, [])
 
   return (
     <nav className="bg-primary p-4 sticky top-0 left-0 z-30">
@@ -94,12 +105,18 @@ export default function Navbar() {
           )}
           {authenticated && 
           <Link to="/profile">
-            <div className="rounded-full">
+            <div className="">
+              {!photo && 
+                <FontAwesomeIcon icon={faUser} className="text-white text-lg"/>
+              }
+              {photo &&
               <img
                 className="h-8 w-8 rounded-full"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                src={photo}
                 alt=""
               />
+                
+              }
             </div>
           </Link>
           }
