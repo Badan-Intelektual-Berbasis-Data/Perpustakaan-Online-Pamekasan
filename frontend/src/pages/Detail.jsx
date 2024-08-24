@@ -56,7 +56,7 @@ export default function Detail() {
   return (
     <div className="w-full">
       <Container className="flex justify-center">
-        <div className="flex justify-center gap-x-6 w-[900px]">
+        <div className="flex flex-col justify-center gap-x-6 w-[900px]">
           <div className="min-w-[250px] max-w-[300px]">
             <img
               src={bookData.title.book_image_url}
