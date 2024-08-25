@@ -5,10 +5,11 @@ from rest_framework.status import (
     HTTP_400_BAD_REQUEST,
     HTTP_403_FORBIDDEN,
     HTTP_404_NOT_FOUND,
-    HTTP_401_UNAUTHORIZED
+    HTTP_401_UNAUTHORIZED,
+    HTTP_205_RESET_CONTENT
 )
 from rest_framework.response import Response
-# from rest_framework.views import APIView
+from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework.viewsets import (
     ModelViewSet,
     ViewSet
@@ -63,14 +64,37 @@ class UserView(ModelViewSet):
 
         return Response(payload)
 
+
+    @action(methods=["post"], detail=False, url_path="logout")
+    @permission_classes([IsAuthenticated])
+    def logout(self, req):
+
+        refresh_token = req.POST
+        print(refresh_token)
+
+        refresh_token = refresh_token["refresh"]
+
+        token = RefreshToken(refresh_token)
+        token.blacklist()
+        return Response(status=HTTP_205_RESET_CONTENT)
+
+            # return Response(status=HTTP_400_BAD_REQUEST)
+
+
+
     @action(methods=["post"], detail=False, url_path="get_user")
     @permission_classes([IsAuthenticated])
     def get_user(self, req):
 
         data = req.POST
 
-        access_token = AccessToken(data["access_token"])
-        user_id = access_token["user_id"]
+        try:
+
+            access_token = AccessToken(data["access_token"])
+            user_id = access_token["user_id"]
+
+        except TokenError:
+            return Response(status=HTTP_401_UNAUTHORIZED)
 
 
         user = UserSerializer(get_user_model().objects.filter(id=int(user_id))[0])

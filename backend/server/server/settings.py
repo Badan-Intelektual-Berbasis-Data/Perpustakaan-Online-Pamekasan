@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-q&%rf9xg7h&pw)nr9pmpe0c&t93#92$lis)6(s))3f=4+vvvox
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['alvinsetyapranata.byte.biz.id', 'https://alvinsetyapranata.byte.biz.id', '127.0.0.1', '127.0.0.1:3000', 'http://localhost:3000/', '192.168.1.5', 'http://192.168.1.12:3000/']
+ALLOWED_HOSTS = ['alvinsetyapranata.byte.biz.id', 'https://alvinsetyapranata.byte.biz.id', '127.0.0.1', '127.0.0.1:3000', 'http://localhost:3000/', '192.168.1.4', 'http://192.168.1.12:3000/']
 
 CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://192.168.1.12:3000']
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
     'users',
     'books',
     'loans'
@@ -122,6 +123,7 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES' : ('JWT',),
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(weeks=1),
+    'BLACKLIST_AFTER_ROTATION' : True
 }
 
 
