@@ -13,10 +13,14 @@ export default function Profile() {
   const [profileData, setProfileData] = useState({})
 
 
+  useAuth()
+
+
   useEffect(() => {
     const access_token = localStorage.getItem("access_token")
 
     const getUserData = async () =>  {
+
       if (!access_token) return
 
       const data = new URLSearchParams()
