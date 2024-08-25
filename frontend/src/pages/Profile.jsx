@@ -7,10 +7,44 @@ import { ProfileClean } from "../../utils/DataCleaner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import LoansSection from "../components/templates/LoansSection";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const [active, setActive] = useState(0); 
   const [profileData, setProfileData] = useState({})
+
+  const navigate = useNavigate()
+
+
+  const handleLogout = async () => {
+    const refresh = localStorage.getItem("refresh_token")
+    const access = localStorage.getItem("access_token")
+
+    if (!refresh || !access) {
+      navigate("/")
+    }
+
+    const data = new URLSearchParams()
+
+    data.append("refresh", refresh)
+
+    await fetch(`${import.meta.env.VITE_BASE_API_URL}/users/user/logout/`, {
+      method: 'post',
+      headers: {
+        'Authorization' : access,
+         'Content-Type' : 'application/x-www-form-urlencoded'
+      },
+      body: data.toString()
+    })
+      .then(res => {
+        if (res.status == 205) {
+          localStorage.removeItem("access_token")
+          localStorage.removeItem("refresh_token")
+          sessionStorage.clear()
+          navigate("/")
+        }
+      })
+  }
 
 
   useAuth()
@@ -114,6 +148,7 @@ export default function Profile() {
               Peminjaman
             </button>
             <button
+              onClick={handleLogout}
               className={`border-[1.5px] border-red-500 w-full py-2 rounded-md bg-red-500 text-white mt-24`}
             >
               Logout

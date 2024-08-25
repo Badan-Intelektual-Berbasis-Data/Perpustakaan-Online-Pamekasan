@@ -81,7 +81,7 @@ export default function Navbar() {
                 Informasi
               </Link>
             </div>
-          ) : <Search authenticated={authenticated} searchOpen={searchOpen} setSearchOpen={setSearchOpen} />}
+          ) : <Search authenticated={photo} searchOpen={searchOpen} setSearchOpen={setSearchOpen} />}
         </AnimatePresence>
 
         <div className="hidden md:flex items-center gap-x-6 ">
@@ -97,13 +97,13 @@ export default function Navbar() {
               className="h-5 w-5 text-gray-300 hover:text-white"
             />
           </Link>
-          {!authenticated && (
+          {!photo && (
             <div className="flex gap-x-2">
               <Link className="text-white border-white border-2 text-sm px-6 py-2" to="/login">Masuk</Link>
               <Link className="text-black bg-white border-white border-2 text-sm px-6 py-2" to="/register">Daftar</Link>
             </div>
           )}
-          {authenticated && 
+          {photo && 
           <Link to="/profile">
             <div className="">
               {!photo && 
