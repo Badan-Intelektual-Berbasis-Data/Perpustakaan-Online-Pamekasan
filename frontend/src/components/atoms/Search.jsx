@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import React, { useState, useEffect } from "react";
 import { backdropVariants } from "../../../utils/Consts";
 import { Link } from "react-router-dom";
+import useDebounce from "../../hooks/useDebounce";
 
 export default function Search({ searchOpen, authenticated }) {
   const [booksData, setBooksData] = useState([]);
@@ -26,7 +27,7 @@ export default function Search({ searchOpen, authenticated }) {
       .then((data) => setBooksData(data));
   }
 
-  useEffect(() => {
+  useDebounce(() => {
     getData();
   }, [searchValue, filter]);
 
