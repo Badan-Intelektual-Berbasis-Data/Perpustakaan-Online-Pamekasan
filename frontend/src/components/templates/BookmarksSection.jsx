@@ -17,7 +17,7 @@ export default function BookmarksSection() {
     console.log(`Bearer ${access_token}`)
 
     return async () => {
-      await fetch("http://127.0.0.1:8000/api/users/bookmark/1/", {
+      await fetch(`${import.meta.env.VITE_BASE_API_URL}/users/bookmark/1/`, {
         headers: {
           'Authorization' : `JWT ${access_token}`
         }
