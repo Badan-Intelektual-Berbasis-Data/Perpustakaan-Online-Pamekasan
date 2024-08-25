@@ -2,9 +2,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import CardGroupSlide from "../components/molecules/CardGroupSlide";
 import Banner from "../components/atoms/Banner";
 import CardGroupSlideSkeleton from "../components/skeletons/CardGroupSlideSkeleton";
-import CardGroupGridSkeleton from "../components/skeletons/CardGroupGridSkeleton";
 import CardGroupGrid from "../components/molecules/CardGroupGrid";
-// import CardGroupGrid from "../components/molecules/CardGroupGrid";
 
 export default function Home() {
   const [categories, setCategories] = useState([])

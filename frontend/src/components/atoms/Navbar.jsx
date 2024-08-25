@@ -11,13 +11,11 @@ import {
   faBars,
   faTimes,
   faBell,
-  faUserCircle,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Search from "./Search";
-import useAuth from "../../hooks/useAuth";
 import { backdropVariants } from "../../../utils/Consts";
 
 export default function Navbar() {
@@ -27,22 +25,20 @@ export default function Navbar() {
   const [photo, setPhoto] = useState("")
 
 
-  const authenticated = useAuth("", "", false)
-
   const location = useLocation()
 
   useEffect(() => {setCurrentURL(location.pathname)}, [location.pathname])
 
   useEffect(() => {
     const image_url = sessionStorage.getItem("user_image")
-
+    
     setPhoto(image_url)
     
 
   }, [])
 
   return (
-    <nav className="bg-primary p-4 sticky top-0 left-0 z-30">
+    <nav className="bg-primary p-4 box-border sticky top-0 left-0 z-30">
       {/* Search backdrop */}
       <motion.div
         initial="hidden"

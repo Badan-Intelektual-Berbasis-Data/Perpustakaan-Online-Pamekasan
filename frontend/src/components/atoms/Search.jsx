@@ -1,15 +1,17 @@
 import { faSearch, faBook } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { backdropVariants } from "../../../utils/Consts";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useDebounce from "../../hooks/useDebounce";
 
-export default function Search({ searchOpen, authenticated }) {
+export default function Search({ searchOpen, setSearchOpen, authenticated }) {
   const [booksData, setBooksData] = useState([]);
   const [filter, setFilter] = useState("title");
   const [searchValue, setSearchValue] = useState("");
+
+  const navigate = useNavigate()
 
   async function getData() {
     await fetch(
@@ -30,6 +32,11 @@ export default function Search({ searchOpen, authenticated }) {
   useDebounce(() => {
     getData();
   }, [searchValue, filter]);
+
+  function handleClick(id) {
+    navigate(`/detail/${id}`)
+    setSearchOpen(false)
+  }
 
   return (
     <motion.div
@@ -107,7 +114,7 @@ export default function Search({ searchOpen, authenticated }) {
           {!booksData && <p>Hasil tidak ditemukan</p>}
           {booksData &&
             booksData.map((book, index) => (
-              <button key={index} className="flex justify-between items-center">
+              <button key={index} onClick={() => handleClick(book.id)} className="flex justify-between items-center">
                 <h3>{book.title}</h3>
                 <h3>{book.author_name}</h3>
               </button>
