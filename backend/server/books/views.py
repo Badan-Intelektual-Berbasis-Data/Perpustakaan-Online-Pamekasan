@@ -1,10 +1,11 @@
 import random
 from django.db.models import ForeignKey
 from rest_framework.exceptions import NotFound
-from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import action
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.status import (
+    HTTP_404_NOT_FOUND
+)
 from .models import (
     Authors,
     Book,
@@ -108,6 +109,25 @@ class DetailView(ModelViewSet):
             data.save()
             
             return Response({'messege' : 'Buku baru telah ditambahkan'})
+        
+
+    def retrieve(self, _, pk=None):
+        book_data = Book.objects.filter(pk=pk)
+
+        if not book_data:
+            return Response(status=HTTP_404_NOT_FOUND)
+
+        query = BooksSerializer(book_data[0])
+
+        book_codes = len(BookCode.objects.all())
+
+        # data = dict(query)
+
+        data = dict(query.data)
+
+        data["stock"] = book_codes
+
+        return Response(data)
         
 
 class BookCodeView(ModelViewSet):
