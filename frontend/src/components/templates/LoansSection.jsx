@@ -6,11 +6,17 @@ export default function LoansSection() {
     const [data, setData] = useState([])
 
     const getLoanData = async () => {
-        const user_id = sessionStorage.getItem("user_id")
+        const user_id = localStorage.getItem("user_id")
+        const access_token = localStorage.getItem("access_token")
 
-        if (!user_id) return
+        if (!user_id && !access_token) return
 
-        await fetch(`${import.meta.env.VITE_BASE_API_URL}/loans/loan/?user=${user_id}`)
+        await fetch(`${import.meta.env.VITE_BASE_API_URL}/loans/loan/?user=${user_id}`, {
+            method: 'get',
+            headers: {
+                'Authorization' : `JWT ${access_token}`
+            }
+        })
             .then(res => res.json())
             .then(data => setData(data))
     }
