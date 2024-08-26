@@ -67,6 +67,7 @@ class Book(models.Model):
     pages = models.IntegerField()
     isbn = models.PositiveBigIntegerField(unique=True, null=True, blank=True)  # 13 Digits
     edition = models.IntegerField(default=1)
+    stock = models.IntegerField(default=0)
 
 
     def __str__(self):

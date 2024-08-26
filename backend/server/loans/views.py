@@ -60,9 +60,14 @@ class LoanView(ModelViewSet):
 
         with transaction.atomic():
             book = Book.objects.filter(title=data["book"])[0]
-            book.status = True
+            
+            if book.stock <= 0:
+                return Response(status=HTTP_404_NOT_FOUND)
+            
+            book.stock -= 1
 
-            bookmark = Bookmark.objects.get_or_create(user=user[0])
+
+            bookmark = Bookmark.objects.filter(user=user[0])
             bookmark[0].books.add(book.id)
 
             return Response(status=HTTP_201_CREATED)
