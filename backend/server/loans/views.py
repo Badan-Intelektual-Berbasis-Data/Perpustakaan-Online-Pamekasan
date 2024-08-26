@@ -11,7 +11,10 @@ from rest_framework.status import (
 from .models import Loan
 from .serializers import LoanSerializer
 
-from books.models import Book
+from books.models import (
+    Book,
+    BookCode
+)
 from users.models import (
     User,
     Bookmark
@@ -67,8 +70,10 @@ class LoanView(ModelViewSet):
             book.stock -= 1
 
 
+            code = BookCode.objects.order_by('?')[:1]
+
             bookmark = Bookmark.objects.filter(user=user[0])
-            bookmark[0].books.add(book.id)
+            bookmark[0].books.add(code.id)
 
             return Response(status=HTTP_201_CREATED)
 

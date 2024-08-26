@@ -1,11 +1,11 @@
 from rest_framework.serializers import ModelSerializer
 from .models import Loan
-from books.serializers import BooksSerializer
+from books.serializers import BookCodeSerializer
 from users.serializers import UserSerializer
 
 
 class LoanSerializer(ModelSerializer):
-    book = BooksSerializer()
+    book = BookCodeSerializer()
     user = UserSerializer()
 
     class Meta:

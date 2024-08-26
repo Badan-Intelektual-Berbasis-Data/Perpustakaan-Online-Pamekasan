@@ -69,7 +69,7 @@ class BooksSerializer(ModelSerializer):
 
 class BookCodeSerializer(ModelSerializer):
 
-    book = BooksSerializer()
+    book = PrimaryKeyRelatedField(queryset=BookCode.objects.all())
 
     class Meta:
         model = BookCode
