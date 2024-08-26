@@ -40,7 +40,7 @@ export default function Profile() {
         if (res.status == 205) {
           localStorage.removeItem("access_token")
           localStorage.removeItem("refresh_token")
-          sessionStorage.clear()
+          localStorage.clear()
           navigate("/")
         }
       })
@@ -69,8 +69,8 @@ export default function Profile() {
       })
         .then(res => res.json())
         .then(data => {
-          sessionStorage.setItem("user_id", data.id)
-          sessionStorage.setItem("user_image", data.image_url)
+          localStorage.setItem("user_id", data.id)
+          localStorage.setItem("user_image", data.image_url)
           setProfileData(data)
         })
     }

@@ -38,6 +38,9 @@ export default function Detail() {
 
   const navigate = useNavigate()
 
+
+  
+
   useEffect(() => {
     return async () => {
       await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/detail/${name}/`)
@@ -105,7 +108,9 @@ export default function Detail() {
               </div>
             </div>
             <div className="flex mt-12 gap-x-4">
-              <button className="flex-1 py-2 rounded-md bg-blue-500 text-white outline-none w-[400px]">
+              <button 
+              onClick={() => navigate('/order', { state: {book: bookData.id} })}
+              className="flex-1 py-2 rounded-md bg-blue-500 text-white outline-none w-[400px]">
                 Pinjam
               </button>
               <button className="py-2 px-2 rounded-md">

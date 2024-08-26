@@ -30,7 +30,7 @@ export default function Navbar() {
   useEffect(() => {setCurrentURL(location.pathname)}, [location.pathname])
 
   useEffect(() => {
-    const image_url = sessionStorage.getItem("user_image")
+    const image_url = localStorage.getItem("user_image")
     
     setPhoto(image_url)
     
