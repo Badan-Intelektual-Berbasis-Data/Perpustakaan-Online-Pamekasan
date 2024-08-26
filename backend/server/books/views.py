@@ -12,7 +12,8 @@ from .models import (
     Categories,
     Publisher,
     Languange,
-    Genre
+    Genre,
+    BookCode
 )
 from .serializers import (
     AuthorSerializer,
@@ -21,7 +22,8 @@ from .serializers import (
     CategoriesSerializer,
     PublisherSerializer,
     LanguangeSerializer,
-    GenreSerializer
+    GenreSerializer,
+    BookCodeSerializer
 )
 
 
@@ -106,6 +108,11 @@ class DetailView(ModelViewSet):
             data.save()
             
             return Response({'messege' : 'Buku baru telah ditambahkan'})
+        
+
+class BookCodeView(ModelViewSet):
+    queryset = BookCode.objects.all()
+    serializer_class = BookCodeSerializer
 
 
 class DisplayView(ModelViewSet):

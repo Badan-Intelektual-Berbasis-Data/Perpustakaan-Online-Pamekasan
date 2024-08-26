@@ -65,11 +65,8 @@ class Book(models.Model):
     width = models.IntegerField()
     height = models.IntegerField()
     pages = models.IntegerField()
-    status = models.BooleanField(default=True)
     isbn = models.PositiveBigIntegerField(unique=True, null=True, blank=True)  # 13 Digits
     edition = models.IntegerField(default=1)
-    date_published = models.DateField()
-    date_registered = models.DateTimeField(auto_now_add=True, editable=False)
 
 
     def __str__(self):
@@ -77,7 +74,10 @@ class Book(models.Model):
 
 
 
-class bookShelf(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
-    date_registered = models.DateTimeField(auto_now_add=True, editable=False)
+class BookCode(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book_code = models.CharField(max_length=14)
+    status = models.CharField(default="available")
+
+    
+    

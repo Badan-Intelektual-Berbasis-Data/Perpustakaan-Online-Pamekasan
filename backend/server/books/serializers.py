@@ -6,7 +6,8 @@ from .models import (
     Categories,
     Languange,
     Publisher,
-    Genre
+    Genre,
+    BookCode
 )
 
 class AuthorSerializer(ModelSerializer):
@@ -61,6 +62,17 @@ class BooksSerializer(ModelSerializer):
     
     class Meta:
         model = Book
+        fields = '__all__'
+        depth = 1
+        partial = True
+
+
+class BookCodeSerializer(ModelSerializer):
+
+    book = BooksSerializer()
+
+    class Meta:
+        model = BookCode
         fields = '__all__'
         depth = 1
         partial = True

@@ -27,8 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['alvinsetyapranata.byte.biz.id', 'https://alvinsetyapranata.byte.biz.id', '127.0.0.1', '127.0.0.1:3000', 'http://localhost:3000/', '192.168.1.4', 'http://192.168.1.12:3000/']
 
-CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://192.168.1.12:3000']
-
+CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://192.168.1.6:3000']
 # Application definition
 
 INSTALLED_APPS = [
@@ -129,7 +128,6 @@ SIMPLE_JWT = {
 
 
 AUTH_USER_MODEL = "users.User"
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

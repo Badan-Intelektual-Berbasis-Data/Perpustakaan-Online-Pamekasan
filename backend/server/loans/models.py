@@ -9,4 +9,4 @@ class Loan(models.Model):
     fine_ammount = models.BigIntegerField(default=0)
     return_status = models.BooleanField(default=False)
     borrow_date = models.DateTimeField(editable=False, auto_now_add=True)
-    return_date = models.DateTimeField()
+    return_date = models.DateTimeField(editable=False, auto_now_add=True)

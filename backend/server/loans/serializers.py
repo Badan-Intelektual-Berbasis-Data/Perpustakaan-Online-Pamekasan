@@ -9,5 +9,11 @@ class LoanSerializer(ModelSerializer):
     user = UserSerializer()
 
     class Meta:
-        fields = '__all__'
+        fields = ['book', 'user']
         model = Loan
+
+
+    # def create(self, validated_data):
+    #     print(validated_data)
+
+    #     return Loan.objects.create(**validated_data)
