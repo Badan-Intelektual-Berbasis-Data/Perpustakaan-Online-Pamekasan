@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
+import OrderCreate from "../pages/OrderCreate";
 
 
 
@@ -27,6 +28,7 @@ export default function Routers() {
           <Route path="profile/" element={<Profile />} />
         </Route>
 
+          <Route path="order/" element={<OrderCreate />} />
         <Route path="login/" element={<Login />} />
         <Route path="register/" element={<Registration />} />
 
