@@ -24,7 +24,7 @@ from users.models import (
 class LoanView(ModelViewSet):
     queryset = Loan.objects.all()
     serializer_class = LoanSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
 
     def get_queryset(self):
@@ -62,12 +62,11 @@ class LoanView(ModelViewSet):
         loan.save()
 
         with transaction.atomic():
-            book = Book.objects.filter(title=data["book"])[0]
             
-            if book.stock <= 0:
+            if book[0].stock <= 0:
                 return Response(status=HTTP_404_NOT_FOUND)
             
-            book.stock -= 1
+            book[0].stock -= 1
 
 
             code = BookCode.objects.order_by('?')[:1]
