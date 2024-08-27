@@ -28,27 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['alvinsetyapranata.byte.biz.id', 'https://alvinsetyapranata.byte.biz.id', '127.0.0.1', '127.0.0.1:3000', 'http://localhost:3000/', '192.168.1.4', 'http://192.168.1.12:3000/', '103.189.104.53', 'https://perpustakaan-online-pamekasan.vercel.app/']
 
 CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://192.168.1.6:3000', 'https://perpustakaan-online-pamekasan.vercel.app']
-CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOW_METHODS = [
-    'GET',
-    'POST',
-    'PUT',
-    'PATCH',
-    'DELETE',
-    'OPTIONS',
-    'HEAD'
-]
-
-
-CORS_ALLOW_HEADERS = [
-    'content-type',
-    'authorization',
-    'x-csrftoken'
-]
-
-
-SECURE_SSL_REDIRECT = True  
 
 INSTALLED_APPS = [
     'django.contrib.admin',
