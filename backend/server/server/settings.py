@@ -48,6 +48,8 @@ CORS_ALLOW_HEADERS = [
 ]
 
 
+SECURE_SSL_REDIRECT = True  
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
