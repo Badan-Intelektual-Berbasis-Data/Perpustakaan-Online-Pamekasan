@@ -76,8 +76,8 @@ class Book(models.Model):
 
 
 class BookCode(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    book_code = models.CharField(max_length=14)
+    detail = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book_code = models.CharField(max_length=14, unique=True)
     status = models.CharField(default="available")
 
     
