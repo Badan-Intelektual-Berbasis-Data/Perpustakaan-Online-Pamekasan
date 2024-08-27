@@ -146,6 +146,7 @@ class DisplayView(ModelViewSet):
         id_request = self.request.query_params.get("id")
         search = self.request.query_params.get("search")
         filter_ = self.request.query_params.get("by")
+        mixed = self.request.query_params.get("mixed")
 
         res = self.queryset
         
@@ -154,6 +155,9 @@ class DisplayView(ModelViewSet):
 
         if id_request:
             res = res.filter(id=category_request)
+
+        if mixed:
+            return res.order_by("?")[:3]
 
 
         if search:
