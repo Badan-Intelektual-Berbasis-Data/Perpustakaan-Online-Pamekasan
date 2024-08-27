@@ -5,7 +5,7 @@ from django.contrib.auth.models import (
     BaseUserManager
 )
 from django.utils.translation import gettext_lazy as _
-from books.models import BookCode
+from books.models import Book
 
 
 class UserManager(BaseUserManager):
@@ -60,4 +60,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Bookmark(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    books = models.ManyToManyField(BookCode)
+    books = models.ManyToManyField(Book)
