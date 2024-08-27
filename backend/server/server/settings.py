@@ -25,9 +25,9 @@ SECRET_KEY = 'django-insecure-q&%rf9xg7h&pw)nr9pmpe0c&t93#92$lis)6(s))3f=4+vvvox
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['alvinsetyapranata.byte.biz.id', 'https://alvinsetyapranata.byte.biz.id', '127.0.0.1', '127.0.0.1:3000', 'http://localhost:3000/', '192.168.1.4', 'http://192.168.1.12:3000/', '103.189.104.53']
+ALLOWED_HOSTS = ['alvinsetyapranata.byte.biz.id', 'https://alvinsetyapranata.byte.biz.id', '127.0.0.1', '127.0.0.1:3000', 'http://localhost:3000/', '192.168.1.4', 'http://192.168.1.12:3000/', '103.189.104.53', 'https://perpustakaan-online-pamekasan.vercel.app']
 
-CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://192.168.1.6:3000']
+CORS_ALLOWED_ORIGINS = ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://192.168.1.6:3000', 'https://perpustakaan-online-pamekasan.vercel.app']
 # Application definition
 
 INSTALLED_APPS = [
@@ -145,6 +145,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL ='media/'
+
+STATIC_ROOT = Path(BASE_DIR, 'static')
+MEDIA_ROOT = Path(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
