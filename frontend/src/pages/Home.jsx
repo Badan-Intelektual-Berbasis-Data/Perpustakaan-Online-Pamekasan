@@ -23,13 +23,13 @@ export default function Home() {
     <div>
       <Banner />
       <div className="space-y-20 py-12">
-        {!categories && (
+        {categories.length <= 0 && (
           <>
             <CardGroupSlideSkeleton />
             <CardGroupSlideSkeleton />
           </>
         )}
-        { categories && categories.map((category, index) => (
+        { categories.length >= 1 && categories.map((category, index) => (
           <Suspense fallback={<CardGroupSlideSkeleton />}>
             <CardGroupSlide id={category.id} title={category.name} key={index} />
           </Suspense>
