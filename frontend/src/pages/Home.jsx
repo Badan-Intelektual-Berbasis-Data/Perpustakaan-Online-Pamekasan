@@ -9,7 +9,7 @@ export default function Home() {
   const [categories, setCategories] = useState([])
 
 
-  useDebounce(() => {
+  useEffect(() => {
     return async () => {
       
       await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/category?mixed=true`)
@@ -29,7 +29,7 @@ export default function Home() {
             <CardGroupSlideSkeleton />
           </>
         )}
-        { categories.length >= 1 && categories.map((category, index) => (
+        { categories.length >= 1  && categories.map((category, index) => (
           <Suspense fallback={<CardGroupSlideSkeleton />}>
             <CardGroupSlide id={category.id} title={category.name} key={index} />
           </Suspense>

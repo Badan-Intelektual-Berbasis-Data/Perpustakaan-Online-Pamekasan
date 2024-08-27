@@ -32,8 +32,7 @@ export default function Detail() {
     pages: 0,
     isbn: 0,
     edition: 0,
-    date_published: "",
-    date_registered: "",
+    stock: 0
   });
 
   const navigate = useNavigate()
@@ -75,8 +74,8 @@ export default function Detail() {
             
             <div className="mt-6 space-y-2 text-sm">
               <div className="flex justify-between w-full">
-                <p>Status:</p>
-                <p className="font-bold text-green-600">Tersedia</p>
+                <p>Stock:</p>
+                <p className="">{bookData.stock}</p>
               </div>
               <div className="flex justify-between w-full">
                 <p>Panjang:</p>
@@ -100,7 +99,7 @@ export default function Detail() {
               </div>
               <div className="flex justify-between w-full">
                 <p>Tanggal Penerbit</p>
-                <p>{bookData.date_published}</p>
+                <p>{bookData.title.date_published}</p>
               </div>
               <div className="flex justify-between w-full">
                 <p>Edisi</p>

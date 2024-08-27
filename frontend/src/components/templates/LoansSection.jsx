@@ -17,7 +17,14 @@ export default function LoansSection() {
                 'Authorization' : `JWT ${access_token}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status == 404) {
+                    return []
+
+                }
+
+                return res.json()
+            })
             .then(data => setData(data))
     }
 
@@ -28,8 +35,11 @@ export default function LoansSection() {
     return (
     <div className='px-28 flex-1'>
         <h1 className="text-2xl text-medium">Peminjaman</h1>
-        <div className='flex flex-col mt-12'>
-            {data && data.map((loanItem, index) => (
+        <div className='flex flex-col mt-12 gap-y-12'>
+            {data.length <= 0 && 
+                <h1>Anda tidak memiliki Peminjaman</h1>
+            }
+            {data.length >= 1 && data.map((loanItem, index) => (
                 <LoanCard data={loanItem} key={index}/>
                 
             ))

@@ -26,14 +26,13 @@ export default function OrderCreate() {
           body: data.toString()
         })
           .then(res => {
-            if (res.status == 200) {
+            if (res.status == 201) {
                 alert("Barhasil meminjam buku")
                 navigate("/profile")
             }
         })
     
       } 
-
 
       useEffect(() => {
         handleBorrow()

@@ -149,7 +149,7 @@ export default function Banner() {
             exit="hidden"
             key={bannerData[activeBanner].title}
             variants={textVariants}
-            className={`text-5xl font-bold ${bannerData[activeBanner].id ? '' : 'w-[300px] py-4 bg-gray-600 animate-pulse'}`}
+            className={`text-5xl font-bold line-clamp-1 ${bannerData[activeBanner].id ? '' : 'w-[300px] py-4 bg-gray-600 animate-pulse'}`}
           >
             {bannerData[activeBanner].title}
           </motion.h1>
