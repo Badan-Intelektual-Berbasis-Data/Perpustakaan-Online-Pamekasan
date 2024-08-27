@@ -4,7 +4,9 @@ from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.status import (
-    HTTP_404_NOT_FOUND
+    HTTP_404_NOT_FOUND,
+    HTTP_400_BAD_REQUEST,
+    HTTP_201_CREATED
 )
 from .models import (
     Authors,
@@ -114,6 +116,25 @@ class DetailView(ModelViewSet):
 class BookCodeView(ModelViewSet):
     queryset = BookCode.objects.all()
     serializer_class = BookCodeSerializer
+
+
+    def create(self, req):
+        data = BookCodeSerializer(data=req.POST)
+
+        if not data.is_valid(raise_exception=True):
+            return Response(status=HTTP_400_BAD_REQUEST)
+        
+        detail = Book.objects.filter(pk=req.POST["book"]["id"])
+        
+        if not detail:
+            return Response(status=HTTP_404_NOT_FOUND)
+
+        detail[0].stock += 1
+        detail[0].save()
+        data.save()
+
+
+        return Response(status=HTTP_201_CREATED)
 
 
 class DisplayView(ModelViewSet):

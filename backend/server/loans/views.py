@@ -58,8 +58,6 @@ class LoanView(ModelViewSet):
             return Response(status=HTTP_404_NOT_FOUND)
 
         
-        loan = Loan.objects.create(book=book[0], user=user[0])
-        loan.save()
 
         with transaction.atomic():
             
@@ -71,8 +69,8 @@ class LoanView(ModelViewSet):
 
             code = BookCode.objects.order_by('?')[:1]
 
-            bookmark = Bookmark.objects.filter(user=user[0])
-            bookmark[0].books.add(code.id)
+            loan = Loan.objects.create(book=code[0], user=user[0])
+            loan.save()
 
             return Response(status=HTTP_201_CREATED)
 
