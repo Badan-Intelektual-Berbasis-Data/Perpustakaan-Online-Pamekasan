@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     return async () => {
       
-      await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/category?mixed=true`)
+      await fetch(`${import.meta.env.VITE_BASE_API_URL}/books/category/?mixed=true`)
         .then((res) => res.json())
         .then((data) => setCategories(data))
     }
@@ -23,6 +23,7 @@ export default function Home() {
     <div>
       <Banner />
       <div className="space-y-20 py-12">
+
         { categories.length >= 1  && categories.map((category, index) => (
           <Suspense fallback={<CardGroupSlideSkeleton />}>
             <CardGroupSlide id={category.id} title={category.name} key={index} />
